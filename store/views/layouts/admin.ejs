@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="/plugins/images/favicon.png">
+    <title>
+        Kupon Peru
+    </title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!-- Vector CSS -->
+    <link href="/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <% if(title == 'deals' || title == 'coupons'){ %>
+    <!-- Date picker plugins css -->
+    <!-- <link href="/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+    <link href="/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="/plugins/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet"
+        type="text/css" />
+    <% }%>
+    <!-- animation CSS -->
+    <link href="/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="/css/colors/default.css" id="theme" rel="stylesheet">
+
+    <link href="/css/custom.css" id="theme" rel="stylesheet">
+    <link href="/css/spinners.css" id="theme" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <!-- jQuery -->
+    <script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <!-- <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div> -->
+
+    <div id="wrapper">
+        <% include ../layouts/header.ejs %>
+        <% include ../layouts/admin_sidebar.ejs %>
+        <div id="page-wrapper">
+
+            <% if (error_flash){ %>
+            <div class="alert alert-danger alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <%= error_flash%>
+            </div>
+            <% } if (success_flash){ %>
+            <div class="alert alert-success alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <%= success_flash %>
+            </div>
+            <% } %>
+
+            <%- body -%>
+
+            <!-- /.container-fluid -->
+            <footer class="footer text-center">
+                <script>document.write(new Date().getFullYear())</script> &copy; Kupon </footer>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script src="/js/validator.js"></script>
+    <% if(title == 'pages'){ %>
+    <script src="/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+            (function () {
+                [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                    new CBPFWTabs(el);
+                });
+            })();
+    </script>
+    <script src="/plugins/bower_components/html5-editor/wysihtml5-0.3.0.js"></script>
+    <script src="/plugins/bower_components/html5-editor/bootstrap-wysihtml5.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.textarea_editor').wysihtml5();
+            $('.textarea_editor2').wysihtml5();
+            $('.textarea_editor3').wysihtml5();
+            $('.textarea_editor4').wysihtml5();
+        });
+    </script>
+    <% }%>
+    <% if(title == 'deals' || title == 'coupons'){ %>
+    <!-- Date picker plugins css -->
+    <script src="/plugins/bower_components/moment/moment.js"></script>
+    <!-- <script src="/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <script src="/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script> -->
+    <script src="/plugins/bower_components/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <% }%>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="/js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/js/custom.min.js"></script>
+    <script src="/js/dashboard3.js"></script>
+    <!--Style Switcher -->
+    <script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+
+    <script src="/plugins/js/dataTables.bootstrap.min.js"></script>
+
+
+    <script>
+        $(function () {
+            $('input').change(function () {
+                this.value = $.trim(this.value);
+            });
+        });
+        $(".alert-dismissable").fadeTo(5000, 0).slideUp(1000, function () {
+            $(this).remove();
+        });
+    </script>
+</body>
+
+</html>

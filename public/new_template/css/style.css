@@ -1,0 +1,1145 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap");
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  color: #000;
+}
+
+.fz12 {
+  font-size: 12px;
+}
+
+.fz13, .secondoryBtns li .dropdown-menu a {
+  font-size: 13px;
+}
+
+.fz14, .featureDesc p, .listBusniess p, footer.bg-dark p, .footerMenu li, .signupFourm .custom-checkbox label {
+  font-size: 14px;
+}
+
+.fz15, .navbar-nav .nav-link, .secondoryBtns li a {
+  font-size: 15px;
+}
+
+.fz16, .contactUs .phoneBlock p, .signupFourm .custom-file-label {
+  font-size: 16px;
+}
+
+.fz18, .bannerDescp p {
+  font-size: 18px;
+}
+
+.fz20, .featureDesc h4, .socailIcons a {
+  font-size: 20px;
+}
+
+.fz22 {
+  font-size: 22px;
+}
+
+.transition, .secondoryBtns li a, .secondoryBtns li .dropdown-menu a, .defultBtn, .socailIcons a, .businessCateg ul li .custom-checkbox, .businessCateg ul li a, .businessCateg ul li .custom-checkbox p, .businessCateg ul li a p, .businessCateg ul li .custom-checkbox .iconCricle, .businessCateg ul li a .iconCricle {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+
+.redGradient, .secondoryBtns li a.getApp, .defultBtn, .featureDesc ul li span {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dc3939+0,ff0000+100 */
+  background: #dc3939;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#dc3939), to(red));
+  background: linear-gradient(to right, #dc3939 0%, red 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc3939', endColorstr='#ff0000',GradientType=1 );
+  /* IE6-9 */
+}
+
+.redGradientR, .secondoryBtns li a.getApp:hover, .defultBtn:hover {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff0000+0,dc3939+100 */
+  background: red;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(red), to(#dc3939));
+  background: linear-gradient(to right, red 0%, #dc3939 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#dc3939',GradientType=1 );
+  /* IE6-9 */
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.navbar-nav .nav-link {
+  color: #000 !important;
+  padding: 0 15px !important;
+}
+
+.secondoryBtns {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.secondoryBtns li {
+  display: inline;
+  position: relative;
+}
+
+.secondoryBtns li a {
+  display: inline-block;
+  font-weight: 700;
+  color: #000;
+}
+
+.secondoryBtns li a.languageDrop i {
+  font-size: 24px;
+  position: relative;
+  top: 5px;
+}
+
+.secondoryBtns li a:hover {
+  text-decoration: none;
+}
+
+.secondoryBtns li a .dropdown-menu {
+  margin: 0;
+}
+
+.secondoryBtns li a.getApp {
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 30px;
+  margin-left: 10px;
+}
+
+.secondoryBtns li .dropdown-menu {
+  margin: 0;
+  padding: 0;
+  right: 0;
+  left: auto;
+  min-width: 100px;
+}
+
+.secondoryBtns li .dropdown-menu a {
+  font-weight: 400;
+  padding: 7px 10px;
+}
+
+.secondoryBtns li .dropdown-menu a:hover {
+  background: #ff0000;
+  color: #fff;
+}
+
+.defultPadding {
+  padding: 125px 0;
+}
+
+.defultBtn {
+  color: #fff;
+  padding: 14px 25px;
+  border-radius: 30px;
+  text-align: center;
+  min-width: 194px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.defultBtn:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.ourFeature {
+  background: url(../img/dote-bg.jpg) repeat;
+  position: relative;
+}
+
+.ourFeature:after {
+  content: '';
+  background: url(../img/features-screen.png);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background-repeat: no-repeat;
+  display: block;
+  top: 20%;
+  z-index: 0;
+}
+
+.mapBlock {
+  background: url(../img/map-bg.jpg) no-repeat;
+  position: relative;
+  background-size: cover;
+  padding-top: 95px;
+  padding-bottom: 0;
+}
+
+.mT100 {
+  margin-top: 100px;
+}
+
+.mT40 {
+  margin-top: 40px;
+}
+
+.mT10 {
+  margin-top: 10px;
+}
+
+.navbar {
+  -webkit-box-shadow: 0px 7px 14.88px 1.12px rgba(13, 13, 13, 0.1);
+          box-shadow: 0px 7px 14.88px 1.12px rgba(13, 13, 13, 0.1);
+}
+
+.bannerDescp {
+  background: #ff0000;
+  padding: 56px 0;
+  position: relative;
+  z-index: 1;
+  margin-top: -1px;
+}
+
+.bannerDescp p {
+  color: #fff;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.featureDesc h2 {
+  font-weight: 700;
+  color: #ff0000;
+  margin-bottom: 60px;
+}
+
+.featureDesc ul {
+  list-style: none;
+  padding: 0;
+}
+
+.featureDesc ul li {
+  padding-bottom: 60px;
+  position: relative;
+  padding-left: 96px;
+}
+
+.featureDesc ul li span {
+  width: 73px;
+  height: 73px;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.featureDesc ul li .featureIcons {
+  background-image: url(../img/features-icons.png);
+  background-repeat: no-repeat;
+  background-position: center 10px;
+  display: block;
+  width: 73px;
+  height: 73px;
+}
+
+.featureDesc ul li .featureIcons.coupons {
+  background-position: center 10px;
+}
+
+.featureDesc ul li .featureIcons.share {
+  background-position: center -130px;
+}
+
+.featureDesc ul li .featureIcons.category {
+  background-position: center -264px;
+}
+
+.featureDesc ul li .featureIcons.business {
+  background-position: center -408px;
+}
+
+.featureDesc ul li:after {
+  background: #e73434;
+  width: 2px;
+  height: 100%;
+  content: '';
+  bottom: 0;
+  display: block;
+  left: 35px;
+  z-index: 0;
+  position: absolute;
+}
+
+.featureDesc ul li:last-child {
+  padding-bottom: 0;
+}
+
+.featureDesc ul li:last-child:after {
+  display: none;
+}
+
+.featureDesc h4 {
+  color: #000;
+}
+
+.featureDesc p {
+  margin-bottom: 0;
+}
+
+.listBusniess {
+  padding: 70px 0;
+  text-align: center;
+}
+
+.listBusniess h3 {
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.downloadApp {
+  text-align: center;
+  padding: 85px 0 200px;
+  background: url(../img/download-bg.jpg) no-repeat 0 0;
+  background-size: cover;
+  position: relative;
+}
+
+.downloadApp h2 {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.downloadApp h5 {
+  font-size: 24px;
+  margin-bottom: 46px;
+}
+
+.downloadApp p {
+  font-size: 16px;
+}
+
+.downloadApp .downloadBtns {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.downloadApp .downloadScreen {
+  position: absolute;
+  bottom: -280px;
+}
+
+.contactUs {
+  background: url(../img/contact-us-bg.jpg) no-repeat 0 0;
+  background-size: cover;
+  padding: 250px 0 80px;
+}
+
+.contactUs h2 {
+  font-size: 48px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.contactUs .phoneBlock h4 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.contactUs .form-control {
+  height: 56px;
+  background: #f7f7f7;
+  border: none;
+  padding: 0px 0 0 15px;
+  border-radius: 8px;
+}
+
+.contactUs .form-control:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+          box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.contactUs textarea.form-control {
+  height: 194px;
+  resize: none;
+  padding: 20px 15px;
+}
+
+.socailIcons {
+  margin-top: 8px;
+  margin-bottom: 30px;
+}
+
+.socailIcons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  line-height: 40px;
+  margin-right: 5px;
+}
+
+.socailIcons a.fb {
+  background: #3a589b;
+}
+
+.socailIcons a.twitter {
+  background: #33ccff;
+}
+
+.socailIcons a.linkedin {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#833ab4+0,fd1d1d+100 */
+  background: #833ab4;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#833ab4), to(#fd1d1d));
+  background: linear-gradient(to bottom, #833ab4 0%, #fd1d1d 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#833ab4', endColorstr='#fd1d1d',GradientType=0 );
+  /* IE6-9 */
+}
+
+.socailIcons a:hover {
+  opacity: 0.8;
+}
+
+footer.bg-dark {
+  background: #000;
+  padding: 30px 0 20px;
+}
+
+.footerMenu {
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.footerMenu li {
+  display: inline-block;
+  color: #fff;
+  margin-right: 35px;
+}
+
+.footerMenu li a {
+  color: #fff;
+}
+
+.visibleXs {
+  display: none;
+}
+
+.padding60 {
+  padding: 0 60px;
+}
+
+.loginPags {
+  background: #f7f7f7;
+}
+
+.mT150 {
+  margin-top: 150px;
+}
+
+.signupBlock {
+  border-radius: 8px;
+  background-color: white;
+  -webkit-box-shadow: 0px 2px 18px 0px rgba(13, 13, 13, 0.11);
+          box-shadow: 0px 2px 18px 0px rgba(13, 13, 13, 0.11);
+  min-height: 400px;
+  padding: 35px 50px;
+}
+
+.signupBlock h3 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+.suceesStories {
+  padding: 68px 0;
+  text-align: center;
+}
+
+.suceesStories h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 60px;
+}
+
+.suceesStories h6 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.suceesStories p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  min-height: 50px;
+}
+
+.suceesStories img {
+  margin-bottom: 30px;
+}
+
+.suceesStories .carousel-indicators li {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+}
+
+.suceesStories .carousel-indicators li.active {
+  background-color: #ff0000;
+}
+
+.suceesStories .carousel-indicators {
+  bottom: -50px;
+}
+
+.storeOwners {
+  background-color: #f7f7f7;
+  background-image: url(../img/grow-up-bg.png);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  padding-top: 60px;
+  margin-top: 20px;
+}
+
+.storeOwners h2 {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 60px;
+}
+
+.storeOwners h4 {
+  font-size: 20px;
+}
+
+.businessCateg {
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  position: relative;
+  margin-top: 35px;
+  min-height: 100px;
+  padding: 20px;
+  margin-bottom: 35px;
+}
+
+.businessCateg h4 {
+  display: inline-block;
+  background: #fff;
+  padding: 0 20px;
+  font-size: 18px;
+  position: absolute;
+  top: -11px;
+  left: 17px;
+}
+
+.businessCateg ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.businessCateg ul li {
+  display: inline-block;
+  margin-left: 40px;
+}
+
+.businessCateg ul li .custom-checkbox, .businessCateg ul li a {
+  display: block;
+  text-transform: uppercase;
+  color: #999999;
+}
+
+.businessCateg ul li .custom-checkbox:hover, .businessCateg ul li a:hover {
+  text-decoration: none;
+}
+
+.businessCateg ul li .custom-checkbox p, .businessCateg ul li a p {
+  color: #999999;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.businessCateg ul li .custom-checkbox .iconCricle, .businessCateg ul li a .iconCricle {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #999999;
+  border-radius: 50%;
+  background-color: white;
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.businessCateg ul li .custom-checkbox .iconCricle .checkBox, .businessCateg ul li a .iconCricle .checkBox {
+  position: absolute;
+  font-size: 26px;
+  right: -12px;
+  bottom: 6px;
+  background: #fff;
+  border-radius: 50%;
+  line-height: 28px;
+  opacity: 0;
+}
+
+.businessCateg ul li .custom-checkbox .iconCricle [class^="flaticon-"]:before, .businessCateg ul li .custom-checkbox .iconCricle [class*=" flaticon-"]:before,
+.businessCateg ul li .custom-checkbox .iconCricle [class^="flaticon-"]:after, .businessCateg ul li .custom-checkbox .iconCricle [class*=" flaticon-"]:after, .businessCateg ul li a .iconCricle [class^="flaticon-"]:before, .businessCateg ul li a .iconCricle [class*=" flaticon-"]:before,
+.businessCateg ul li a .iconCricle [class^="flaticon-"]:after, .businessCateg ul li a .iconCricle [class*=" flaticon-"]:after {
+  font-size: 40px;
+}
+
+.businessCateg ul li .custom-checkbox.selected, .businessCateg ul li a.selected {
+  color: #ff0c0c;
+}
+
+.businessCateg ul li .custom-checkbox.selected .iconCricle, .businessCateg ul li a.selected .iconCricle {
+  border-color: #ff0c0c;
+}
+
+.businessCateg ul li .custom-checkbox.selected p, .businessCateg ul li a.selected p {
+  color: #ff0c0c;
+}
+
+.businessCateg ul li .custom-checkbox.selected .checkBox, .businessCateg ul li a.selected .checkBox {
+  opacity: 1;
+}
+
+.businessCateg ul li .custom-checkbox .custom-control-input:checked ~ .custom-control-label {
+  color: #ff0c0c;
+}
+
+.businessCateg ul li .custom-checkbox .custom-control-input:checked ~ .custom-control-label .iconCricle {
+  border-color: #ff0c0c;
+}
+
+.businessCateg ul li .custom-checkbox .custom-control-input:checked ~ .custom-control-label p {
+  color: #ff0c0c;
+}
+
+.businessCateg ul li .custom-checkbox .custom-control-input:checked ~ .custom-control-label .checkBox {
+  opacity: 1;
+}
+
+.businessCateg ul li .custom-checkbox .custom-control-input:checked ~ .custom-control-label:before {
+  width: 0;
+  height: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.businessCateg ul li .custom-control-label::before {
+  width: 0;
+  display: none;
+}
+
+.businessCateg ul li .custom-control {
+  padding-left: 0;
+}
+
+.signupFourm .input-group {
+  margin-bottom: 20px;
+}
+
+.signupFourm .form-control {
+  height: 46px;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+}
+
+.signupFourm .form-control:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+          box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.signupFourm select.form-control {
+  height: 46px !important;
+}
+
+.signupFourm .custom-control-label::after {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.signupFourm .custom-checkbox .custom-control-label::before {
+  border-radius: 0px;
+  top: .15rem;
+}
+
+.signupFourm .custom-control-input:focus ~ .custom-control-label::before {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.signupFourm .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #ff0000;
+}
+
+.signupFourm .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: none;
+  content: '\f26b';
+  font: normal normal normal 16px/1 'Material-Design-Iconic-Font';
+  color: #fff;
+  text-align: center;
+  top: .15rem;
+}
+
+.signupFourm .custom-checkbox {
+  padding-top: 14px;
+}
+
+.signupFourm .custom-checkbox label {
+  color: #232323;
+}
+
+.signupFourm .custom-checkbox label a {
+  color: #ff0000;
+}
+
+.signupFourm .custom-file-label::after {
+  width: 0;
+  height: 0;
+  content: '';
+  display: none;
+}
+
+.signupFourm .custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: '';
+}
+
+.signupFourm .custom-file-label {
+  color: #ff0000;
+  font-weight: 700;
+}
+
+.signupFourm .custom-file-input {
+  height: 46px;
+}
+
+.signupFourm .custom-file-label {
+  height: 46px;
+  border: 1px solid #e3e3e3;
+  padding-top: 10px;
+}
+
+.signupFourm .input-group-text {
+  height: 46px;
+}
+
+.signupFourm .mobileInput {
+  position: relative;
+}
+
+.signupFourm .mobileInput span {
+  background: #fff;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  z-index: 1;
+  height: 95%;
+  line-height: 46px;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.signupFourm .mobileInput .form-control {
+  padding-left: 70px;
+  border-radius: 6px;
+}
+
+.createBtn {
+  text-align: right;
+}
+
+.height80 {
+  height: 80px;
+}
+
+.innerFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.cuponBlock {
+  border-radius: 6.8px;
+  border: 1px solid #d3d3d3;
+  background-color: #ffffff;
+  position: relative;
+  min-height: 185px;
+}
+
+.cuponBlock:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 5px;
+  height: calc(100% - 1px);
+  top: 0;
+  background: #d81a38;
+  border-radius: 5px;
+}
+
+.cuponBlock .kuponImg {
+  padding: 15px 5px 15px 10px;
+  text-align: center;
+}
+
+.cuponBlock .kuponImg img {
+  border-radius: 5px;
+}
+
+.cuponBlock .kuponDivider {
+  width: 42px;
+  height: 100%;
+  min-height: 200px;
+}
+
+.cuponBlock .kuponDivider .halfRound {
+  width: 42px;
+  height: 21px;
+  background-color: white;
+  border-bottom-left-radius: 21px;
+  border-bottom-right-radius: 21px;
+  border: 1px solid #d4d4d4;
+  border-top: none;
+  position: relative;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  top: -1px;
+}
+
+.cuponBlock .kuponDivider:before {
+  background-image: url(../img/stroke-70.png);
+  background-repeat: repeat-y;
+  height: 100%;
+  content: '';
+  display: block;
+  width: 2px;
+  position: absolute;
+  left: 22px;
+  right: 0;
+  margin: 0 auto;
+  z-index: 0;
+}
+
+.cuponBlock .kuponDivider:after {
+  width: 42px;
+  height: 21px;
+  background-color: white;
+  border-top-left-radius: 21px;
+  border-top-right-radius: 21px;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 15px;
+  right: 0;
+  display: block;
+  z-index: 1;
+}
+
+.cuponBlock .kuponDetails {
+  padding-left: 15px;
+}
+
+.cuponBlock .kuponsLogo {
+  padding-top: 15px;
+  border-bottom: 1px solid #5d5d5d;
+  padding-bottom: 10px;
+}
+
+.cuponBlock .cuponCat {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3d45;
+  margin-top: 10px;
+}
+
+.cuponBlock .kuponDescp {
+  font-size: 14px;
+  color: #595959;
+  margin-bottom: 10px;
+}
+
+.cuponBlock .kuponExpire {
+  font-size: 16px;
+  color: #d81a38;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.cuponBlock .kuponExpire:after {
+  background: #d81a38;
+  content: '';
+  width: 60%;
+  display: block;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+}
+
+.cuponBlock .clientLogo {
+  padding-top: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .ourFeature:after {
+    background-size: 50% auto;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .secondoryBtns {
+    padding-left: 0;
+  }
+  .navbar-nav .nav-link {
+    padding: 0 15px !important;
+  }
+  .navbar-brand {
+    max-width: 150px;
+  }
+  .ourFeature:after {
+    background-size: 55% auto;
+  }
+}
+
+@media (max-width: 1023px) {
+  .ourFeature:after {
+    display: none;
+  }
+  .storeOwners {
+    background-image: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .hidden-xs {
+    display: none;
+  }
+  .visibleXs {
+    display: block;
+  }
+  .navbar-light .navbar-toggler {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    border-color: transparent;
+  }
+  .navbar {
+    padding: .5rem 55px .5rem 5px;
+  }
+  .navbar-brand {
+    max-width: 150px;
+  }
+  .navbar-brand img {
+    max-width: 100%;
+  }
+  .padding60 {
+    padding: 0 10px;
+  }
+  .signupBlock {
+    padding: 35px 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .defultPadding {
+    padding: 70px 0;
+  }
+  .featureDesc {
+    padding-top: 0px;
+  }
+  .listBusniess h3 {
+    font-size: 20px;
+  }
+  .downloadApp h2 {
+    font-size: 26px;
+  }
+  .downloadApp h5 {
+    font-size: 16px;
+  }
+  .downloadApp .downloadBtns {
+    margin-bottom: 20px;
+  }
+  .downloadApp {
+    padding: 35px 0 80px;
+  }
+  .downloadApp .downloadScreen {
+    bottom: -80px;
+  }
+  .contactUs {
+    padding: 90px 0 80px;
+  }
+  .contactUs h2 {
+    font-size: 28px;
+  }
+  .contactUs .phoneBlock {
+    margin-bottom: 20px;
+  }
+  .contactUs .phoneBlock h4 {
+    font-size: 20px;
+  }
+  .footerMenu {
+    text-align: center;
+  }
+  .footerMenu li {
+    margin-right: 15px;
+  }
+  footer.bg-dark p.text-right {
+    text-align: center !important;
+  }
+  .logo img {
+    max-width: 50%;
+  }
+  .navbar-brand {
+    max-width: 110px;
+  }
+  .navbar-brand img {
+    max-width: 100%;
+  }
+  .secondoryBtns li a.getApp {
+    margin-left: 10px;
+    padding: 6px 10px;
+  }
+  .secondoryBtns {
+    padding-left: 0;
+  }
+  .navbar-toggler {
+    padding: .25rem .50rem;
+    font-size: 1.00rem;
+  }
+  .navbar-nav .nav-link {
+    padding: 15px 15px !important;
+    text-align: center;
+  }
+  .navbar-collapse {
+    margin-right: -55px;
+  }
+  .mT100 {
+    margin-top: 72px;
+  }
+  .padding60 {
+    padding: 0 15px;
+  }
+  .signupBlock {
+    padding: 35px 10px;
+  }
+  .businessCateg ul li {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  .businessCateg ul li a p {
+    font-size: 10px;
+  }
+  .businessCateg ul li a .iconCricle {
+    width: 40px;
+    height: 40px;
+  }
+  .businessCateg ul li a .iconCricle [class^="flaticon-"]:before, .businessCateg ul li a .iconCricle [class*=" flaticon-"]:before, .businessCateg ul li a .iconCricle [class^="flaticon-"]:after, .businessCateg ul li a .iconCricle [class*=" flaticon-"]:after {
+    font-size: 26px;
+  }
+  .businessCateg ul li a .iconCricle .checkBox {
+    font-size: 20px;
+    right: -8px;
+    bottom: -1px;
+  }
+  .businessCateg {
+    padding: 20px 10px;
+  }
+  .signupBlock h3 {
+    font-size: 15px;
+  }
+  .createBtn {
+    text-align: center;
+  }
+  .ourFeature:after {
+    display: none;
+  }
+  .bannerDescp {
+    padding: 20px 0;
+  }
+  .bannerDescp p {
+    font-size: 14px;
+  }
+  .storeOwners {
+    background-image: none;
+  }
+  .storeOwners h2 {
+    font-size: 20px;
+  }
+  .storeOwners h4 {
+    margin-top: 40px;
+  }
+  .featureDesc h4 {
+    font-size: 16px;
+  }
+  .secondoryBtns li a {
+    font-size: 14px;
+    padding: .5rem 7px;
+  }
+}
+
+@media (max-width: 359px) {
+  .secondoryBtns li a {
+    font-size: 11px;
+    padding: .5rem 3px;
+  }
+}
+
+	.slider_picture_circle{
+		width: 300px;
+		height: 300px!important;
+		border-radius: 50%;
+		margin: auto ;
+		overflow: hidden;
+	}
+	.slider_picture_circle img{
+		width: 100%;
+		height: 100%!important;
+		object-fit: cover;
+	}
+	.carousel-item p{
+	  padding-top: 30px;
+	}
+	@media only screen and (width: 320px){
+	  .slider_picture_circle{
+		width: 250px;
+		height: 250px!important;
+		}
+	  .carousel-item p{
+		  padding-top: 20px;
+	  }
+  }
+
+
+
+/*# sourceMappingURL=style.css.map */

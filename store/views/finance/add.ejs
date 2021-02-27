@@ -1,0 +1,248 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Check Coupon</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Check Coupon</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body target signupFourm">
+                        <form data-toggle="validator" id="form_validation" action="/finance/checkValidation" method="POST" class="col-xs-10" >
+                            <div class="form-group form-float">
+                                <label class="form-labedealsl required ">Coupon Id <sup> * </sup></label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="Enter Coupon Id" id="inputName1" name="couponId"
+                                        type="text" maxlength="50" required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-labedealsl required ">User Id <sup> * </sup></label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="Enter User Id" id="inputName1" name="userId"
+                                           type="text" maxlength="50" required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                                <a href="/finance" class="btn btn-primary waves-effect">BACK</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .catgoryTypes.custom-control {
+        padding-right: 40px
+    }
+
+    .catgoryTypes.custom-control {
+        position: relative;
+        display: block;
+        min-height: 1.5rem;
+
+    }
+
+    .catgoryTypes .custom-control-label {
+        position: relative;
+        margin-bottom: 0;
+        text-align: center;
+        font-weight: normal;
+
+    }
+
+    .catgoryTypes .custom-control-input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .catgoryTypes.form-line {
+        display: inline-block;
+    }
+
+    .catgoryTypes.custom-control.custom-radio .iconCricle {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #999999;
+        border-radius: 50%;
+        background-color: white;
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+    }
+
+    .catgoryTypes.custom-control.custom-radio .iconCricle .checkBox {
+        position: absolute;
+        font-size: 26px;
+        right: -12px;
+        bottom: 6px;
+        background: #fff;
+        border-radius: 50%;
+        line-height: 28px;
+        opacity: 0;
+    }
+
+    .catgoryTypes.custom-control.custom-radio p {
+        margin-top: 10PX;
+        text-transform: uppercase;
+    }
+
+    .catgoryTypes.custom-radio .custom-control-input:checked~.custom-control-label .iconCricle {
+        border-color: #ff0c0c;
+    }
+
+    .catgoryTypes.custom-radio .custom-control-input:checked~.custom-control-label {
+        color: #ff0c0c;
+    }
+</style>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#catImg').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).ready(function () {
+        var parent_cat = $("input[name='parent_cat']:checked").val();
+        $.post('/deals/get_subcat', { id: parent_cat, cityId: false }, function (success) {
+            $("#sub_cat").html('');
+            $("#sub_cat").append(success);
+        });
+
+        $(".parent").change(function () {
+            var parent_cat = $("input[name='parent_cat']:checked").val();
+            $.post('/deals/get_subcat', { id: parent_cat, cityId: false }, function (success) {
+                $("#sub_cat").html('');
+                $("#sub_cat").append(success);
+            });
+        });
+
+        // $('#datepicker-autoclose').datepicker({
+        //     autoclose: true,
+        //     todayHighlight: true,
+        //     format: "yyyy-mm-dd",
+        //     startDate: new Date()
+        // });
+        // $('#single-input').clockpicker({
+        //     placement: 'right',
+        //     align: 'left',
+        //     autoclose: true,
+        //     'default': 'now'
+        // });
+
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm',
+                defaultDate: new Date(),
+                minDate: new Date()
+            });
+        });
+
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        //$('#datepicker-autoclose').datepicker('setDate', today);
+
+        $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 8) && (event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+        $("#inputName2").on("keypress keyup blur", function () {
+            var price = $("#inputName3").val();
+            var discount = $(this).val();
+            if (price != '') {
+                var final = price - (price * discount) / 100;
+                $('#inputName4').val(final);
+            }
+        });
+        $("#inputName3").on("keypress keyup blur", function () {
+            var discount = $("#inputName2").val();
+            var price = $(this).val();
+            if (discount != '') {
+                var final = price - (price * discount) / 100;
+                $('#inputName4').val(final);
+            }
+        });
+        $("#inputName4").on("keypress keyup blur", function () {
+            var original = parseInt($("#inputName3").val());
+            var discountPrice = parseInt($(this).val());
+            if (original != '') {
+                if (original > discountPrice) {
+                    const amount = original - discountPrice;
+                    var per = (amount * 100) / original;
+                    $('#inputName2').val(per.toFixed());
+                    console.log('=====per>', per);
+                    var element = $("#inputName4")[0];
+                    element.setCustomValidity('');
+                } else {
+                    var element = $("#inputName4")[0];
+                    element.setCustomValidity('Please enter value less then Original');
+                }
+            }
+        });
+
+        $("#priview").on("click", function () {
+            sub_cat = $("#sub_cat option:selected").val();
+            title = $("#inputName1").val();
+            discount = $("#inputName2").val();
+            desc = $("#inputName12").val();
+            img = $('#catImg').attr('src');
+            date = $("#datetimepicker4").val();
+            const offer = $('input[type=radio][name=offerType]:checked').val();
+            $.post('/deals/get_coupon_priview', {sub_cat, title, discount, date, desc, img, offer}, function (success) {
+                $("#couponTemp").html(success);
+            });
+        });
+
+    });
+    $('input[type=radio][name=offerType]').change(function () {
+        if (this.value == '1') {
+            $('#discount').css('display', 'table');
+            $('#secial').css('display', 'none');
+            $('#inputName4').attr('readonly', 'readonly');
+        } else if (this.value == '2') {
+            $('#discount').css('display', 'none');
+            $('#secial').css('display', 'block');
+            $('#inputName4').removeAttr('readonly');
+        }
+    });
+    $(document).ready(function () {
+        const offer = $('input[type=radio][name=offerType]:checked').val();
+        if (offer == 1) {
+            $('#discount').css('display', 'table');
+            $('#secial').css('display', 'none');
+            $('#inputName4').attr('readonly', 'readonly');
+        } else if (offer == 2) {
+            $('#discount').css('display', 'none');
+            $('#secial').css('display', 'block');
+            $('#inputName4').removeAttr('readonly');
+        }
+    });
+</script>

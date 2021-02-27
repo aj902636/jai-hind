@@ -1,0 +1,115 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav slimscrollsidebar">
+        <div class="sidebar-head">
+            <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span
+                    class="hide-menu">Navigation</span></h3>
+        </div>
+        <div class="user-profile m-t-15">
+            <div class="dropdown user-pro-body">
+                <% if(user.user_image != ''){ %>
+                <div style="background-image:url('/uploads/admin/<%= user.user_image %>')" class="logImg"></div>
+                <% } else{ %>
+                <div style="background-image:url(/plugins/images/users/varun.jpg)" class="logImg"></div>
+                <% } %>
+                <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    <%= user.fname %>
+                    <%= user.lname %>
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu animated flipInY">
+                    <li><a href="/updateProfile"><i class="ti-user"></i> My Profile</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="nav" id="side-menu">
+            <li> <a href="/dashboard" class="waves-effect <% if(title == 'dashboard'){ %> active <% }%>"><i
+                        class="mdi mdi-home fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Dashboard <span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/users" class="waves-effect <% if(title == 'users'){ %> active <% }%> "><i
+                        class="mdi mdi-account-multiple fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Users <span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/subscribers" class="waves-effect <% if(title == 'subscriber'){ %> active <% }%> "><i
+                        class="mdi mdi-account-multiple fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Subscribers<span class="fa arrow"></span> </span></a>
+            </li>
+
+            <li> <a href="/business" class="waves-effect <% if(title == 'business'){ %> active <% }%>"><i
+                        class="mdi mdi-store fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Business Profiles <span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/categories" class="waves-effect <% if(title == 'categories'){ %> active <% }%> "><i
+                        class="mdi mdi-format-list-bulleted fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Manage Categories <span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/subcategories" class="waves-effect <% if(title == 'subcategories'){ %> active <% }%> "><i
+                        class="mdi mdi-playlist-minus fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Manage Subcategories <span class="fa arrow"></span> </span></a>
+            </li>
+
+
+            <li> <a href="/coupons" class="waves-effect <% if(title == 'coupons'){ %> active <% } %>"><i
+                        class="mdi mdi-tag-multiple fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Coupons<span class="fa arrow"></span> </span></a>
+            </li>
+
+            <li> <a href="/admin_coupons"  class="waves-effect <% if(title == 'admin_coupons'){ %> active <% }%>"><i
+                        class="mdi mdi-tag-multiple fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Admin Coupons<span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/coupon_detail" class="waves-effect <% if(title == 'coupon_detail'){ %> active <% }%> "><i
+                        class="mdi mdi-ticket-percent fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Coupon Redemption <span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/deals" class="waves-effect <% if(title == 'deals'){ %> active <% }%>"><i
+                        class="mdi mdi-tag-multiple fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> Deals <span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/city" class="waves-effect <% if(title == 'city'){ %> active <% }%> "><i
+                class="mdi mdi-city fa-fw" data-icon="v"></i>
+                <span class="hide-menu"> Cities manager <span class="fa arrow"></span> </span></a>
+            </li>
+            <li><a href="/reports" class="waves-effect <% if(title == 'reports'){ %> active <% } %>"><i
+                        class="mdi mdi-alert fa-fw" data-icon="v"></i>
+                    <span class="hide-menu">Complains/Reports <span class="fa arrow"></span> </span></a>
+            </li>
+            <li>
+                <a href="/reports/kuponReports" class="waves-effect <% if(title == 'kuponReports'){ %> active <% } %>"><i
+                class="mdi mdi-alert fa-fw" data-icon="v"></i>
+                <span class="hide-menu">Coupon/Complains<span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/prices" class="waves-effect<% if(title == 'prices'){ %> active <% }%>"><b>(&#83;&#47;&#46;)</b></i>
+                    <span class="hide-menu"> Price Manager <span class="fa arrow"></span> </span></a>
+            </li>
+            <!--<li> <a href="/couponRating" class="waves-effect <% if(title == 'couponRating'){ %> active <% }%>"><i
+                        class="mdi mdi-settings fa-fw"></i></i>
+                    <span class="hide-menu"> Coupon Rating <span class="fa arrow"></span> </span></a>
+            </li>-->
+            <li>
+                <a href="/pages" class="waves-effect <% if(title == 'pages'){ %> active <% }%>"><i
+                class="mdi mdi-settings fa-fw"></i></i>
+                <span class="hide-menu"> Others <span class="fa arrow"></span> </span></a>
+            </li>
+
+            <li>
+                <a href="/paymentMessage" class="waves-effect <% if(title == 'paymentMessage'){ %> active <% }%>"><i
+                class="mdi mdi-settings fa-fw"></i></i>
+                <span class="hide-menu">Payment Message<span class="fa arrow"></span></span></a>
+            </li>
+
+            <li class="devider"></li>
+            <li><a href="/logout" class="waves-effect"><i class="mdi mdi-logout fa-fw"></i>
+                    <span class="hide-menu">Log out</span></a></li>
+            <li class="devider"></li>
+        </ul>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Left Sidebar -->
+<!-- ============================================================== -->

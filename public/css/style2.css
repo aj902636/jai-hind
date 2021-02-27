@@ -1,0 +1,390 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700");
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  color: #000; }
+
+.fz12 {
+  font-size: 12px; }
+
+.fz13, .secondoryBtns li .dropdown-menu a {
+  font-size: 13px; }
+
+.fz14, .featureDesc p, .listBusniess p, footer.bg-dark p, .footerMenu li {
+  font-size: 14px; }
+
+.fz15, .navbar-nav .nav-link, .secondoryBtns li a {
+  font-size: 15px; }
+
+.fz16, .contactUs .phoneBlock p {
+  font-size: 16px; }
+
+.fz18 {
+  font-size: 18px; }
+
+.fz20, .featureDesc h4, .socailIcons a {
+  font-size: 20px; }
+
+.fz22 {
+  font-size: 22px; }
+
+.transition, .secondoryBtns li a, .secondoryBtns li .dropdown-menu a, .defultBtn, .socailIcons a {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -moz-transition: 0.3s; }
+
+.redGradient, .secondoryBtns li a.getApp, .defultBtn, .featureDesc ul li span {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dc3939+0,ff0000+100 */
+  background: #dc3939;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #dc3939 0%, red 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #dc3939 0%, red 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #dc3939 0%, red 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc3939', endColorstr='#ff0000',GradientType=1 );
+  /* IE6-9 */ }
+
+.redGradientR, .secondoryBtns li a.getApp:hover, .defultBtn:hover {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff0000+0,dc3939+100 */
+  background: red;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, red 0%, #dc3939 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, red 0%, #dc3939 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, red 0%, #dc3939 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#dc3939',GradientType=1 );
+  /* IE6-9 */ }
+
+.navbar-nav .nav-link {
+  color: #000 !important;
+  padding: 0 15px !important; }
+
+.secondoryBtns {
+  list-style: none;
+  margin-bottom: 0; }
+  .secondoryBtns li {
+    display: inline;
+    position: relative; }
+    .secondoryBtns li a {
+      display: inline-block;
+      font-weight: 700;
+      color: #000; }
+      .secondoryBtns li a.languageDrop i {
+        font-size: 24px;
+        position: relative;
+        top: 5px; }
+      .secondoryBtns li a:hover {
+        text-decoration: none; }
+      .secondoryBtns li a .dropdown-menu {
+        margin: 0; }
+      .secondoryBtns li a.getApp {
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 30px;
+        margin-left: 30px; }
+    .secondoryBtns li .dropdown-menu {
+      margin: 0;
+      padding: 0;
+      right: 0;
+      left: auto;
+      min-width: 100px; }
+      .secondoryBtns li .dropdown-menu a {
+        font-weight: 400;
+        padding: 7px 10px; }
+        .secondoryBtns li .dropdown-menu a:hover {
+          background: #ff0000;
+          color: #fff; }
+
+.defultPadding {
+  padding: 125px 0; }
+
+.defultBtn {
+  color: #fff;
+  padding: 14px 25px;
+  border-radius: 30px;
+  text-align: center;
+  min-width: 194px;
+  text-align: center;
+  border: none;
+  cursor: pointer; }
+  .defultBtn:hover {
+    color: #fff;
+    text-decoration: none; }
+
+.ourFeature {
+  background: url(../img/dote-bg.jpg) repeat; }
+
+.mT100 {
+  margin-top: 100px; }
+
+.mT40 {
+  margin-top: 40px; }
+
+.mT10 {
+  margin-top: 10px; }
+
+.navbar {
+  box-shadow: 0px 7px 14.88px 1.12px rgba(13, 13, 13, 0.1); }
+
+.featureDesc h2 {
+  font-weight: 700;
+  color: #ff0000;
+  margin-bottom: 60px; }
+.featureDesc ul {
+  list-style: none;
+  padding: 0; }
+  .featureDesc ul li {
+    padding-bottom: 60px;
+    position: relative;
+    padding-left: 96px; }
+    .featureDesc ul li span {
+      width: 73px;
+      height: 73px;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      border-radius: 50%;
+      z-index: 1; }
+    .featureDesc ul li .featureIcons {
+      background-image: url(../img/features-icons.png);
+      background-repeat: no-repeat;
+      background-position: center 10px;
+      display: block;
+      width: 73px;
+      height: 73px; }
+      .featureDesc ul li .featureIcons.coupons {
+        background-position: center 10px; }
+      .featureDesc ul li .featureIcons.share {
+        background-position: center -130px; }
+      .featureDesc ul li .featureIcons.category {
+        background-position: center -264px; }
+      .featureDesc ul li .featureIcons.business {
+        background-position: center -408px; }
+    .featureDesc ul li:after {
+      background: #e73434;
+      width: 2px;
+      height: 100%;
+      content: '';
+      bottom: 0;
+      display: block;
+      left: 35px;
+      z-index: 0;
+      position: absolute; }
+    .featureDesc ul li:last-child {
+      padding-bottom: 0; }
+      .featureDesc ul li:last-child:after {
+        display: none; }
+.featureDesc h4 {
+  color: #000; }
+.featureDesc p {
+  margin-bottom: 0; }
+
+.listBusniess {
+  padding: 70px 0;
+  text-align: center; }
+  .listBusniess h3 {
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px; }
+
+.downloadApp {
+  text-align: center;
+  padding: 85px 0 200px;
+  background: url(../img/download-bg.jpg) no-repeat 0 0;
+  background-size: cover;
+  position: relative; }
+  .downloadApp h2 {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700; }
+  .downloadApp h5 {
+    font-size: 24px;
+    margin-bottom: 46px; }
+  .downloadApp .downloadBtns {
+    display: inline-block;
+    margin-right: 6px; }
+  .downloadApp .downloadScreen {
+    position: absolute;
+    bottom: -280px; }
+
+.contactUs {
+  background: url(../img/contact-us-bg.jpg) no-repeat 0 0;
+  background-size: cover;
+  padding: 250px 0 80px; }
+  .contactUs h2 {
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 34px; }
+  .contactUs .phoneBlock h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0; }
+  .contactUs .form-control {
+    height: 56px;
+    background: #f7f7f7;
+    border: none;
+    padding: 0px 0 0 15px;
+    border-radius: 8px; }
+    .contactUs .form-control:focus {
+      box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25); }
+  .contactUs textarea.form-control {
+    height: 194px;
+    resize: none;
+    padding: 20px 15px; }
+
+.socailIcons {
+  margin-top: 8px;
+  margin-bottom: 30px; }
+  .socailIcons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    line-height: 40px;
+    margin-right: 5px; }
+    .socailIcons a.fb {
+      background: #3a589b; }
+    .socailIcons a.twitter {
+      background: #33ccff; }
+    .socailIcons a.linkedin {
+      background: #0097d3; }
+    .socailIcons a:hover {
+      opacity: 0.8; }
+
+footer.bg-dark {
+  background: #000;
+  padding: 30px 0 20px; }
+
+.footerMenu {
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0; }
+  .footerMenu li {
+    display: inline-block;
+    color: #fff;
+    margin-right: 35px; }
+    .footerMenu li a {
+      color: #fff; }
+
+.visibleXs {
+  display: none; }
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .secondoryBtns {
+    padding-left: 0; }
+
+  .navbar-nav .nav-link {
+    padding: 0 15px !important; }
+
+  .navbar-brand {
+    max-width: 150px; } }
+@media (max-width: 991px) {
+  .hidden-xs {
+    display: none; }
+
+  .visibleXs {
+    display: block; }
+
+  .navbar-light .navbar-toggler {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    border-color: transparent; }
+
+  .navbar {
+    padding: .5rem 55px .5rem 5px; }
+
+  .navbar-brand {
+    max-width: 150px; }
+    .navbar-brand img {
+      max-width: 100%; } 
+    
+      .downloadApp .downloadScreen{
+        bottom: -200px;
+        left: 0;
+
+      }
+      .featureDesc h4{ font-size: 18px; }
+
+      .featureDesc ul li{ padding-bottom: 40px; }
+
+    
+    }
+@media (max-width: 767px) {
+  .defultPadding {
+    padding: 70px 0; }
+
+  .featureDesc {
+    padding-top: 40px; }
+
+  .listBusniess h3 {
+    font-size: 20px; }
+
+  .downloadApp h2 {
+    font-size: 26px; }
+
+  .downloadApp h5 {
+    font-size: 16px; }
+
+  .downloadApp .downloadBtns {
+    margin-bottom: 20px; }
+
+  .downloadApp {
+    padding: 35px 0 80px; }
+
+  .downloadApp .downloadScreen {
+    bottom: -100px; }
+
+  .contactUs {
+    padding: 90px 0 80px; }
+    .contactUs h2 {
+      font-size: 28px; }
+    .contactUs .phoneBlock {
+      margin-bottom: 20px; }
+      .contactUs .phoneBlock h4 {
+        font-size: 20px; }
+
+  .footerMenu {
+    text-align: center; }
+    .footerMenu li {
+      margin-right: 15px; }
+
+  footer.bg-dark p.text-right {
+    text-align: center !important; }
+
+  .logo img {
+    max-width: 50%; }
+
+  .navbar-brand {
+    max-width: 110px; }
+    .navbar-brand img {
+      max-width: 100%; }
+
+  .secondoryBtns li a.getApp {
+    margin-left: 10px;
+    padding: 6px 10px; }
+
+  .secondoryBtns {
+    padding-left: 0; }
+
+  .navbar-toggler {
+    padding: .25rem .50rem;
+    font-size: 1.00rem; }
+
+  .navbar-nav .nav-link {
+    padding: 15px 15px !important;
+    text-align: center; }
+
+  .navbar-collapse {
+    margin-right: -55px; }
+
+  .mT100 {
+    margin-top: 72px; } }

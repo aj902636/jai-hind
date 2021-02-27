@@ -1,0 +1,346 @@
+<% layout('layouts/admin') %>
+<link href="/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.Finance %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+                <li><a href="#"><%= LANG.Finance %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header row">
+                        <h3 class="box-title col-md-9 col-xs-9"><%= LANG.Finance %></h3>
+                        <div class="col-md-3 col-xs-3">
+                            <!-- <button class=" btn btn-primary waves-effect pull-right" data-toggle="modal" data-target="#verticalcenter"
+                                            id="verifyCoupon" type="button"><%= LANG.VerifyCoupon %></button> -->
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="example2" class="table table-bordered table-hover table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th><%= LANG.CouponCode %></th>
+                                        <th><%= LANG.LastName %></th>
+                                        <th><%= LANG.Title %></th>
+                                        <th><%= LANG.Coupon %> <%= LANG.Title %> </th>
+                                        <th><%= LANG.StoreName %></th>
+                                        <th><%= LANG.Location %></th>
+                                        <th><%= LANG.Amount %> </th>
+                                        <th><%= LANG.DateofRedemptions %> </th>
+                                    </tr>
+                                    <tr class="search_bar">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><%= LANG.Location %></td>
+                                        <td> </td>
+                                        <td><%= LANG.DateofRedemptions %> </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% dealInfo.forEach(function(value) {  %>
+                                    <tr>
+                                        <td>
+                                            <%= value.user.fname %>
+                                        </td>
+                                        <td>
+                                            <%= value.user.lname %>
+                                        </td>
+                                        <td>
+                                            <%= value.coupon_code.toUpperCase() %>
+                                        </td>
+                                        <td>
+                                            <%= value.coupon.title %>
+                                        </td>
+                                        <td>
+                                            <%= value.store.store_name %>
+                                        </td>
+                                        <td>
+                                            <%= value.store.store_location %>
+                                        </td>
+                                        <td>
+                                            <%= value.final_price %>
+                                        </td>
+                                        <td>
+                                            <%= value.createdAt.toLocaleString(); %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+
+            <!-- /.panel-body -->
+        </div>
+    </div>
+</div>
+<!-- sample modal content -->
+<div id="verticalcenter" data-backdrop="static" data-keyboard="false" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form  id="form_validation" action="" method="POST" class="" encType="multipart/form-data" novalidate="true">
+                <div class="modal-header">
+                    <h4 class="modal-title col-md-11" id="vcenter"><%= LANG.Redeem %> <%= LANG.Coupons %></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" value="" maxlength="15" class="form-control required" placeholder="<%= LANG.CouponCode %>" name="couponCode" id="couponCode" required>
+                </div>
+                <div class="msgBody modal-body" style="display:none;">
+                    <p style="color:red"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class=" btn btn-primary waves-effect" type="submit"><%= LANG.Submit %></button>
+                    <button type="button" class="btn waves-effect" data-dismiss="modal"><%= LANG.Close %></button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- sample modal content -->
+<div id="submitCoupon" data-backdrop="static" data-keyboard="false" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form  id="submitCouponForm" action="" method="POST" class="" encType="multipart/form-data">
+                <div class="modal-header">
+                    <h4 class="modal-title col-md-11" id="vcenter"><%= LANG.Coupon %> <%= LANG.Details %></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                     <input type="hidden" value="" maxlength="15" class="form-control" placeholder="Coupon Code" name="couponCodeVerify" id="couponCodeVerify" required>
+                    <table border="1" class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td><%= LANG.Category %></td><td id="category"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.Subcategory %></td><td id="Subcategory"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.StoreName %></td><td id="StoreName"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.Title %></td><td id="Title"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.Description %></td><td id="Description"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.MaximumUsers %></td><td id="MaxUsers"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.StartDate %></td><td id="StartDate"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.StartTime %> </td><td id="StartTime"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.CouponDuration %>C</td><td id="Duration"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.Items %></td><td id="Items"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.DiscountOffered %></td><td id="Discount"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.OriginalPrice %></td><td id="Original"></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.PriceafterDiscount %><td id="PriceAfter"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="msgBodyPop modal-body" style="display:none;">
+                    <p style="color:red"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class=" btn btn-primary waves-effect" id="hideSubmit" type="submit">Submit</button>
+                    <button type="button" class="btn waves-effect" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<style>
+    #example2_filter {
+        display: none;
+    }
+</style>
+<script src="/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+<script src="/plugins/bower_components/datatables/datatables.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
+
+<script>
+
+    $(function () {
+
+        $("#form_validation").on("submit", function (e) {
+            e.preventDefault();
+            $("#hideSubmit").show();
+            $(".msgBodyPop").hide();
+            $(".msgBodyPop p, .msgBody p").html('');
+            var formArr = $(this).serializeArray();
+            if($("#couponCode").val()){
+                $.ajax({
+                    url: "/finance/checkValidation",
+                    method: "POST",
+                    data: formArr,
+                    dataType: "JSON",
+                    success: function (data) {
+                        console.log("---data",data);
+                        if(data.status){
+                            if(typeof data.nowSubmit != 'undefined' && data.nowSubmit){
+                                $("#hideSubmit").show();
+                                $("#couponCodeVerify").val($("#couponCode").val());
+                            }else{
+                                $("#hideSubmit").hide();
+                            }
+                            //show model
+                            $('#submitCoupon').modal("show")
+                            $("#category").html(data.couponData.category.name);
+                            $("#Subcategory").html(data.couponData.subcategory.name);
+                            $("#Title").html(data.couponData.title);
+                            $("#Description").html(data.couponData.description);
+                            $("#StoreName").html(data.couponData.store.store_name);
+                            $("#MaxUsers").html(data.couponData.max_users);
+                            $("#StartDate").html(moment(data.couponData.start_date).format("MMM/DD/YYYY"));
+                            $("#StartTime").html(moment(data.couponData.start_date).format("hh:mm A"));
+                            $("#Duration").html(data.couponData.coupon_duration);
+                            $("#Items").html(data.couponData.items);
+                            $("#Discount").html((data.couponData.isSpecial)?"Special Offer":"%"+data.couponData.discount);
+                            $("#Original").html(data.couponData.original_price);
+                            $("#PriceAfter").html(data.couponData.final_price);
+
+                            $(".msgBodyPop").show();
+                            $(".msgBodyPop p").html(data.msg);
+                            //setTimeout(function(){ $(".msgBodyPop").hide(); }, 5000);
+                            //$("#submitCouponForm")[0].reset();
+                        }else{
+                            if(typeof data.notApp != 'undefined' && data.notApp){
+                                // coupon not application for this store
+                                $(".msgBody").show();
+                                $(".msgBody p").html(data.msg);
+                                setTimeout(function(){ $(".msgBody").hide(); }, 5000);
+                            }
+                        }
+                    },
+                    error: function (e) {
+                        $(".msgBody").show();
+                        $(".msgBody p").html("Something went wrong! Please contact to admin.");
+                    }
+                });
+            }else{
+                $("#couponCode").focus();
+            }
+
+            console.log("sdfs");
+        });
+        $('#verticalcenter').on('hidden.bs.modal', function () {
+            window.location.reload();
+        })
+
+        $("#submitCouponForm").on("submit", function (e) {
+            e.preventDefault();
+            var formArr = $(this).serializeArray();
+            $.ajax({
+                url: "/finance/verifyCoupon",
+                method: "POST",
+                data: formArr,
+                dataType: "JSON",
+                success: function (data) {
+                    console.log("---data",data);
+                    if(data.status){
+                        $(".msgBody").show();
+                        $(".msgBody p").html(data.msg);
+                        setTimeout(function(){ $(".msgBodyPop").hide(); }, 5000);
+                    }else{
+                        $(".msgBody").show();
+                        $(".msgBody p").html(data.msg);
+                        setTimeout(function(){ $(".msgBody").hide(); }, 5000);
+                    }
+                    $('#submitCoupon').modal("hide");
+                    $("#submitCouponForm")[0].reset();
+                },
+                error: function (e) {
+                    $(".msgBody").show();
+                    $(".msgBody p").html("Something went wrong! Please contact to admin.");
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            var tab = $('#example2').DataTable({
+                "paging": true,
+                "bSortCellsTop": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "language": {
+                    "info": '<%= LANG.Showing %> _START_ <%= LANG.to %> _END_ <%= LANG.of %> _TOTAL_ <%= LANG.entries %>',
+                    "sLengthMenu": '<%= LANG.Showing %> _MENU_ <%= LANG.entries %>',
+                    "zeroRecords": "<%= LANG.zeroRecords %>",
+                    "infoEmpty": "<%= LANG.noRecords %>",
+                    "infoFiltered": "( <%= LANG.infoFiltered %> _MAX_ <%= LANG.infoFiltered2 %>) ",
+                    "paginate": {
+                        "previous": "<%=LANG.Previous; %>",
+                        "next": "<%=LANG.Next; %>"
+                    }
+                },
+                "order": [[ 7, "desc" ]],
+                "autoWidth": false,
+                "responsive": true,
+                "columnDefs": [
+                    { "width": "12%", "targets": 0 },
+                    { "width": "12%", "targets": 1 },
+                    { "width": "12%", "targets": 2 },
+                    { "width": "12%", "targets": 3 },
+                    { "width": "12%", "targets": 4 },
+                    { "width": "12%", "targets": 5 },
+                    { "width": "12%", "targets": 6 },
+                    { "width": "16%", "targets": 7 }
+                ]
+            });
+
+            $('#example2 thead tr.search_bar td').each(function (value) {
+                if (value == 5 || value == 7) {
+                console.log("--value",value)
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="form-control" placeholder="<%=LANG.SearchBy %> ' + title.toLowerCase() + '" data-index="' + value + '" />');
+                }
+            });
+
+            $(tab.table().container()).on('keyup change', '.search_bar input', function () {
+                tab.column($(this).data('index')).search(this.value).draw();
+            });
+        });
+    });
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+</script>

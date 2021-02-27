@@ -1,0 +1,250 @@
+<% layout('layouts/admin') %>
+<link href="/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/1.5.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Business Listing</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Business Listing</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header row">
+                        <h3 class="box-title col-md-9 col-xs-9">Business Listing</h3>
+                        <div class="col-md-3 col-xs-3">
+                            <a href="/business/add" class="btn pull-right">
+                                Add Business</a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="example2" class="table table-bordered table-hover table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>BUSINESS NAME</th>
+                                        <th>CATEGORIES</th>
+                                        <th>STORE COUNT</th>
+                                        <th>MOBILE NUMBER</th>
+                                        <th>NIF NUMBER</th>
+                                        <th>LOCATION</th>
+                                        <th>PROVINCE</th>
+                                        <th>CITY</th>
+                                        <th>EMAIL</th>
+                                        <!--<th>PAYMENT STATUS </th>-->
+                                        <th>IS ACTIVE</th>
+                                        <th>Admin Approved</th>
+                                        <th>CREATED ON </th>
+                                        <th data-sortable="false">ACTION</th>
+                                    </tr>
+                                    <tr class="search_bar">
+                                        <td>Business</td>
+                                        <td>Categories</td>
+                                        <td>Store Count</td>
+                                        <td>Mobile</td>
+                                        <td data-sortable="false">NIF</td>
+                                        <td >Location</td>
+                                        <td data-sortable="false">Province</td>
+                                        <td data-sortable="false">City</td>
+                                        <td data-sortable="false">Email</td>
+                                       <!-- <td data-sortable="false" >Payment</td>-->
+                                        <td data-sortable="false"></td>
+                                        <td data-sortable="false"></td>
+                                        <td>Created On </td>
+                                        <td data-sortable="false"></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% userInfo.forEach(function(value) {  %>
+                                    <tr>
+                                        <td>
+                                            <%= value.business_name %>
+                                        </td>
+                                        <td>
+                                            <%= value.categoryId %>
+                                        </td>
+                                        <td>
+                                            <%= value.store_count %>
+                                        </td>
+                                        <td>
+                                            <%= value.phone %>
+                                        </td>
+                                        <td>
+                                            <%= value.nif_number %>
+                                        </td>
+                                        <td>
+                                            <%= value.location %>
+                                        </td>
+                                        <td>
+                                            <%= value.state %>
+                                        </td>
+                                        <td>
+                                            <%= value.city %>
+                                        </td>
+                                        <td>
+                                            <%= value.email %>
+                                        </td>
+                                       <!-- <td>
+                                            <%= value.subscription_type %>
+                                        </td>-->
+                                        <td>
+                                            <div class="switchery-demo m-b-30">
+                                                <input type="checkbox" class="js-switch isActive"
+                                                       data-model_id="business"
+                                                       data-id="<%= value.userId %>" data-color="#13dafe" <%=value.isActive ?
+                                                    "checked" : "" %> />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="switchery-demo m-b-30">
+                                                <input type="checkbox" class="js-switch adminApproved"
+                                                       data-model_id="business"
+                                                       data-id="<%= value.userId %>"
+                                                       data-color="#13dafe" <%= value.adminApproved ?
+                                                        "checked" : "" %> />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%=moment(value.createdAt).format('DD/MM/YYYY hh:mm A'); %>
+                                        </td>
+                                        <td>
+                                            <a href="/business/view/<%= value.userId %>" title="View Business" style="margin-right: 10px">
+                                                <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
+                                                        class="ti-eye"></i></button></a>
+                                            <a href="/business/edit/<%= value.userId %>" title="Edit Business" style="margin-right: 10px">
+                                                <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
+                                                        class="ti-pencil-alt"></i></button></a>
+                                            <a href="/business/delete/<%= value.userId %>" onclick="return confirm('Are you sure you want to delete this business?');"
+                                                title="Delete Business"> <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
+                                                        class="icon-trash"></i></button></a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                                <!--<tfoot>
+               <tr>
+                  <th>Name</th>
+                  <th>icon</th>
+                  <th>Created On </th>
+                  <th data-sortable="false">Action</th>
+              </tr>
+              </tfoot>-->
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+
+            <!-- /.panel-body -->
+        </div>
+    </div>
+</div>
+<style>
+    #example2_filter {
+        display: none;
+    }
+
+    div.dt-buttons {
+        position: relative;
+        float: right;
+    }
+</style>
+<script src="/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+<script src="/plugins/bower_components/datatables/datatables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script>
+    $(function () {
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function () {
+            //new Switchery($(this)[0], $(this).data());
+            var switchery = new Switchery($(this)[0], { color: '#ddf004', jackColor: '#fff' });
+        });
+        $('.isActive').change(function () {
+            var id = $(this).data('id');
+            var status = $(this).is(':checked');
+            var obj = { id: id };
+            obj.status = status;
+            var url = "/" + $(this).data('model_id') + '/status';
+            console.log("test=====>>>", status, url);
+
+            $.post(url, obj, function (data) {
+                if (data) console.log(data);
+            });
+        });
+        $('.adminApproved').change(function () {
+            var id = $(this).data('id');
+            var status = $(this).is(':checked');
+            var obj = {id: id};
+            obj.status = status;
+            var url = "/" + $(this).data('model_id') + '/admin_approval';
+            console.log("test=====>>>", status, url);
+
+            $.post(url, obj, function (data) {
+                if (data) console.log(data);
+            });
+        });
+
+
+    });
+    $(function () {
+        $(document).ready(function () {
+            var tab = $('#example2').DataTable({
+                "paging": true,
+                "bSortCellsTop": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "order": [],
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+
+                "dom": 'Blfrtip',
+                 "columnDefs": [
+                 { "orderable": true, "targets": 0 },
+                 { "orderable": true, "targets": 1 } ,
+                 { "orderable": false, "targets": 3 },
+                 { "orderable": false, "targets": 4 },
+                 { "orderable": false, "targets": 6 },
+                 { "orderable": false, "targets": 7 },
+                 { "orderable": true, "targets": 8 },
+                 { "orderable": false, "targets": 9 },
+                 { "orderable": false, "targets": 10 },
+                 { "orderable": true, "targets": 11 },
+                 { "orderable": false, "targets": 12 },
+
+
+                ] ,
+                "buttons": [
+                    { "extend": 'excel','title':'Kupon Peru Business Profiles', "text": 'Expot In Excel',  exportOptions: {  columns: [0,1,2,3,4,5,6,7,8,9,12]  } }
+                ],
+
+            });
+            //tab.columns.adjust().draw();
+            $('#example2 thead tr.search_bar td').each(function (value) {
+                if (  value !== 2 && value !== 10 && value !== 9 && value !== 12) {
+                    var title = $(this).text();
+                    $(this).html('<input type="text"  class="form-control" placeholder="Search by ' + title + '" data-index="' + value + '" />');
+                }
+            });
+
+            $(tab.table().container()).on('keyup change', '.search_bar input', function () {
+                tab.column($(this).data('index')).search(this.value).draw();
+            });
+        });
+    });
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+</script>

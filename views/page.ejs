@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+  <title>Kupon | Home</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/scrolling-nav.css" rel="stylesheet">
+  <link href="/css/animate2.css" rel="stylesheet">
+  <link href="/css/material-design-iconic-font.min.css" rel="stylesheet">
+  <link href="/css/style2.css" rel="stylesheet">
+  <link href="/css/colors/default.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger logo" href="<%= home_url%>"><img src="/img/logo.png" alt="" class="d-block w-100">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <ul class="secondoryBtns visibleXs">
+        <li>
+          <a href="" class="languageDrop" data-toggle="dropdown"><%=lang%> <i class="zmdi zmdi-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" data-value="en">English</a>
+            <a class="dropdown-item" href="#" data-value="es">Español</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="secondoryBtns hidden-xs">
+        <li>
+          <a href="" class="languageDrop" data-toggle="dropdown"><%=lang%> <i class="zmdi zmdi-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" data-value="en">English</a>
+            <a class="dropdown-item" href="#" data-value="es">Español</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="mT150"></div>
+  <div class="container mT150">
+      <div class="static_page">
+        <%-pageContent%>
+      </div>
+  </div>
+  <div class="mT150"></div>
+
+  <!-- Footer -->
+  <footer class=" bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="footerMenu">
+            <li><a href="<%='/about_us/'+lang%>"><%= LANG.AboutUs%></a> </li>
+            <li><a href="<%='/terms/'+lang%>"><%= LANG.Terms%></a></li>
+            <li><a href="<%='/faq/'+lang%>"><%= LANG.FAQ%></a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 ">
+            <p class="m-0 text-right text-white"><%= LANG.Copyright%> &copy; Kupon
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/js/jqueryvalidation/jquery.validate.js"></script>
+  <script src="/js/jqueryvalidation/additional-methods.js"></script>
+  <!-- Custom JavaScript for this theme -->
+  <script src="/js/scrolling-nav.js"></script>
+  <script src="/js/animation.js"></script>
+
+  <script>
+  $(function () {
+    $('.dropdown-item').on('click', function () {
+    var url = $(this).data('value'); // get selected value
+    if (url) { // require a URL
+        window.location = '/'+'<%=slug%>/'+url; // redirect
+    }
+    return false;
+    });
+    $('.carousel').carousel({
+      interval: 2000
+    })
+  });
+  </script>
+
+
+
+</body>
+
+</html>

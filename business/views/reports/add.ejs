@@ -1,0 +1,51 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.SendComplain %>/<%= LANG.Report %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+                <li><a href="#"><%= LANG.SendComplain %> / <%= LANG.Report %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body target ">
+                        <form data-toggle="validator" id="form_validation" action="/reports/sendReport" method="POST"
+                            class="col-xs-10">
+                            <div class="form-group form-float">
+                                <label class="form-labedealsl required "><%= LANG.Subject %> <sup> * </sup></label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="<%= LANG.Subject %>" id="inputName1" name="subject"
+                                        type="text" required>
+                                </div>
+                                <!-- <div class="help-block with-errors"></div> -->
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-labedealsl required "><%= LANG.Message %> <sup> * </sup></label>
+                                <div class="form-line ">
+                                    <textarea class="form-control" rows="15" placeholder="<%= LANG.Message %>"
+                                        name="message" required></textarea>
+                                </div>
+                                <!-- <div class="help-block with-errors"></div> -->
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary waves-effect" type="submit"><%= LANG.SendReport %></button>
+                                <a href="/dashboard" class="btn btn-primary waves-effect"><%= LANG.Back %></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

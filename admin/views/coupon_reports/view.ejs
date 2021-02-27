@@ -1,0 +1,107 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">View Complain</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/reports">Complain Listing</a></li>
+                <li><a href="#">View Complain</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <!-- .row -->
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="white-box">
+                    <ul class="nav nav-tabs tabs customtab">
+                        <li class="tab active">
+                            <a href="#home" data-toggle="tab"> <span class="visible-xs"><i
+                                            class="fa fa-home"></i></span>
+                                <span class="hidden-xs">Complain Details</span> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Coupon Id</td>
+                                            <td>
+                                                #<%= results.coupon_id %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>User Name</td>
+                                            <td>
+                                                <%= results.user.fname+" "+results.user.lname %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>
+                                                <%= results.user.email %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Phone Number</td>
+                                            <td>
+                                                <%= results.user.phone %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Title</td>
+                                            <td>
+                                                <%= results.subject %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coupon Title</td>
+                                            <td>
+                                                <%= results.coupon.title %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Message</td>
+                                            <td>
+                                                <%= results.message; %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Created At</td>
+                                            <td>
+                                                <%= results.createdAt.toLocaleString(); %>
+                                            </td>
+                                        </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="/reports/couponResolved/<%= results.id %>"
+                                               onclick="return confirm('Are you sure you want to mark resolve this Complain?');"
+                                               title="Mark Resolved">
+                                                <button type="button" class="btn btn-info btn-outline btn-lg">Mark
+                                                    Resolved
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td> </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>

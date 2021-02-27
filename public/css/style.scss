@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+
+$black:#000;
+$red:#ff0000;
+$yellow:#ffff00;
+$white:#fff;
+
+body{font-family: 'Noto Sans', sans-serif; font-weight: 400; color:$black; }
+
+.fz12{  font-size: 12px; }
+.fz13{  font-size: 13px; }
+.fz14{  font-size: 14px; }
+.fz15{  font-size: 15px; }
+.fz16{  font-size: 16px; }
+.fz18{  font-size: 18px; }
+.fz20{  font-size: 20px; }
+.fz22{  font-size: 22px; }
+
+.transition{
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+	-moz-transition: 0.3s;
+}
+
+.redGradient{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dc3939+0,ff0000+100 */
+background: rgb(220,57,57); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(220,57,57,1) 0%, rgba(255,0,0,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(220,57,57,1) 0%,rgba(255,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(220,57,57,1) 0%,rgba(255,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc3939', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
+	
+	
+}
+
+.redGradientR{
+	
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff0000+0,dc3939+100 */
+background: rgb(255,0,0); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(255,0,0,1) 0%, rgba(220,57,57,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(255,0,0,1) 0%,rgba(220,57,57,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(255,0,0,1) 0%,rgba(220,57,57,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#dc3939',GradientType=1 ); /* IE6-9 */
+}
+
+
+
+
+.navbar-nav .nav-link{
+@extend.fz15;
+	color: $black !important;
+	padding: 0 15px !important;
+	
+}
+
+	
+
+.secondoryBtns{ list-style: none; margin-bottom: 0;
+	li{ display: inline; position: relative;
+		a{ @extend.fz15; display: inline-block; font-weight:700; color: $black;  @extend.transition;
+			&.languageDrop{
+					
+				$black:#000;
+				i{ font-size: 24px; position: relative; top: 5px; }
+			}
+			
+		
+			
+			&:hover{
+				text-decoration: none;
+				
+			}
+			
+			.dropdown-menu{margin: 0;}
+			&.getApp{
+				color:$white;
+				padding: 12px 30px;
+				@extend.redGradient; 
+				border-radius: 30px;
+				margin-left: 30px;
+				
+				&:hover{
+						
+					@extend.redGradientR;
+					
+				}
+					
+				
+			}
+			
+			
+			
+		}
+		.dropdown-menu{margin: 0; padding: 0; right: 0; left: auto; min-width: 100px;
+			a{ @extend.fz13; font-weight: 400; padding: 7px 10px; @extend.transition;
+				&:hover{
+					background: $red;
+					color: $white;
+					
+				}
+			
+			}
+		
+		}
+	}
+	
+}
+
+.defultPadding{
+	padding: 125px 0;
+}
+
+.defultBtn{
+		color:$white;
+				padding: 14px 25px;
+				@extend.redGradient; 
+				border-radius: 30px;
+				text-align: center;
+				@extend.transition; 
+				min-width: 194px;
+				text-align: center;
+				border: none;
+				cursor: pointer;
+	
+				&:hover{
+						
+					@extend.redGradientR;
+					color: $white;
+					text-decoration: none;
+					
+				}
+	
+				
+}
+
+.ourFeature{ background: url(../img/dote-bg.jpg) repeat;  }
+.mT100{margin-top: 100px;}
+.mT40{margin-top: 40px;}
+.mT10{margin-top: 10px;}
+.navbar {
+ 
+  box-shadow: 0px 7px 14.88px 1.12px rgba(13, 13, 13, 0.10);
+ 
+}
+
+
+.featureDesc{
+	h2{ font-weight: 700; color: $red; margin-bottom: 60px;  }
+	ul{ list-style: none; padding: 0;
+	
+		li{ padding-bottom:60px; position: relative; padding-left: 96px;
+			span{ width: 73px; height: 73px; position: absolute; left: 0 ; top: 0px; @extend.redGradient; border-radius:50%; z-index: 1; 
+			
+				
+				
+			
+			}
+			
+			
+			.featureIcons{
+				background-image: url(../img/features-icons.png); background-repeat: no-repeat; background-position: center 10px; 
+				display: block;
+				width: 73px; height: 73px;
+				
+				&.coupons{background-position: center 10px;} 
+				&.share{background-position: center -130px;} 
+				&.category{background-position: center -264px;} 
+				&.business{background-position: center -408px;} 
+			}
+			
+			
+			&:after{
+				    background: #e73434;
+    width: 2px;
+    height: 100%;
+    content: '';
+    bottom: 0;
+    display: block;
+    left: 35px;
+    z-index: 0;
+    position: absolute;
+				
+			}
+			
+			&:last-child{ padding-bottom: 0;
+				&:after{ display: none;}
+				
+			}
+			
+		}
+	
+	}
+	
+	h4{@extend.fz20; color:$black; }
+	p{margin-bottom: 0; @extend.fz14;  }
+	
+	
+}
+
+.listBusniess{padding: 70px 0; text-align: center;
+	h3{ font-size: 30px; margin-top: 30px; margin-bottom: 20px;  }
+	p{@extend.fz14;}
+
+}
+
+.downloadApp{ text-align: center; padding: 85px 0 200px; background: url(../img/download-bg.jpg) no-repeat 0 0; background-size: cover; position: relative;
+	h2{ color: $white; font-size: 48px; font-weight: 700; }
+	h5{ font-size: 24px; margin-bottom: 46px; }
+	
+	.downloadBtns{display: inline-block; margin-right: 6px; }
+	
+	.downloadScreen{position: absolute;
+    bottom: -280px;}
+	
+	
+}
+
+.contactUs{ background:url(../img/contact-us-bg.jpg) no-repeat 0 0; background-size: cover; padding: 250px 0 80px;
+	h2{ font-size: 48px; font-weight: 700; text-transform: uppercase; text-align: center; margin-bottom: 34px; }
+	.phoneBlock{
+		h4{font-size: 24px; font-weight: 700; margin-bottom: 0; }
+		p{@extend.fz16;  }
+	}
+	
+	.form-control{ height: 56px; background: #f7f7f7; border: none; padding:0px 0 0 15px; border-radius:8px;
+		&:focus{ box-shadow: 0 0 0 0.2rem rgba(255,0,0,.25); }
+	
+	}
+	textarea.form-control{ height: 194px; resize: none; padding: 20px 15px; }
+}
+
+.socailIcons{ margin-top: 8px; margin-bottom: 30px;
+	a{display: inline-block; width: 40px; height: 40px;  border-radius:50%; text-align: center; color: $white; @extend.fz20; line-height: 40px; margin-right: 5px; @extend.transition;
+		&.fb{ background: #3a589b; }
+		&.twitter{background: #33ccff;}
+		&.linkedin{background: #0097d3;}
+		
+		&:hover{opacity: 0.8;}
+	}
+	
+}
+
+footer.bg-dark{ background:$black; padding: 30px 0 20px;
+	p{ @extend.fz14; }
+
+} 
+.footerMenu{
+	
+	list-style: none;
+	margin-bottom: 0;
+	padding: 0;
+	li{display: inline-block; color: $white; margin-right: 35px; @extend.fz14;
+		a{ color: $white;}
+	}
+	
+	
+}
+
+.visibleXs{display: none;}	
+
+
+
+@media (min-width:1024px) and (max-width:1199px){
+	.secondoryBtns{padding-left: 0;}
+	.navbar-nav .nav-link{padding: 0 15px !important;}
+	.navbar-brand{max-width: 150px;
+		
+	
+	}
+	
+	
+}
+
+
+@media (max-width:991px){
+	.hidden-xs{display: none;}
+	.visibleXs{display: block;}	
+	.navbar-light .navbar-toggler{ position: absolute; right: 5px; top: 20px; border-color: transparent;}
+		.navbar{padding: .5rem 55px .5rem 5px;}
+	.navbar-brand{max-width: 150px; 
+		img{max-width: 100%;}
+	}
+}
+@media (max-width:767px){
+	.defultPadding{padding: 70px 0;}
+	.featureDesc{padding-top: 40px;}
+	.listBusniess h3{font-size: 20px;}
+	.downloadApp h2{font-size: 26px;}
+	.downloadApp h5{font-size: 16px;}
+	.downloadApp .downloadBtns{ margin-bottom: 20px;}
+	.downloadApp{padding: 35px 0 80px;}
+	.downloadApp .downloadScreen{    bottom: -80px;}
+	.contactUs{padding: 90px 0 80px;
+		h2{font-size: 28px;}
+		.phoneBlock { margin-bottom: 20px;
+			h4{font-size: 20px;}
+			
+		}
+	
+	}
+	
+	.footerMenu {
+		text-align: center;
+		
+		li{ margin-right: 15px; }
+	}
+	footer.bg-dark p.text-right{text-align: center !important;}
+	
+	.logo{
+		img{max-width: 50%;}
+	}
+	
+	.navbar-brand{max-width: 110px;
+		img{max-width: 100%;}
+	}
+	.secondoryBtns li a.getApp{margin-left: 10px; padding:6px 10px; }
+	.secondoryBtns{padding-left: 0;}
+	
+	.navbar-toggler{padding: .25rem .50rem;
+    font-size: 1.00rem;}
+	
+
+	
+	.navbar-nav .nav-link{    padding: 15px 15px !important; text-align: center; }
+	.navbar-collapse{margin-right: -55px;}
+	.mT100{margin-top: 72px;}
+	
+}
+
+
+
+

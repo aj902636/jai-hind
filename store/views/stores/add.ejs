@@ -1,0 +1,209 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Add Store</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Add Store</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body target ">
+                        <form data-toggle="validator" id="form_validation" action="/stores/addStore" method="POST"
+                            class="col-xs-10">
+                            <div class="form-group form-float">
+                                <label class="form-label required ">Store Name <sup> * </sup></label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="Store Name" id="inputName1" name="store_name"
+                                        type="text" maxlength="50" required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-label required ">Manager Name <sup> * </sup></label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="Manager Name" id="inputName3" name="store_manager"
+                                        type="text" maxlength="50" required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-label required ">Email <sup> * </sup></label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="Email" id="inputName4" name="store_email"
+                                        type="text" required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-label required ">Password <sup> * </sup>
+                                    <span class="text-muted m-b-30 font-13"> (select minimum 6 digit)</span>
+                                </label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="Password" pattern="^.{6,}$" id="inputName5"
+                                        name="store_password" type="password" required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-label required ">Location <sup> * </sup>
+                                    <span class="text-muted m-b-30 font-13"> (select address from map)</span>
+                                </label>
+                                <div class="form-line ">
+                                    <input class="form-control" onkeydown="return false;" placeholder="Store Location"
+                                        id="inputName2" name="store_location" type="text" required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <input id="pac-input" class="controls" type="text" placeholder="Search Address">
+                            <input type="hidden" name="store_lat" id="lat"/>
+                            <input type="hidden" name="store_long" id="long"/>
+                            <div id="map-canvas"></div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                                <a href="/stores" class="btn btn-primary waves-effect">BACK</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #map-canvas {
+        height: 470px;
+        width: 100%;
+        margin: 0px;
+        padding: 0px
+    }
+    #pac-input {
+        font-family: Roboto;
+        font-size: 15px;
+        padding: 10px;
+        text-overflow: ellipsis;
+        width: 50%;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCE_G6DPc6ym0f_faWC-uaP7VQXehdWEKA&libraries=visualization&callback=initMap&libraries=places"></script>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#catImg').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    /*if($('#lat').val() !='' && $('#long').val() !=''){
+        var myLatlng = new google.maps.LatLng($('#lat').val(), $('#long').val());
+        placeMarker(myLatlng);
+
+    }else{
+        var myLatlng = new google.maps.LatLng(-8.839988, 13.289437);
+    }*/
+
+    var myLatlng = new google.maps.LatLng(-8.839988, 13.289437);
+    var myOptions = {
+        zoom: 13,
+        center: myLatlng
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+    var geocoder = new google.maps.Geocoder();
+
+    var marker;
+    function placeMarker(location) {
+        if (marker) {
+            marker.setPosition(location);
+        } else {
+            marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                draggable: false
+            });
+        }
+    }
+
+    google.maps.event.addListener(map, 'click', function (event) {
+        placeMarker(event.latLng);
+        var lat = parseFloat(event.latLng.lat());
+        var lng = parseFloat(event.latLng.lng());
+        document.getElementById("lat").value = lat;
+        document.getElementById("long").value = lng;
+        geocoder.geocode({
+            'latLng': event.latLng
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var str = results[0].formatted_address;
+                    res = str.replace("Unnamed Road", "Township");
+                    document.getElementById("inputName2").value = res;
+                }
+            }
+        });
+    });
+
+    var input = (document.getElementById('pac-input'));
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var searchBox = new google.maps.places.SearchBox((input));
+
+    google.maps.event.addListener(searchBox, 'places_changed', function () {
+        var places = searchBox.getPlaces();
+        if (places.length == 0) {
+            return;
+        }
+
+        markers = [];
+        for (var i = 0, marker; marker = markers[i]; i++) {
+            marker.setMap(null);
+        }
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0, place; place = places[i]; i++) {
+            var image = {
+                url: '/images/marker.png',
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(50, 50)
+            };
+            // Create a marker for each place.
+            var marker = new google.maps.Marker({
+                map: map,
+                icon: image,
+                title: place.name,
+                position: place.geometry.location
+            });
+
+            markers.push(marker);
+
+            bounds.extend(place.geometry.location);
+        }
+        map.fitBounds(bounds);
+        map.setZoom(Math.min(map.getZoom(), 15));
+    });
+
+    google.maps.event.addListener(map, 'bounds_changed', function () {
+        var bounds = map.getBounds();
+        searchBox.setBounds(bounds);
+    });
+
+
+</script>

@@ -1,0 +1,118 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+	<div class="row bg-title">
+		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+			<h4 class="page-title">Edit User</h4>
+		</div>
+		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+			<ol class="breadcrumb">
+				<li><a href="/dashboard">Dashboard</a></li>
+				<li><a href="#">Edit User</a></li>
+			</ol>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="white-box">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<hr class="">
+					<div class="box-body target ">
+						<form class="form-horizontal form-material" data-toggle="validator" method="POST" action="/users/updateUser/<%= userInfo.id %>">
+							<div class="form-group">
+								<label class="col-md-12">First Name</label>
+								<div class="col-md-12">
+									<input type="text" class="form-control form-control-line" placeholder="First Name" name="fname" value="<%= userInfo.fname %>"
+									 required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-12">Last Name</label>
+								<div class="col-md-12">
+									<input type="text" class="form-control form-control-line" placeholder="Last Name" name="lname" value="<%= userInfo.lname %>"
+									 required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="example-email" class="col-md-12">Email</label>
+								<div class="col-md-12">
+									<input type="email" class="form-control form-control-line" placeholder="Email" name="email" value="<%= userInfo.email %>"
+									 name="example-email" id="example-email" readonly>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-12">Phone No</label>
+								<div class="col-md-12">
+									<input type="text" class="form-control form-control-line" placeholder="Mobile Number" id="phone" pattern="[0-9]{10}"
+									 name="phone" value="<% if(userInfo.phone !=''){%><%=userInfo.phone%><%}%>" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-12">State</label>
+								<div class="col-md-12">
+									<input type="hidden" name="state_id" id="state_id" value="<%= userInfo.state %>">
+									<select class="form-control form-control-line" name="state" id="state" required>
+										<option value="">-- Select State --</option>
+										<% states.forEach(function(value, index) { %>
+										<option value="<%= value.id %>" <%=userInfo.state==value.id ?"selected" : "" %>>
+											<%= value.name %>
+										</option>
+										<% }); %>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-12">City</label>
+								<div class="col-md-12">
+									<input type="hidden" name="city_id" id="city_id" value="<%= userInfo.city %>">
+									<select class="form-control form-control-line" name="city" id="cities" required>
+										<option value="">-- Select City --</option>
+									</select>
+								</div>
+							</div>
+							<br>
+							<br>
+							<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+							<a href="/users" class="btn btn-primary waves-effect">BACK</a>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function () {
+
+			var stateId = $('#state_id').val();
+			var cityId = $('#city_id').val();
+			$.post('/users/get_cities', { id: stateId, cityId: cityId }, function (success) {
+				$("#cities").html('');
+				$("#cities").append(success);
+			});
+
+			$("#state").change(function () {
+				var stateId = $(this).val();
+				$.post('/users/get_cities', { id: stateId, cityId: cityId }, function (success) {
+					$("#cities").html('');
+					$("#cities").append(success);
+				});
+			});
+
+		});
+
+		// $("form").on("submit", function (event) {
+		// 	var phone = $("#phone");
+		// 	var val = phone.val();
+		// 	alert(val.length);
+		// 	var phoneno = /^\d{10}$/;
+		// 	if (val.match(phoneno)) {
+		// 		return true
+		// 	} else {
+		// 		phone.focus()
+		// 		phone[0].setCustomValidity('Invalid number; must be ten digits.');
+		// 		return false
+		// 	}
+		// });
+
+	</script>

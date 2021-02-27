@@ -1,0 +1,127 @@
+<% layout('layouts/admin') %>
+<style>
+    .checked {
+      color: orange;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.Dashboard %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="white-box">
+        <!-- .row -->
+        <div class="row">
+            <!-- <div class="col-md-4 col-xs-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <div class="overlay-box">
+                            <div class="user-content">
+                                <a href="javascript:void(0)">
+                                    <% if(userInfo.user_image != ''){ %>
+                                    <img src="/uploads/business/<%= userInfo.user_image %>" alt="user-img" width="36"
+                                        class="img-circle">
+                                    <% } else{ %>
+                                    <img src="/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle">
+                                    <% } %>
+                                </a>
+                                <h4 class="text-white">
+                                    <%= userInfo.fname %>
+                                    <%= userInfo.lname %>
+                                </h4>
+                                <h5 class="text-white">
+                                    <%= userInfo.email %>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-md-12 col-xs-12">
+                <div class="white-box">
+                    <ul class="nav nav-tabs tabs customtab">
+                        <li class="tab active">
+                            <a href="#home" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span>
+                                <span class="hidden-xs"><%= LANG.Other %> <%= LANG.Details %> </span> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><%= LANG.StoreName %></td>
+                                            <td>
+                                                <%= userInfo.store_name %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.ManagerName %></td>
+                                            <td>
+                                                <%=  userInfo.store_manager %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.Store %> <%= LANG.Email %> </td>
+                                            <td>
+                                                <%= userInfo.store_email; %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.Status %></td>
+                                            <td>
+                                                <%= userInfo.isActive ? LANG.Active : LANG.Inactive  %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.CreatedOn %> </td>
+                                            <td>
+                                                <%= userInfo.createdAt.toLocaleString(); %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%=LANG.STORE_RATING; %></td>
+                                            <td class="user_rating">
+                                                <spna class="rating_num"><%=averageCountRating; %></spna>
+                                                <div class="user_ratingStar">
+                                                    <span class="fa fa-star <%= (averageRating >= 1)?'checked':'' %>"></span>
+                                                    <span class="fa fa-star <%= (averageRating >= 2)?'checked':'' %>"></span>
+                                                    <span class="fa fa-star <%= (averageRating >= 3)?'checked':'' %>"></span>
+                                                    <span class="fa fa-star <%= (averageRating >= 4)?'checked':'' %>"></span>
+                                                    <span class="fa fa-star <%= (averageRating >= 5)?'checked':'' %>"></span>
+                                                </div>
+                                                <span class="rating_userTotal"><i class="fa fa-user"></i> <%=userCount; %> total</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+</div>
+<style>
+    .user_rating{
+        display: flex;
+        flex-direction: column;
+    }
+    .rating_num{font-size: 30px;}
+    .user_ratingStar{
+        display: flex;
+        align-items: center;
+    }
+    .rating_userTotal{margin-top: 10px;}
+</style>

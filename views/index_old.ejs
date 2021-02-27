@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+  <title>Kupon | Home</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/scrolling-nav.css" rel="stylesheet">
+  <link href="/css/animate2.css" rel="stylesheet">
+  <link href="/css/material-design-iconic-font.min.css" rel="stylesheet">
+  <link href="/css/style2.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger logo" href="#page-top"><img src="img/logo.png" alt="" class="d-block w-100">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <ul class="secondoryBtns visibleXs">
+        <li>
+          <a href="" class="languageDrop" data-toggle="dropdown"><%=lang%><i class="zmdi zmdi-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" data-value="en">English</a>
+            <a class="dropdown-item" href="#" data-value="es">Español</a>
+          </div>
+        </li>
+        <li><a href="#downloadapp" class="nav-link getApp js-scroll-trigger"> <%=LANG.GetApp%> </a></li>
+      </ul>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about"><%=LANG.Home %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#ourFeat"><%=LANG.Features %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#DealsoftheDay"><%=LANG.DealsoftheDay %> </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="<%= business_url %>"><%=LANG.ListBusiness %> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact"> <%=LANG.ContactUs %> </a>
+          </li>
+        </ul>
+      </div>
+      <ul class="secondoryBtns hidden-xs">
+        <li>
+          <a href="" class="languageDrop" data-toggle="dropdown"><%=lang%><i class="zmdi zmdi-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" data-value="en">English</a>
+            <a class="dropdown-item" href="#" data-value="es">Español</a>
+          </div>
+        </li>
+        <li><a href="#downloadapp" class="nav-link getApp js-scroll-trigger"> <%=LANG.GetApp%> </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="carouselExampleFade" class="carousel slide carousel-fade mT100" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="img/banner-1.jpg" alt="First slide">
+      </div>
+
+    </div>
+    <!-- <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>-->
+  </div>
+
+  <section class="ourFeature defultPadding " id="ourFeat">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <figure class="fadeInLeft animated3 delay2">
+            <img src="img/features-screen.png" alt="" class="img-fluid">
+          </figure>
+
+        </div>
+        <div class="col-md-6">
+          <div class="featureDesc">
+            <h2><%=LANG.OurFeatures %></h2>
+
+            <ul>
+              <li>
+                <span class="">
+                  <i class="featureIcons coupons "></i>
+                </span>
+                <h4><%=LANG.OurFeature1 %></h4>
+                <p><%=LANG.OurFeatureCotent1 %></p>
+              </li>
+
+              <li>
+                <span>
+                  <i class="featureIcons share"></i>
+                </span>
+                <h4><%=LANG.OurFeature2 %></h4>
+                <p><%=LANG.OurFeatureCotent2 %></p>
+              </li>
+
+              <li>
+                <span>
+                  <i class="featureIcons category"></i>
+                </span>
+                <h4><%=LANG.OurFeature3 %></h4>
+                <p><%=LANG.OurFeatureCotent3 %></p>
+              </li>
+
+              <li>
+                <span>
+                  <i class="featureIcons business"></i>
+                </span>
+                <h4><%=LANG.OurFeature4 %></h4>
+                <p><%=LANG.OurFeatureCotent4 %></p>
+              </li>
+
+
+            </ul>
+
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+  <section class="listBusniess" id="listbusness">
+    <div class="container">
+      <div class="text-center delay1 animated1 fadeInDown"> <img src="img/business-icon.png" alt=""> </div>
+      <h3><%=LANG.AreYouRetailer %></h3>
+      <p><%=LANG.AreYouRetailerText %></p>
+      <div class="clearfix mT40">
+        <a href="<%= business_url %>" class="defultBtn"><%=LANG.ListBusiness %></a>
+      </div>
+
+
+    </div>
+
+
+  </section>
+  <section class="downloadApp" id="downloadapp">
+    <div class="container">
+      <h2><%=LANG.DownloadApp %></h2>
+      <h5><%=LANG.DownloadAppText %></h5>
+
+      <div class="clearfix">
+        <a href="" class="downloadBtns"> <img src="img/google-download-app.png" alt=""> </a>
+        <a href="" class="downloadBtns"> <img src="img/app-store-download.png" alt=""> </a>
+
+      </div>
+      <div class="clearfix downloadScreen fadeInUp delay2 animated3">
+        <img src="img/download-screen.png" alt="" class="d-block w-100">
+
+      </div>
+
+    </div>
+
+
+  </section>
+<!--
+  <section id="DealsoftheDay" class="contactUs">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2><%=LANG.DealsoftheDay %></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table id="example2" class="table table-bordered table-hove table-striped">
+            <thead>
+                <tr>
+                    <th data-sortable="false"><%= LANG.Image %></th>
+                    <th><%= LANG.Title %></th>
+                    <th><%= LANG.Category %></th>
+                    <th><%= LANG.OriginalPrice %></th>
+                    <th><%= LANG.Discount %></th>
+                    <th><%= LANG.FinalAmount %> </th>
+                    <th><%= LANG.CreatedOn %> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(dealInfo.length){
+                  dealInfo.forEach(function(value) {  %>
+                <tr>
+                    <td>
+                        <% if(value.image != ''){ %>
+                        <img id="catImg" src="/uploads/deals/<%= value.image %>" width="50" height="40"
+                            style="background: dimgray;">
+                        <% }else{  %>
+                        <img id="catImg" src="/uploads/def_cat/<%= value.subcategory.name %>.jpg" width="50" height="40"
+                            style="background: dimgray;">
+                        <% }  %>
+                    </td>
+                    <td>
+                        <%= value.title %>
+                    </td>
+                    <td>
+                        <%= value.category.name %>
+                    </td>
+                    <td>
+                        <%= value.original_price %>
+                    </td>
+                    <td>
+                        <%= value.discount %>%
+                    </td>
+
+                    <td>
+                        <%= value.final_price %>
+                    </td>
+                    <td>
+                        <%= value.createdAt.toLocaleString(); %>
+                    </td>
+                </tr>
+                <% }) }else{ %>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    </tr>
+                 <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+  <section id="contact" class="contactUs">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2><%=LANG.Contactus %></h2>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <div class="phoneBlock">
+            <h4><%=LANG.Phone %> </h4>
+            <p>+27 11 978 5313</p>
+
+          </div>
+
+        </div>
+        <div class="col-md-4">
+          <div class="phoneBlock">
+            <h4><%=LANG.EmailUs %> </h4>
+            <p>info@kupon.co.ao</p>
+
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="phoneBlock">
+            <h4><%=LANG.FollowUs %> </h4>
+            <div class="socailIcons">
+              <a href="" class="fb"><i class="zmdi zmdi-facebook"></i></a>
+              <a href="" class="linkedin"><i class="zmdi zmdi-linkedin"></i></a>
+              <a href="" class="twitter"><i class="zmdi zmdi-twitter"></i></a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <form name="inquiryForm" id="inquiryForm" method="post">
+        <input type="hidden" value="<%=lang%>" name="lang">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" name="fullname" id="fullname" class="form-control required" placeholder="<%=LANG.FullName %>">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="email" name="email" id="email"  class="form-control required " placeholder="<%=LANG.Email %> ">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <textarea name="message" id="fullname"  class="form-control required" placeholder="<%=LANG.Message %> "></textarea>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="alert"  id="showMsg">
+                <div></div>
+            </div>
+          </div>
+          <div class="col-sm-12 mT10">
+            <div class="text-center">
+              <button class="defultBtn"><%=LANG.Submit %></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class=" bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="footerMenu">
+            <li><a href="<%= home_url+'about_us/'+lang%>"><%= LANG.AboutUs%></a> </li>
+            <li><a href="<%= home_url+'terms/'+lang%>"><%= LANG.Terms%></a></li>
+            <li><a href="<%= home_url+'faq/'+lang%>"><%= LANG.FAQ%></a></li>
+        </ul>
+    </div>
+    <div class="col-md-6 ">
+        <p class="m-0 text-right text-white"><%= LANG.Copyright%> &copy; Kupon
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/js/jqueryvalidation/jquery.validate.js"></script>
+  <script src="/js/jqueryvalidation/additional-methods.js"></script>
+  <!-- Custom JavaScript for this theme -->
+  <script src="/js/scrolling-nav.js"></script>
+  <script src="/js/animation.js"></script>
+
+  <script>
+  $(function () {
+    $("#inquiryForm").validate({
+      errorPlacement: function (error, element) {
+      },
+      submitHandler: function(form) {
+        $("#showMsg").removeClass("alert-success, alert-danger");
+        $.ajax({
+            url: "/send_inquiry",
+            type: "POST",
+            data: $(form).serialize(),
+            dataType: 'json',
+            cache: false,
+            processData: false,
+            beforeSend: function(){
+              $(".defultBtn").attr("disabled",true);
+            },
+            success: function (result) {
+              if(result.status){
+                $("#showMsg").show().addClass("alert-success");
+                $("#showMsg div").text(result.message);
+                setTimeout(function(){ $("#showMsg").hide(); }, 3000);
+                $("#inquiryForm")[0].reset();
+              }else{
+                $("#showMsg").show().addClass("alert-danger");
+                $("#showMsg div").text(result.message);
+                setTimeout(function(){ $("#showMsg").hide(); }, 3000);
+              }
+              $(".defultBtn").attr("disabled",false);
+            },
+            error: function (e) {
+              $("#showMsg").show().addClass("alert-danger");
+              $("#showMsg div").text('Something went wrong. please page refresh and try again.');
+              setTimeout(function(){ $("#showMsg").hide(); }, 3000);
+            }
+        });
+        return false;
+    },
+
+    });
+    $('.dropdown-item').on('click', function () {
+    var url = $(this).data('value'); // get selected value
+    if (url) { // require a URL
+        window.location = '/'+url; // redirect
+    }
+    return false;
+    });
+    $('.carousel').carousel({
+      interval: 2000
+    })
+  });
+  </script>
+
+
+
+</body>
+
+</html>

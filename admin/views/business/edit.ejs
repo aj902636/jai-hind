@@ -1,0 +1,443 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+	<div class="row bg-title">
+		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+			<h4 class="page-title">Edit Business</h4>
+		</div>
+		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+			<ol class="breadcrumb">
+				<li><a href="/dashboard">Dashboard</a></li>
+				<li><a href="/business">Business Profiles</a></li>
+				<li><a href="#">Edit Business</a></li>
+			</ol>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="white-box">
+		<form data-toggle="validator" id="form_validation" action="/business/updateBusiness/<%= userInfo.id%>" method="POST"
+		 encType="multipart/form-data">
+			<div class="businessCateg">
+				<h4>Business Categories</h4>
+				<ul>
+					<% cat.forEach(function(row,i) { %>
+					<li>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" name="category[]" id="customCheck<%= row.id %>" value="<%= row.id %>"
+							 <%=businessInfo.categoryId.includes(row.id) ? 'checked' :'' %>>
+							<label class="custom-control-label" for="customCheck<%= row.id %>">
+								<span class="iconCricle">
+									<img src="/uploads/cats/<%= row.icon %>" width="40" style="margin-top: 10px;">
+									<span class="checkBox"> <i class="zmdi zmdi-check-circle"></i>
+									</span>
+								</span>
+								<%= row.name %></label>
+						</div>
+					</li>
+					<% }); %>
+				</ul>
+			</div>
+			<div class="col-md-6 form-group form-float">
+				<label class="form-label ">Business Name <sup> * </sup></label>
+				<div class="form-line ">
+					<input class="form-control" placeholder="Business Name" id="inputName1" name="business_name" type="text" value="<%= businessInfo.business_name%>"
+					 required>
+				</div>
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="col-md-6 form-group form-float">
+				<label class="form-label">Full Name <sup> * </sup></label>
+				<div class="form-line ">
+					<input class="form-control" onkeypress="return isChar(event)"  placeholder="Full Name" value="<%= userInfo.fname%>" id="inputName" name="fname" type="text"
+					 required>
+				</div>
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="col-md-6 form-group form-float">
+				<label class="form-label">Mobile Number <sup> * </sup></label>
+				<div class="form-line ">
+					<input type="text" placeholder="Mobile Number" pattern="[0-9]{9}" value="<%= userInfo.phone%>" id="inputName3"
+					 class="form-control" required name="phone">
+				</div>
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="col-md-6 form-group form-float">
+				<label class="form-label">Email <sup> * </sup></label>
+				<div class="form-line ">
+					<input type="email" placeholder="Email Address" value="<%= userInfo.email%>" id="inputName4" class="form-control"
+					 required name="email">
+				</div>
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="col-md-6 form-group form-float">
+				<label class="form-label">Password </label>
+				<span class="text-muted">(Minimum length 6 digit) </span>
+				<div class="form-line ">
+					<input type="password" placeholder="Password" pattern="^.{6,}$" id="inputName5" class="form-control" autocomplete="false"
+					 name="password">
+				</div>
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="col-md-6 form-group form-float" style="min-height:65px;">
+                <label class="form-label">NIF Number <sup> * </sup></label>
+                <span class="text-muted"></span>
+                <div class="form-line ">
+                    <input type="text" placeholder="NIF Number" value="<%= userInfo.nif_number%>"  id="nif_number" pattern="[5]{1}[0-9]{9}" maxlength="10" class="form-control"
+                        required name="nif_number">
+                </div>
+                <div class="help-block with-errors"></div>
+			</div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">Province <sup>  </sup></label>
+                        <input type="text" class="form-control" value="<%= businessInfo.state %>" name="state" id="state" placeholder="Province" >
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">City <sup>  </sup></label>
+                        <input type="text" class="form-control" value="<%= businessInfo.city %>" name="city" id="city" placeholder="City">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+			<div class="col-md-12 form-group form-float">
+				<label class="form-label">Business Location <sup> * </sup></label>
+				<div class="form-line ">
+					<input type="text" placeholder="Business Location" id="inputName2" class="form-control model_img img-responsive"
+					 required name="location" onkeydown="return false;" value="<%= businessInfo.location%>" data-toggle="modal"
+					 data-target=".bs-example-modal-lg">
+					<input type="hidden" name="business_lat" id="lat" value="<%= userInfo.latitude %>" />
+					<input type="hidden" name="business_long" id="long" value="<%=userInfo.longitude %>" />
+				</div>
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="col-md-5 form-group form-float">
+				<label class="form-label">Profile Image <sup> * </sup></label>
+				<div class="form-line">
+					<span class="text-muted">(Please upload Only image with png,jpg,gif,jpeg extension.) </span>
+					<input type="file" class="custom-file-input" id="inputGroupFile01" name="foo" requied onchange="readURL(this);">
+				</div>
+			</div>
+			<div class="col-md-7 form-group form-float">
+				<div class="form-line">
+					<img id="catImg" src="/uploads/business/<%=userInfo.user_image%>" width="80">
+				</div>
+			</div>
+			<div class="form-group text-right">
+				<button class="btn btn-danger waves-effect" type="submit">Add Business</button>
+				<a href="/business" class="btn btn-danger waves-effect">BACK</a>
+			</div>
+			<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			 aria-hidden="true" style="display: none;">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myLargeModalLabel">Select Your Location</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						</div>
+						<div class="modal-body">
+							<input id="pac-input" class="controls" type="text" placeholder="Search Address">
+							<div id="map-canvas"></div>
+							<div class="map-btn"><i class="fas fa-map-marker-alt"></i></div>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+		</form>
+	</div>
+</div>
+<style>
+	#map-canvas {
+		height: 470px;
+		width: 100%;
+		margin: 0px;
+		padding: 0px
+	}
+
+	.custom-control-input {
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+	}
+</style>
+<script>
+	function isChar(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        // alert(charCode)
+        if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || (charCode == 32))
+            return true;
+        return false;
+    }
+	$('.carousel').carousel({
+		interval: 2000
+	})
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#catImg').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	// $('#inputName2').focusin(function () {
+	// 	alert('focucs');
+	// 	$(this).attr('readonly', true);
+	// });
+	// $('#inputName2').focusout(function () {
+	// 	$(this).attr('readonly', false);
+	// });
+</script>
+<script>
+		$(function(){
+        $(".map-btn").click(function(){
+            var tryAPIGeolocation = function() {
+                jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC6Gr1MBiQ0hc2152v9NYFaQdraXPwBc1w", function(success) {
+                    apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+                }).fail(function(err) {
+                    console.log(err);
+                    alert("API Geolocation error! \n\n"+err);
+                });
+            };
+
+            var browserGeolocationSuccess = function(position) {
+                alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+            };
+
+            var browserGeolocationFail = function(error) {
+                switch (error.code) {
+                    case error.TIMEOUT:
+                        alert("Browser geolocation error !\n\nTimeout.");
+                        break;
+                    case error.PERMISSION_DENIED:
+                    if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                        tryAPIGeolocation();
+                    }
+                    break;
+                    case error.POSITION_UNAVAILABLE:
+                        alert("Browser geolocation error !\n\nPosition unavailable.");
+                        break;
+                }
+            };
+
+            var tryGeolocation = function() {
+                if(navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        browserGeolocationSuccess,
+                    browserGeolocationFail,
+                    {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+                }
+            };
+
+            tryGeolocation();
+
+
+        var apiGeolocationSuccess = function(position) {
+                var myLatlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+                var myOptions = {
+                    zoom: 8,
+                    center: myLatlng
+                }
+                var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+
+                var geocoder = new google.maps.Geocoder();
+
+                var marker;
+                marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            draggable: false
+                        });
+                function placeMarker(location) {
+                    if (marker) {
+                        marker.setPosition(location);
+                    } else {
+                        marker = new google.maps.Marker({
+                            position: location,
+                            map: map,
+                            draggable: false
+                        });
+                    }
+                }
+
+                google.maps.event.addListener(map, 'click', function (event) {
+                    placeMarker(event.latLng);
+                    var lat = parseFloat(event.latLng.lat());
+                    var lng = parseFloat(event.latLng.lng());
+                    document.getElementById("lat").value = lat;
+                    document.getElementById("long").value = lng;
+                    geocoder.geocode({
+                        'latLng': event.latLng
+                    }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                var str = results[0].formatted_address;
+                                res = str.replace("Unnamed Road", "Township");
+                                document.getElementById("inputName2").value = res;
+                            }
+                        }
+                    });
+                });
+
+                var input = (document.getElementById('pac-input'));
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                var searchBox = new google.maps.places.SearchBox((input));
+
+                google.maps.event.addListener(searchBox, 'places_changed', function () {
+                    var places = searchBox.getPlaces();
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    markers = [];
+                    for (var i = 0, marker; marker = markers[i]; i++) {
+                        marker.setMap(null);
+                    }
+                    var bounds = new google.maps.LatLngBounds();
+                    for (var i = 0, place; place = places[i]; i++) {
+                        var image = {
+                            url: '/images/marker.png',
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(50, 50)
+                        };
+                        // Create a marker for each place.
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            icon: image,
+                            title: place.name,
+                            position: place.geometry.location
+                        });
+
+                        markers.push(marker);
+
+                        bounds.extend(place.geometry.location);
+
+                        var latitude = place.geometry.location.lat();
+                        var longitude = place.geometry.location.lng();
+
+                        document.getElementById("lat").value = latitude;
+                        document.getElementById("long").value = longitude;
+                        document.getElementById("inputName2").value = place.formatted_address;
+
+                    }
+                    map.fitBounds(bounds);
+                    map.setZoom(Math.min(map.getZoom(), 15));
+                });
+
+                google.maps.event.addListener(map, 'bounds_changed', function () {
+                    var bounds = map.getBounds();
+                    searchBox.setBounds(bounds);
+                });
+            }
+        });
+	});
+
+		if(<%=userInfo.latitude %>){
+			var myLatlng = new google.maps.LatLng(<%= userInfo.latitude %>, <%= userInfo.longitude %>);
+		}else{
+			var myLatlng = new google.maps.LatLng(-12.046373, -77.042755);
+		}
+	///var myLatlng = new google.maps.LatLng(-8.839988, 13.289437);
+	var myOptions = {
+		zoom: 8,
+		center: myLatlng
+	}
+	var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+	var geocoder = new google.maps.Geocoder();
+	var marker;
+	marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			draggable: false
+		});
+	function placeMarker(location) {
+		if (marker) {
+			marker.setPosition(location);
+		} else {
+			marker = new google.maps.Marker({
+				position: location,
+				map: map,
+				draggable: false
+			});
+		}
+	}
+
+	google.maps.event.addListener(map, 'click', function (event) {
+		placeMarker(event.latLng);
+		var lat = parseFloat(event.latLng.lat());
+		var lng = parseFloat(event.latLng.lng());
+		document.getElementById("lat").value = lat;
+		document.getElementById("long").value = lng;
+		geocoder.geocode({
+			'latLng': event.latLng
+		}, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[0]) {
+					var str = results[0].formatted_address;
+					res = str.replace("Unnamed Road", "Township");
+					document.getElementById("inputName2").value = res;
+				}
+			}
+		});
+	});
+	var input = (document.getElementById('pac-input'));
+	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+	var searchBox = new google.maps.places.SearchBox((input));
+
+	google.maps.event.addListener(searchBox, 'places_changed', function () {
+		var places = searchBox.getPlaces();
+		if (places.length == 0) {
+			return;
+		}
+
+		markers = [];
+		for (var i = 0, marker; marker = markers[i]; i++) {
+			marker.setMap(null);
+		}
+		var bounds = new google.maps.LatLngBounds();
+		for (var i = 0, place; place = places[i]; i++) {
+			var image = {
+				url: '/images/marker.png',
+				size: new google.maps.Size(71, 71),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(17, 34),
+				scaledSize: new google.maps.Size(50, 50)
+			};
+			// Create a marker for each place.
+			var marker = new google.maps.Marker({
+				map: map,
+				icon: image,
+				title: place.name,
+				position: place.geometry.location
+			});
+
+			markers.push(marker);
+
+			bounds.extend(place.geometry.location);
+
+			var latitude = place.geometry.location.lat();
+            var longitude = place.geometry.location.lng();
+
+            document.getElementById("lat").value = latitude;
+            document.getElementById("long").value = longitude;
+            document.getElementById("inputName2").value = place.formatted_address;
+		}
+		map.fitBounds(bounds);
+		map.setZoom(Math.min(map.getZoom(), 15));
+	});
+
+	google.maps.event.addListener(map, 'bounds_changed', function () {
+		var bounds = map.getBounds();
+		searchBox.setBounds(bounds);
+	});
+
+</script>

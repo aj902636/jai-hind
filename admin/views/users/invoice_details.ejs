@@ -1,0 +1,143 @@
+<% layout('layouts/admin') %>
+<style type="text/css">
+    .amount{
+        background: #656565 none repeat scroll 0 0;
+        color: #fff;
+        font-family: "Abel",sans-serif;
+        font-size: 40px;
+        padding: 8px 30px;
+    }
+    .total-purchase {
+        color: #2b2b2c;
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+    strong {
+    font-weight: 700;
+}
+</style>
+
+    <div class="container-fluid">
+
+        <div class="white-box">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="invoice-logo">
+                    <img src="/plugins/images/admin-text.png" height="60" alt=""/>
+                    <img src="/plugins/images/admin-text-dark.png" height="60" alt=""/>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <h1>Invoice</h1>
+            </div>
+            <!--<div class="col-xs-4">
+                <div class="total-purchase">
+                    Total Booking
+                </div>
+                    <div class="amount"><%="10.00"%></div>
+            </div>-->
+            </div><br/><br/><br/>
+            <div class="row">
+                <div class="col-xs-4">
+                    <address>
+                        <strong>OFFICE ADDRESS</strong>
+                        <br>Coupon<br>
+                        kupon@gmail.com
+                    </address>
+                </div>
+                <div class="col-xs-4">
+                    <strong>TO</strong>
+                    <br/><%=userInfo[0].fname+" "+userInfo[0].lname;%>
+                    <br/><%=userInfo[0].location; %>
+                    <br/>Mobile Number: <%=userInfo[0].phone; %>
+                </div>
+                <div class="col-xs-4 inv-info">
+                    <strong>INVOICE INFO</strong>
+                    <br/> <span> Invoice Number : </span><%=getSubscriptionStatus.reference_id%>
+                    <br/><span> Invoice Date : </span>	<%=moment(getSubscriptionStatus.createdAt).format("DD-MM-YYYY"); %>
+                    <br/> <span> Invoice Status : </span>	<%="paid"%>
+                </div>
+            </div><br/>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>S No.</th>
+                    <th>Subscription Type</th>
+                    <th class="">Amount</th>
+                    <th class="">Total Amount</th>
+                    <th class="">Invoice Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><%="Plan Subscription"; %></td>
+                    <td class=""><%=getSubscriptionStatus.sub_amount;%> &#83;&#47;&#46;</td>
+                    <td class=""><%=getSubscriptionStatus.paid_amount;%> &#83;&#47;&#46;</td>
+                    <td class=""><%=moment(getSubscriptionStatus.createdAt).format("DD-MM-YYYY"); %></td>
+                </tr>
+
+                </tbody>
+            </table><br/>
+
+            <div class="row">
+                <div class="col-xs-8">
+                    <h4>PAYMENT METHOD</h4>
+                    <ul class="list-unstyled">
+                        <li><%=getSubscriptionStatus.payment_method; %></li>
+                    </ul>
+                </div>
+                <div class="col-xs-4">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <td>Subtotal</td>
+                            <td><%=getSubscriptionStatus.sub_amount;%> &#83;&#47;&#46;</td>
+                        </tr>
+                        <tr>
+                            <td>Tax(%)</td>
+                            <td><%=getSubscriptionStatus.vat_amount; %>.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>GRAND TOTAL</strong>
+                            </td>
+                            <td><strong><%=getSubscriptionStatus.paid_amount;%> &#83;&#47;&#46;</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-4">
+                    <h5>Store Name</h5>
+                    <ul class="list-unstyled">
+                        <li><%=StoreNameArr; %></li>
+                    </ul>
+                </div>
+                <div class="col-xs-4">
+                    <h5>Category Name</h5>
+                    <ul class="list-unstyled">
+                        <li><%=CategoryNameArr; %></li>
+                    </ul>
+                </div>
+            </div><br/><br/><br/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-left">
+                        <a class="btn btn-danger" onclick="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Print</a>
+                        <!--<a href="#" class="btn btn-success">Generate PDF</a>-->
+                    </div>
+                    <div class="pull-right">
+                        <!-- <a href="#" class="btn btn-success">Submit Payment</a>-->
+                    </div>
+                </div>
+
+            </div>
+
+    </div>
+</div>
+
+

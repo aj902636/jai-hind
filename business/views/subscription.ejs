@@ -1,0 +1,110 @@
+<% layout('layouts/admin') %>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.Dashboard %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- Other sales widgets -->
+    <!-- ============================================================== -->
+    <!-- .row -->
+    <!--    <div class="row">
+        <div class="col-md-12 col-lg-4">
+
+            <% if(getrefrence){ %>
+                <h2>Your subscription ammount is: <%= totalprice %>, and RefrenceId is: <%= getrefrence.reference_id %> </h2>
+            <% }else{ %>
+                <h2>Your subscription ammount is: <%= totalprice %></h2><a href="/payment/subscription_create_refrence" class="btn btn-sm btn-success" >Generate Refrence</a>
+           <% } %>
+
+
+        </div>
+    </div> -->
+
+    ,
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading"><%= LANG.PaymentTab %></div>
+                <div class="panel-body">
+                    <% if(getrefrence){ %>
+                    <p><%= LANG.SubscriptionAmount %>: <%= totalprice %>, <%= LANG.RefrencAmpunt %></p>
+                    <p> <%= getrefrence.reference_id %> </p>
+                    <p><%= LANG.ActivationMessage %></p>
+                    <% }else{ %>
+                   <!-- <p><%= LANG.SubscriptionAmount %>: <%= totalprice %> <span class="label label-success"><a
+                                href="/payment/subscription_create_refrence"><%= LANG.PaymentButton %> </a></span></p>-->
+                                <p><%= LANG.SubscriptionAmount %> Included Vat (<%=vat_amount; %>%): <%= totalprice %>
+                                    <form action='https://www.2checkout.com/checkout/purchase' method='post' id="payment_form">
+                                        <input type='hidden' name='sid' value='250705925819' />
+                                        <input type='hidden' name='mode' value='2CO' />
+                                        <input type='hidden' name='li_0_name' value='Subscription Plan Amount' />
+                                        <input type='hidden' name='li_0_price' value='<%= totalprice; %>' />
+                                        <input type='hidden' name='demo' value='Y' />
+                                        <input type='hidden' name='card_holder_name' value='John Doe' >
+                                        <input type='hidden' name='country' value='IND' >
+                                        <input type='hidden' name='email' value='<%=email; %>' >
+                                        <input name='submit' type='submit' value='<%=LANG.PaymentButton; %>' class="label label-success" />
+                                    </form>
+                                </p>
+
+                    <p><%= LANG.ActivationMessage %></p>
+
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading"><%= LANG.ManualPaymentTab; %></div>
+                <div class="panel-body">
+                    <p><%=LANG.Email; %>: <%= getSubscriptionMessage.email %></p>
+                    <% if(lang=='en'){ %>
+                        <p><%= getSubscriptionMessage.english_message; %></p>
+                    <% }else{ %>
+                        <p><%= getSubscriptionMessage.spanish_message; %></p>
+                     <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- Running Coupons table -->
+    <!-- ============================================================== -->
+
+
+
+
+    <!-- Running Deals of the day -->
+    <!-- ============================================================== -->
+
+</div>
+</div>
+
+
+<script>
+    document.getElementById("payment_form").submit();
+</script>
+
+<style>
+    .label-success{
+    display: block !important;
+    position: absolute;
+    top: 42%;
+    margin-left: 32%;
+  }
+</style>

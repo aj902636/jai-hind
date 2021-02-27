@@ -1,0 +1,606 @@
+<% layout('layouts/admin') %>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.AddCoupon %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+                <li><a href="#"><%= LANG.AddCoupon %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body target signupFourm">
+                        <form data-toggle="validator" id="form_validation" action="/coupons/addCoupon2" method="POST"
+                              class="col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="clearfix">
+                                    <label class="form-label required "><%= LANG.ParentCategory %> <sup> * </sup></label>
+                                </div>
+                                <% cat.forEach(function(row,i) { %>
+                                <div class="form-line custom-control custom-radio catgoryTypes ">
+                                    <input type="radio" class="parent custom-control-input" id="customCheck<%= row.id %>"
+                                        name="parent_cat" value="<%=row.id %>" <%=(i==0) ? 'checked' :'' %>
+                                    >
+                                    <label class="custom-control-label" for="customCheck<%= row.id %>">
+                                        <span class="iconCricle">
+                                            <img src="/uploads/cats/<%= row.icon %>" width="40" style="margin-top: 10px;">
+                                            <span class="checkBox"> <i class="mdi mdi-check"></i> </span>
+                                        </span>
+                                        <p>
+                                            <%= row.name %>
+                                        </p>
+                                    </label>
+                                </div>
+                                <% }); %>
+                                <!-- <div class="help-block with-errors"></div> -->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.Subcategory %> <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <select name="sub_cat" class="form-control" id="sub_cat" required>
+                                                <option value=""><%= LANG.Select %> <%= LANG.Subcategory %></option>
+                                                <% cat.forEach(function(row) { %>
+                                                <option value=<%=row.id %>>
+                                                    <%= row.name %>
+                                                </option>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.StoreName %> <sup> * </sup></label>
+                                        <div class="form-line store_nameerr">
+                                            <select name="store_name[]" id="store_name" multiple required class="form-control" >
+                                                <% storeData.forEach(function(row) { %>
+                                                <option value="<%=row.id %>">
+                                                    <%= row.store_name %>
+                                                </option>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                        <!-- <div class="help-block with-errors storeerror"></div>  -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.Title %> <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.Title %>" id="inputName1" name="title"
+                                                type="text" maxlength="50" required>
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.Description %> <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.Description %>" id="inputName12"
+                                                name="description"
+                                                type="text" maxlength="100" required>
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-float">
+                                <label for="imageupload"class="form-label required"><%= LANG.SelectImage %> </label><br>
+                                <span class="text-muted">(<%= LANG.ImageMax %> 4 MB) </span>
+                                <div class="form-line" style="text-align: center">
+                                    <div class="imageUpload"  title="<%= LANG.SelectImage %> ">
+                                        <input name="foo" id="image" type="file" class="waves-effect" value="test" accept="image/png,image/gif,image/jpeg,image/jpg"/>
+                                    <%= LANG.SelectImage %> </div>
+                                    <!-- <img id="catImg" src="" width="150"> -->
+                                </div>
+                                <div class="help-block with-errors"></div> 
+                                <div class="row" id="imgblock" style="display:none;">
+                                    <div class="form-group col-md-7 form-float">
+                                        <img id="catImg" src="" width="500">
+                                        <p><br>
+                                            <button type="button" id="button"><%= LANG.Crop %></button>
+                                        </p>
+                                    </div>
+                                    <input type="hidden" name="newImage" id="newImage" value="" />
+                                    <div class="form-group col-md-3" id="resultImage" style="width: 300px;height: 200px;float: right;"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-float">
+                                <label class="form-label required "><%= LANG.MaximumUsers %><sup> *
+                                    </sup>
+                                </label>
+                                <div class="form-line ">
+                                    <input class="form-control" placeholder="<%= LANG.MaximumUsers %>" id="inputName" name="max_users"
+                                         required type="number" maxlength="4" max="9999" min="0">
+                                </div>
+                                <!-- <div class="help-block with-errors"></div> -->
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 form-float">
+                                    <label class="form-label required "><%= LANG.DateTime %> <sup> * </sup></label>
+                                    <div class="input-group"><span class="input-group-addon"><i class="fas fa-calendar"></i></span>
+                                        <input class="form-control" id='datetimepicker4' placeholder="yyyy-mm-dd" name="date"
+                                            type="text" required onkeydown="return false;">
+                                    </div>
+                                    <!-- <div class="help-block with-errors"></div> -->
+                                </div>
+                                <!-- <div class="form-group col-md-4 form-float">
+                                    <label class="form-label required ">Time <sup> * </sup></label>
+                                    <div class="input-group m-t-10 clockpicker" data-placement="left" data-align="top"
+                                        data-autoclose="true"><span class="input-group-addon"><i class="far fa-clock"></i></span>
+                                        <input class="form-control" placeholder="Time" id="single-input" name="time"
+                                            type="text" required>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div> -->
+                                <div class="form-group col-md-6 form-float">
+                                    <label class="form-label required "><%= LANG.CouponsDuration %> <sup> * </sup></label>
+                                    <div class="form-line ">
+                                        <select name="coupon_duration" class="form-control" id="coupon_duration"
+                                            required>
+                                            <option value="">-- <%= LANG.SelectDuration %> --</option>
+                                            <option value="1">1 Hr</option>
+                                            <option value="2">2 Hrs</option>
+                                            <option value="3">3 Hrs</option>
+                                            <option value="24">24 Hrs</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="help-block with-errors"></div> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.Items %> <sup> * </sup> </label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.Items %>" id="Items" name="items" type="text"
+                                                maxlength="50" required>
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 form-float">
+                                    <input class="form-line offer" value="1" checked="checked" name="offerType"
+                                           type="radio"> <%= LANG.RegularOffer %>
+                                    <input class="form-line offer" value="2" name="offerType" type="radio"> <%= LANG.SpecialOffer %>
+                                </div>
+
+                                <div class="form-group col-md-4 form-float">
+                                    <label class="form-label required "><%= LANG.DiscountOffered %> <sup> * </sup></label>
+                                    <div id="discount" class="input-group m-t-10"><span class="input-group-addon"><i
+                                                    class="fas fa-percent"></i></span>
+                                        <input class="form-control allownumericwithdecimal" placeholder="<%= LANG.DiscountOffered %>"
+                                            id="inputName2" name="discount" type="number" maxlength="3" max="100" min="0"
+                                            required>
+                                    </div>
+                                    <h4 id='secial'> <%= LANG.SpecialOffer %> </h4>
+                                    <!-- <div class="help-block with-errors inputName2Error"></div> -->
+                                </div>
+                                <div class="form-group col-md-4 form-float">
+                                    <label class="form-label required "><%= LANG.OriginalPrice %> <sup> * </sup></label>
+                                    <div class="input-group m-t-10"><span class="input-group-addon">Kz</span>
+                                        <input class="form-control allownumericwithdecimal" placeholder="<%= LANG.OriginalPrice %>"
+                                            id="inputName3" name="original_price" maxlength="8" type="text" required>
+                                    </div>
+                                    <!-- <div class="help-block with-errors"></div> -->
+                                </div>
+                                <div class="form-group col-md-4 form-float">
+                                    <label class="form-label required "><%= LANG.PriceafterDiscount %> <sup> * </sup></label>
+                                    <div class="input-group m-t-10"><span class="input-group-addon">Kz</span>
+                                        <input class="form-control allownumericwithdecimal"
+                                               placeholder="<%= LANG.PriceafterDiscount %>" id="inputName4"
+                                               name="final_price" type="text" required readonly>
+                                    </div>
+                                    <!-- <div class="help-block with-errors"></div> -->
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="form-group col-md-6 form-float">
+                                    <label class="form label"><%= LANG.CouponTemplatePreview %>
+                                        <sup> * </sup></label>
+                                    <div class="form-line ">
+                                        <button class=" btn btn-primary waves-effect" data-toggle="modal" data-target="#verticalcenter"
+                                            id="priview" type="button"><%= LANG.CouponPreview %></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- sample modal content -->
+                            <div id="verticalcenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered ">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title col-md-11" id="vcenter"><%= LANG.CouponPreview %></h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body" id="couponTemp">
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn waves-effect" data-dismiss="modal"><%= LANG.Close %></button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary waves-effect submitBtn" type="submit"><%= LANG.Submit %></button>
+                                <a href="/coupons" class="btn btn-primary waves-effect"><%= LANG.Back %></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <script src="/js/bootstrap-multiselect.js"></script>
+ <link href="/css/bootstrap-multiselect.css" rel="stylesheet">
+
+<style>
+    .catgoryTypes.custom-control {
+        padding-right: 40px
+    }
+
+    .catgoryTypes.custom-control {
+        position: relative;
+        display: block;
+        min-height: 1.5rem;
+
+    }
+
+    .catgoryTypes .custom-control-label {
+        position: relative;
+        margin-bottom: 0;
+        text-align: center;
+        font-weight: normal;
+
+    }
+
+    .catgoryTypes .custom-control-input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .catgoryTypes.form-line {
+        display: inline-block;
+    }
+
+    .catgoryTypes.custom-control.custom-radio .iconCricle {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #999999;
+        border-radius: 50%;
+        background-color: white;
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+    }
+
+    .catgoryTypes.custom-control.custom-radio .iconCricle .checkBox {
+        position: absolute;
+        font-size: 26px;
+        right: -12px;
+        bottom: 6px;
+        background: #fff;
+        border-radius: 50%;
+        line-height: 28px;
+        opacity: 0;
+    }
+
+    .catgoryTypes.custom-control.custom-radio p {
+        margin-top: 10PX;
+        text-transform: uppercase;
+    }
+
+    .catgoryTypes.custom-radio .custom-control-input:checked~.custom-control-label .iconCricle {
+        border-color: #ff0c0c;
+    }
+
+    .catgoryTypes.custom-radio .custom-control-input:checked~.custom-control-label {
+        color: #ff0c0c;
+    }
+</style>
+
+<script>
+    
+    function readURL(input) {
+            $('#catImg').attr('src', "" );
+            $("#newImage").val( "" )
+            try{
+                cropper.destroy();
+                cropper = null;
+                result.innerHTML = '';
+            }catch(e){
+                //do nothing
+            }
+            
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#catImg').attr('src', e.target.result);
+                    $("#newImage").val( e.target.result )
+                    $("#imgblock").show()
+
+                    var image = document.getElementById('catImg');
+                    var button = document.getElementById('button');
+                    var result = document.getElementById('resultImage');
+                    
+                    var croppable = false;
+                    cropper = new Cropper(image, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                        minCropBoxWidth: 300,
+                        minCropBoxHeight: 300,
+                        ready: function () {
+                            croppable = true;
+                        }
+                    });
+                
+                    button.onclick = function () {
+                        var croppedCanvas;
+                        var roundedCanvas;
+                        var roundedImage;
+                
+                        if (!croppable) {
+                            return;
+                        }
+                        croppedCanvas = cropper.getCroppedCanvas();
+                        roundedImage = document.createElement('img');
+                        roundedImage.src = croppedCanvas.toDataURL()
+                        $("#newImage").val( croppedCanvas.toDataURL() )
+                
+                        result.innerHTML = '';
+                        result.appendChild(roundedImage);
+                    };
+                    
+
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+           
+        }
+
+    $(document).ready(function () {
+
+        $('#store_name').multiselect({
+            nonSelectedText: '<%= LANG.SelectStore %>',
+            enableFiltering: true,
+            filterPlaceholder: '<%= LANG.Search %>',
+            enableCaseInsensitiveFiltering: true,
+            buttonWidth:'400px'
+        });
+        if($('#store_name option').length == 1){  
+            $("#store_name").val($('#store_name option:first').val());
+            $('#store_name').multiselect("refresh");
+        }
+        $('input[type="file"]').change(function(e){
+            if(this.files[0].size > 4194304){
+                $(this).val('');
+                alert("<%= LANG.MaximumFileSize%> 4MB.");
+                return;
+            }else{
+                readURL(this);
+            }
+        });
+
+        var parent_cat = $("input[name='parent_cat']:checked").val();
+        $.post('/coupons/get_subcat', { id: parent_cat, cityId: false }, function (success) {
+            $("#sub_cat").html('');
+            $("#sub_cat").append(success);
+        });
+
+        $(".parent").change(function () {
+            var parent_cat = $("input[name='parent_cat']:checked").val();
+            $.post('/coupons/get_subcat', { id: parent_cat, cityId: false }, function (success) {
+                $("#sub_cat").html('');
+                $("#sub_cat").append(success);
+            });
+        });
+        
+        $("#store_name").on("change",function () {
+            if(!$(this).val()){
+                $(".store_nameerr").addClass("error");
+            }else{
+                $(".store_nameerr").removeClass("error");
+            }
+        });
+        $("#form_validation").validate({
+            errorPlacement: function (error, element) {
+                var name = $(element).attr("name");
+                if(name=="store_name[]"){
+                    // error.appendTo($(".storeerror"));
+                    $(".store_nameerr").addClass("error");
+                }
+                // else{
+                //     // $(".storeerror").html("");
+                //     $(".store_nameerr").removeClass("error");
+                // }
+                console.log("---name",name)
+            },
+            // rules: {
+            //     "store_name[]": {
+            //         needsSelection: true
+            //     }
+            // },
+            messages: {
+                "store_name[]": "message"
+            },
+            ignore: ':hidden:not("#store_name")', 
+        });
+
+        // $('#datepicker-autoclose').datepicker({
+        //     autoclose: true,
+        //     todayHighlight: true,
+        //     format: "yyyy-mm-dd",
+        //     startDate: new Date()
+        // });
+        // $('#single-input').clockpicker({
+        //     placement: 'right',
+        //     align: 'left',
+        //     autoclose: true,
+        //     'default': 'now'
+        // });      
+        var currentDate = new Date();
+        var newDateResult = new Date();
+        newDateResult.setTime(currentDate.getTime() + (2 * 60 * 1000));
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm',
+                defaultDate: newDateResult,
+                minDate: newDateResult
+            });
+        });
+
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        //$('#datetimepicker4').datetimepicker('setDate', today);
+
+        $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 8) && (event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+        $("#inputName2").on("keypress keyup blur", function () {
+            var price = $("#inputName3").val();
+            var discount = $(this).val();
+            if (price != '') {
+                if(discount>100){
+                    $(this).val(100);
+                    discount = 100;
+                }
+                var final = price - (price * discount) / 100;
+                $('#inputName4').val(parseFloat(final).toFixed(2));
+            }else{
+                if(discount>100){
+                    $(this).val(100);
+                }
+            }
+        });
+        $("#inputName3").on("keypress keyup blur", function () {
+            var discount = $("#inputName2").val();
+            var price = $(this).val();
+            if (discount != '') {
+                if(discount>100){
+                    discount = 100;
+                }
+                var final = price - (price * discount) / 100;
+                $('#inputName4').val(parseFloat(final).toFixed(2));
+            }
+        });
+        $("#inputName4").on("keypress keyup blur", function () {
+            var original = parseInt($("#inputName3").val());
+            var discountPrice = parseInt($(this).val());
+            if (original != '') {
+                if (original > discountPrice) {
+                    const amount = original - discountPrice;
+                    var per = (amount * 100) / original;
+                    $('#inputName2').val(per.toFixed());
+                    console.log('=====per>', per);
+                    var element = $("#inputName4")[0];
+                    element.setCustomValidity('');
+                } else {
+                    var element = $("#inputName4")[0];
+                    element.setCustomValidity('Please enter value less then Original');
+                }
+            }
+        });
+        $("#priview").on("click", function () {
+            $("#couponTemp").html("<p>Loading... </p>");
+            storeId = $("#store_name option:selected").val();
+            sub_cat = $("#sub_cat option:selected").val();
+            sub_cat_name = $("#sub_cat option:selected").text();
+            title = $("#inputName1").val();
+            discount = $("#inputName2").val();
+            desc = $("#inputName12").val();
+            img = $('#catImg').attr('src');
+            date = $("#datetimepicker4").val();
+            coupon_duration = $("#coupon_duration").val();
+            const offer = $('input[type=radio][name=offerType]:checked').val();
+            $.post('/coupons/get_coupon_priview', {
+                storeId : storeId,
+                sub_cat : sub_cat,
+                sub_cat_name : sub_cat_name,
+                title :title,
+                discount : discount,
+                desc : desc,
+                img : img,
+                date : date,
+                coupon_duration : coupon_duration,
+                offer : offer
+            }, function (success) {
+                $("#couponTemp").html(success);
+            });
+        });
+    });
+
+    $('input[type=radio][name=offerType]').change(function () {
+        $("#inputName4 ,#inputName2 ").val('');
+        if (this.value == '1') {
+            $('#inputName2').prop('required',true);
+            $('#discount').css('display', 'table');
+            $('#secial').css('display', 'none');
+            $('#inputName4').attr('readonly', 'readonly');
+        } else if (this.value == '2') {
+            $(".inputName2Error").parent("div").removeClass('has-error');
+            $(".inputName2Error").find("ul").remove();
+            $('#inputName2').prop('required',false);
+            $('#discount').css('display', 'none');
+            $('#secial').css('display', 'block');
+            $('#inputName4').removeAttr('readonly');
+        }
+    });
+    $(document).ready(function () {
+        const offer = $('input[type=radio][name=offerType]:checked').val();
+        if (offer == 1) {
+            $('#discount').css('display', 'table');
+            $('#secial').css('display', 'none');
+            $('#inputName4').attr('readonly', 'readonly');
+        } else if (offer == 2) {
+            $('#discount').css('display', 'none');
+            $('#secial').css('display', 'block');
+            $('#inputName4').removeAttr('readonly');
+        }
+    });
+    // After submit form submit button get disabled
+    $(document).ready(function () {
+        $("#form_validation").submit(function () {
+            $(".submitBtn").addClass("disabled");
+            $(".submitBtn").attr("disabled", true);
+            
+            return true;
+        });
+    });
+
+
+</script>

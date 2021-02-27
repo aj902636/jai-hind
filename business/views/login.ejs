@@ -1,0 +1,108 @@
+<% layout('layouts/login') %>
+<div class="login-box login-sidebar">
+    <div class="white-box">
+        <form method="get" name="language" >
+            <select name="lang" id="lang" class="form-control" >
+                <option <%=(lang=='es')?'selected':''%> value="es">Español</option>
+                <option <%=(lang=='en')?'selected':''%> value="en">English</option>
+            </select>
+        </form>
+
+        <% if(lang=='es'){ %>
+            <a href="javascript:void(0)" class="text-center db"><img width = "80%" src="/plugins/images/kuponlog.png" alt="Home" /></a>
+        <% }else{ %>
+            <a href="javascript:void(0)" class="text-center db"><img width = "80%" src="/plugins/images/Kupon_eng.jpg" alt="Home" /></a>
+            <!--<a href="javascript:void(0)" class="text-center db"><img src="/plugins/images/admin-logo-dark.png" alt="Home" /><br /><img src="/plugins/images/admin-text-dark.png" alt="Home" /></a>-->
+        <% } %>
+
+        <form class="form-horizontal form-material" style="margin-top: 5%;" id="loginform" action="/login" method="POST" novalidate>
+            <input type="hidden" name="lang" value="<%= lang%>">
+            <h3 class="box-title m-b-0"><%= LANG.SignBusiness%></h3>
+            <small><%= LANG.EnterDetail%></small>
+
+            <% if (error_flash){ %>
+            <div class="alert alert-danger alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <%= error_flash%>
+            </div>
+            <% } if (success_flash){ %>
+            <div class="alert alert-success alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <%= success_flash %>
+            </div>
+            <% } %>
+
+            <div class="form-group m-t-40">
+                <div class="col-xs-12">
+                    <input class="form-control" type="text" name="email" required="" placeholder="<%= LANG.Email%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input class="form-control" type="password" name="password" required="" placeholder="<%= LANG.Password%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="checkbox checkbox-primary pull-left p-t-0">
+
+                    </div>
+                    <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i>
+                        <%= LANG.ForgotPassword%>?</a>
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button class="btn btn-info btn-lg btn-rounded btn-block text-uppercase waves-effect waves-light"
+                        type="submit"><%= LANG.LogIn%></button>
+                </div>
+            </div>
+            <div class="form-group m-b-0">
+                <div class="col-sm-12 text-center">
+                    <p><%= LANG.DontHave%>? <a href="/signup/<%= lang%>" class="text-primary m-l-5"><b><%= LANG.SignUp%></b></a></p>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal form-material" id="recoverform" action="/forgot_password" method="POST" novalidate>
+            <input type="hidden" name="lang" value="<%= lang%>">
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    <h3><%= LANG.RecoverPassword%></h3>
+                    <p class="text-muted"><%= LANG.RecoverInst%> </p>
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    <input class="form-control" type="text" required="" placeholder="<%= LANG.Email%>" name="email">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button style="background-color:red;border-color:red;" class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light"
+                        type="submit"><%= LANG.Reset%></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <a href="javascript:void(0)" id="to-login" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i>
+                        <%= LANG.BackLogin%>?</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#lang').on('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = '/login/'+url; // redirect
+          }
+          return false;
+        });
+        $('#to-login').click(function () {
+            $('#loginform').slideDown("slow");
+            $('#recoverform').slideUp("slow");
+        });
+    });
+</script>

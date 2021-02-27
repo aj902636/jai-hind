@@ -1,0 +1,93 @@
+<% layout('layouts/admin') %>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">My Profile</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Profile</a></li>
+
+
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Your Profie</h3>
+                <p class="text-muted m-b-30"> Edit profile here</p>
+                <form data-toggle="validator" action="/changeProfieInfo" method="POST" encType="multipart/form-data">
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">First Name <sup> * </sup></label>
+                        <input type="text" class="form-control" name="fname" id="inputName1" placeholder="First Name"
+                            value="<%= userinfo.fname %>" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">Last Name <sup> * </sup></label>
+                        <input type="text" class="form-control" name="lname" id="inputName2" placeholder="Last Name"
+                            value="<%= userinfo.lname %>" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="control-label">Email <sup> * </sup></label>
+                        <input type="email" class="form-control" id="inputEmail" value="<%= userinfo.email %>"
+                            placeholder="Email" data-error="Bruh, that email address is invalid" readonly>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="control-label">New Password</label>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <input type="password" name="npass" data-toggle="validator" data-minlength="6" class="form-control"
+                                    id="inputPassword" placeholder="Password" autocomplete="false">
+                                <span class="help-block">Minimum of 6 characters</span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="password" name="cnpass" class="form-control" id="inputPasswordConfirm"
+                                    data-match="#inputPassword" data-match-error="Whoops, these don't match"
+                                    placeholder="Confirm New Password ">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Profile Image</label>
+                        <input id="exampleInputFile" type="file" name="profileImg" onchange="readURL(this);">
+
+                        <p class="help-block">(Image size should need to be of 150KB)</p>
+                        <div class="">
+                            <% if(userinfo.user_image !='' ){ %>
+                            <img src="/uploads/admin/<%= userinfo.user_image %>" id="ProfileImg" width="150" alt="User Image">
+                            <% } else{ %>
+                            <img id="ProfileImg" src="" width="150">
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                        <a href="/dashboard" class="btn btn-danger waves-effect">BACK</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ProfileImg').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

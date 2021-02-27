@@ -1,0 +1,153 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.DealDetails %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+                <li><a href="/deals"><%= LANG.DealsListing %></a></li>
+                <li><a href="#"><%= LANG.DealDetails %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <!-- .row -->
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="white-box">
+                <% if (couponInfo.image == '') {
+                        var catImgUrl = '/uploads/def_cat/'+couponInfo.subcategory.name+'.jpg';
+                    } else {
+                        var catImgUrl = '/uploads/deals/' + couponInfo.image;
+                    }
+                    var discountValue = "- "+couponInfo.discount + '%';
+                    var storeLogo = '/uploads/business/' + couponInfo.user.user_image;
+                    %>
+
+                    <div class="cuponBlock deails">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 align-content-center">
+                                <div class="kuponImg">
+                                    <img src="<%= catImgUrl %>" alt="" class="img-responsive">
+                                </div>
+
+                                <div class="green_text">
+                                    <%= deatStaticText %>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-8 col-md-9 ">
+                                <div class="kuponDetails">
+                                    <!-- <div class="kuponsLogo">
+                                        <img src="/images/kupons-logo.png" alt="" class="img-fluid">
+                                    </div> -->
+                                    <div class="cuponCat">
+                                        <%= couponInfo.title %>
+                                            <img src="<%= storeLogo %>" alt="" class="img-fluid img-circle img-responsive">
+                                    </div>
+                                    <div class="kuponDescp">
+                                        <%= couponInfo.description %>
+                                    </div>
+                                    <div class="priceSec">
+                                        <span class="newPice">$<%= couponInfo.final_price %></span> <span class="oldPrice">$<%= couponInfo.original_price %></span>
+
+                                        <span class="btn waves-effect" style="text-align: center; border:1px solid #000; color:#fff512;"><%= discountValue %> </span>
+                                    </div>
+                                    <div class="kuponExpire m-t-20 m-b-10"><%= LANG.ValidUntil %>
+                                        <br>
+                                        <%= moment(couponInfo.end_date).format('DD/MM/YYYY hh:mm A'); %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                <div class="user-btm-box">
+                    <div class="col-md-6 col-sm-6 text-center">
+                        <p class="text-blue"><%= LANG.Category %></p>
+                        <h2>
+                            <%= couponInfo.category.name.toUpperCase() %>
+                        </h2>
+                    </div>
+                    <div class="col-md-6 col-sm-6 text-center">
+                        <p class="text-danger"><%= LANG.Subcategory %></i></p>
+                        <h2>
+                            <%= couponInfo.subcategory.name.toUpperCase() %>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <div class="white-box">
+                    <ul class="nav nav-tabs tabs customtab">
+                        <li class="tab active">
+                            <a href="#home" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span>
+                                <span class="hidden-xs"><%= LANG.DealDetails %></span> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><%= LANG.Title %></td>
+                                            <td>
+                                                <%= couponInfo.title %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.OriginalPrice %> </td>
+                                            <td>
+                                                <%= couponInfo.original_price %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <%= LANG.Discount %> (%) </td>
+                                            <td>
+                                                <%= couponInfo.discount %>%
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.FinalAmount %> </td>
+                                            <td>
+                                                <%= couponInfo.final_price %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.StartDate %></td>
+                                            <td>
+                                                <%=momentJs(couponInfo.start_date).format('DD/MM/YYYY hh:mm A'); %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.EndDate %></td>
+                                            <td>
+                                                <%= momentJs(couponInfo.end_date).format('DD/MM/YYYY hh:mm A');  %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.Status %></td>
+                                            <td>
+                                                <%= couponInfo.status ? LANG.Active : LANG.Inactive %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><%= LANG.CreatedOn %> </td>
+                                            <td>
+                                                <%= momentJs(couponInfo.createdAt).format('DD/MM/YYYY hh:mm A'); %>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>

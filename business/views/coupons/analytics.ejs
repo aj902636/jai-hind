@@ -1,0 +1,250 @@
+<% layout('layouts/admin') %>
+<link href="/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.couponAnalytics%></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%=LANG.DASHBOARD_BRADCOM; %></a></li>
+                <li><a href="/coupons"><%=LANG.COUPONS_BRADCOMS; %></a></li>
+                <li><a href="#"><%=LANG.couponAnalytics; %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header row">
+                        <h3 class="box-title col-md-9 col-xs-9"><%= LANG.couponAnalytics%></h3>
+                        <div class="col-md-3 col-xs-3">
+                            <a href="/coupons" class="btn pull-right"><%= LANG.Back %></a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table border="1" class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><%= LANG.titleAnalytics%></td><td><%= LANG.offeredDiscountAnalytics%></td><td><%= LANG.originalPriceAnalytics%></td><td><%= LANG.priceAfterDiscountAnalytics%></td><td><%= LANG.itemsAnalytics%></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="Title"><%=couponInfo.title%></td>
+                                        <td id="Discount"><%=(couponInfo.isSpecial)?"Special offer":couponInfo.discount+"%"%></td>
+                                        <td id="Original"><%=couponInfo.original_price%></td>
+                                        <td id="PriceAfter"><%=couponInfo.final_price%></td>
+                                        <td id="Items"><%=couponInfo.items%></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="box">
+                    <div class="box-header row">
+                        <h3 class="box-title col-md-9 col-xs-9"><%= LANG.statusRedeemedAnalytics%></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table border="1" class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><%= LANG.genderAnalytics%></td><td><%= LANG.countAnalytics%></td>
+                                    </tr>
+                                    <tr>
+                                        <td><%= LANG.maleAnalytics%></td><td><%=(countMale)?countMale:0%></td>
+                                    </tr>
+                                    <tr>
+                                        <td><%= LANG.femaleAnalytics%></td><td><%=(countFemale)?countFemale:0%></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="box">
+                    <div class="box-header row">
+                        <h3 class="box-title col-md-9 col-xs-9"><%= LANG.statusNotInterestedAnalytics%></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table border="1" class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><%= LANG.genderAnalytics%></td><td><%= LANG.countAnalytics%></td>
+                                    </tr>
+                                    <tr>
+                                        <td><%= LANG.maleAnalytics%></td><td><%=(countNotIntMale)?countNotIntMale:0%></td>
+                                    </tr>
+                                    <tr>
+                                        <td><%= LANG.femaleAnalytics%></td><td><%=(countNotIntFemale)?countNotIntFemale:0%></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="white-box">
+                    <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <div class="white-box">
+                    <div id="pieChart_main" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+if(JSON.parse('<%=countMale%>')>0 || JSON.parse('<%=countFemale%>')>0 || JSON.parse('<%=countNotIntMale%>')>0 || JSON.parse('<%=countNotIntFemale%>')>0){
+    var dataObj = [{ name: '<%=LANG.Redeemed; %>', y: JSON.parse("<%=countMale+countFemale%>") },{ name: '<%=LANG.NotInterested; %>', y: JSON.parse("<%=countNotIntMale+countNotIntFemale%>") }];
+    var dataObj_main = [{  name: '<%= LANG.maleInterestedAnalytics%>', y: JSON.parse("<%=countMale%>") }, {  name: '<%= LANG.femaleInterestedAnalytics%>', y: JSON.parse("<%=countFemale%>") }, {  name: '<%= LANG.maleNotInterestedAnalytics%>',y: JSON.parse("<%=countNotIntMale%>") }, {  name: '<%= LANG.femaleNotInterestedAnalytics%>', y: JSON.parse("<%=countNotIntFemale%>") }];
+}else{
+    var dataObj = [];
+    var dataObj_main = [];
+
+}
+    $(function(){
+
+        // Make monochrome colors
+        var pieColors = (function () {
+            var colors = [],
+                base = Highcharts.getOptions().colors[0],
+                i;
+
+            for (i = 0; i < 10; i += 1) {
+                // Start out with a darkened base color (negative brighten), and end
+                // up with a much brighter color
+                colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+            }
+            return colors;
+        }());
+
+        Highcharts.chart('pieChart', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: '<%= LANG.couponRedeemedAndNotInterestedRatioAnalytics%>'
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    colors: pieColors,
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                        distance: -50,
+                        filter: {
+                            property: 'percentage',
+                            operator: '>',
+                            value: 4
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                //name: '',
+                data: dataObj// [{ name: 'Male', y: 4.18 },{ name: 'Female', y: 7.05 }]//
+            }]
+        }, function(chart) { // on complete
+            if(chart.series[0].data.length <= 0){
+                chart.renderer.text('<%=LANG.Noactiondoneyet; %>', 140, 120)
+                    .css({
+                        color: '#4572A7',
+                        fontSize: '16px'
+                    })
+                    .add();
+            }
+        });
+
+        // second map
+        Highcharts.chart('pieChart_main', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: '<%= LANG.couponInterestedAndNotInterestedByGenderAnalytics%>'
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+            },
+            series: [{
+                name: '',
+                data: dataObj_main,//versionsData,
+                //data: [["Firefox",236],["MSIE",4],["Chrome",7]],
+                innerSize: '80%',
+                size: '80%',
+            }],
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    colors: pieColors,
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                        distance: -50,
+                        filter: {
+                            property: 'percentage',
+                            operator: '>',
+                            value: 4
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+        }, function(piechart) { // on complete
+            if(piechart.series[0].data.length <= 0){
+                piechart.renderer.text('<%=LANG.Noactiondoneyet;%>', 140, 120)
+                    .css({
+                        color: '#4572A7',
+                        fontSize: '16px'
+                    })
+                    .add();
+            }
+        });
+    })
+</script>

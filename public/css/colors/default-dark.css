@@ -1,0 +1,263 @@
+@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900);
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Normal Color*/
+/*Border radius*/
+/*Preloader*/
+.preloader {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  position: fixed;
+  z-index: 99999;
+  background: #fff;
+}
+.preloader .cssload-speeding-wheel {
+  position: absolute;
+  top: calc(50% - 3.5px);
+  left: calc(50% - 3.5px);
+}
+/*Just change your choise color here its theme Colors*/
+body {
+  background: #2f323e;
+}
+/*Top Header Part*/
+.logo i {
+  color: #ffffff;
+}
+.navbar-header {
+  background: #f33155;
+}
+.navbar-top-links > li > a {
+  color: #ffffff;
+}
+/*Right panel*/
+.right-sidebar .rpanel-title {
+  background: #f33155;
+}
+/*Bread Crumb*/
+.bg-title .breadcrumb .active {
+  color: #f33155;
+}
+/*Sidebar*/
+.sidebar {
+  background: #2f323e;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+}
+.sidebar .label-custom {
+  background: #01c0c8;
+}
+#side-menu li a {
+  color: #97999f;
+}
+#side-menu li a {
+  color: #97999f;
+  border-left: 0px solid #2f323e;
+}
+#side-menu > li > a:hover,
+#side-menu > li > a:focus {
+  background: rgba(0, 0, 0, 0.07);
+}
+#side-menu > li > a.active {
+  background: #f33155;
+  color: #ffffff;
+  font-weight: 400;
+}
+#side-menu ul > li > a:hover {
+  color: #ffffff;
+}
+#side-menu ul > li > a.active {
+  color: #ffffff;
+  font-weight: 500;
+}
+.user-profile .user-pro-body .u-dropdown {
+  color: #97999f;
+}
+/*themecolor*/
+.bg-theme {
+  background-color: #707cd2 !important;
+}
+.bg-theme-dark {
+  background-color: #f33155 !important;
+}
+/*Button*/
+.btn-custom {
+  background: #f33155;
+  border: 1px solid #f33155;
+  color: #ffffff;
+}
+.btn-custom:hover {
+  background: #f33155;
+  opacity: 0.8;
+  color: #ffffff;
+  border: 1px solid #f33155;
+}
+/*Custom tab*/
+.customtab li.active a,
+.customtab li.active a:hover,
+.customtab li.active a:focus {
+  border-bottom: 2px solid #f33155;
+  color: #f33155;
+}
+.tabs-vertical li.active a,
+.tabs-vertical li.active a:hover,
+.tabs-vertical li.active a:focus {
+  background: #f33155;
+  border-right: 2px solid #f33155;
+}
+/*Nav-pills*/
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+  background: #f33155;
+  color: #ffffff;
+}
+/*Extra css*/
+.bg-theme,
+.fc-toolbar,
+.fc th.fc-sun,
+.fc th.fc-tue,
+.fc th.fc-thu,
+.fc th.fc-sat,
+.fc th.fc-mon,
+.fc th.fc-wed,
+.fc th.fc-fri,
+.fc-button {
+  background-color: #f33155 !important;
+}
+.bg-theme-alt {
+  background-color: #41b3f9 !important;
+}
+.table tbody tr.advance-table-row.active,
+.fc-button {
+  border-color: #f33155;
+}
+.manage-users .tabs-style-iconbox nav {
+  background: #f33155;
+}
+.manage-users .tabs-style-iconbox nav li.tab-current a {
+  background: #f33155;
+}
+.manage-users .tabs-style-iconbox nav li.tab-current a:after {
+  border-top-color: #f33155;
+}
+.panel-themecolor,
+.panel-theme {
+  border-color: #f33155;
+}
+.panel-themecolor .panel-heading,
+.panel-theme .panel-heading {
+  border-color: #f33155;
+  color: white;
+  background-color: #f33155;
+}
+.panel-themecolor .panel-heading a,
+.panel-theme .panel-heading a {
+  color: #ffffff;
+}
+.panel-themecolor .panel-heading a:hover,
+.panel-theme .panel-heading a:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+.panel-themecolor a,
+.panel-theme a {
+  color: #f33155;
+}
+.panel-themecolor a:hover,
+.panel-theme a:hover {
+  color: #cc0c2f;
+}
+
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{background-color: #616161;
+    border-color: #2d2d2d; }
+
+.btn-danger, .btn{background: #dc3939;
+    background: -moz-linear-gradient(left, #dc3939 0%, red 100%);
+    background: -webkit-linear-gradient(left, #dc3939 0%, red 100%);
+    background: linear-gradient(to right, #dc3939 0%, red 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dc3939', endColorstr='#ff0000',GradientType=1 );
+	color: #fff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    text-align: center;
+  border: none;
+
+    cursor: pointer;
+
+}
+
+.btn-danger, .btn-danger.disabled{ border:none; }
+
+.btn-danger:hover, .btn:hover{
+	  background: red;
+    background: -moz-linear-gradient(left, red 0%, #dc3939 100%);
+    background: -webkit-linear-gradient(left, red 0%, #dc3939 100%);
+    background: linear-gradient(to right, red 0%, #dc3939 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#dc3939',GradientType=1 );
+	color: #fff;
+	
+}
+
+.table-responsive .row{ margin: 0;}
+.box-header.row{ margin: 0; }
+.btn-primary.disabled.focus, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary.focus, .btn-primary:focus, .btn-primary:hover{
+	background-color: #272727;
+	
+	
+}
+
+.businessCateg ul li .custom-checkbox .iconCricle:hover, .businessCateg ul li a .iconCricle:hover {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ff0c0c;;
+  border-radius: 50%;
+  background-color: white;
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.businessCateg ul li .custom-checkbox:hover {
+  color: #ff0c0c;
+}
+
+.has-error input[type=file] {
+
+border: 1px solid red;
+} 
+
+label sup { color: red; }
+
+div.dataTables_wrapper div.dataTables_length label {
+  font-weight: normal;
+  text-align: left;
+  white-space: nowrap;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+  width: 75px;
+  display: inline-block;
+}
+
+.login-sidebar{padding-top: 100px;}
+
+#side-menu li a{ width: 254px;}
+label shas-errorup { color: red;}
+
+.cuponBlock {
+    background-color: #f3f0f0;
+}
+
+.cuponBlock .kuponDivider {
+    min-height: 220px;
+}
+
+@media (min-width: 768px) {
+.fix-header #page-wrapper {
+    margin-top: 71px;
+}
+	}
+

@@ -1,0 +1,64 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Add Category</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Add Category</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <hr class="">
+                    <div class="box-body target ">
+                        <form data-toggle="validator" id="form_validation" action="/city/add" method="POST"
+                            class="col-xs-10">
+                            <div class="form-group form-float">
+                                <label class="form-label required">Select State Name <em style="color:red">*</em> </label><br>
+                                <div class="form-line">
+                                    <select name="stateId" id="stateId" class="form-control "  required>
+                                        <option value="">Select State</option>
+                                        <% states.forEach(function(row) { %>
+                                        <option value=<%=row.id %>><%= row.name %></option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-label required ">City Name <em style="color:red">*</em></label>
+                                <div class="form-line ">
+                                    <input class="form-control" id="inputName1" name="city_name" type="text" required>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+                            <br>
+                            <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                            <a href="/city" class="btn btn-primary waves-effect">BACK</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#catImg').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>

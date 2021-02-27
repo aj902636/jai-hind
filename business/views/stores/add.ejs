@@ -1,0 +1,439 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.AddStore %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+                <li><a href="#"><%= LANG.AddStore %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body target ">
+                        <!-- data-toggle="validator"   -->
+                        <form id="form_validation" action="/stores/addStore" method="POST"
+                            class="col-xs-10" autocomplete="off">
+                            <div class="row">
+								<div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.StoreName %> <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.StoreName %>" id="inputName1" name="store_name"
+                                                type="text" maxlength="50" required autocomplete="off">
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+								<div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.ManagerName %> <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.ManagerName %>" id="inputName3" name="store_manager"
+                                                type="text" maxlength="50" required autocomplete="off">
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+								<div class="col-md-6">
+                                    <div class="form-group form-float EmailExists" data-msg="<%= LANG.EmailExists %>">
+                                        <label class="form-label required "><%=LANG.Email; %> <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="Email" id="inputName4" name="store_email"
+                                                type="text" required autocomplete="off" >
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+								<div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.Password %> <sup> * </sup>
+                                            <span class="text-muted m-b-30 font-13"> (<%= LANG.MinimumSix %>)</span>
+                                        </label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.Password %>" pattern="^.{6,}$" id="inputName5"
+                                                name="store_password" type="password" required  autocomplete="off">
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <label class="form-label required "><%= LANG.Location %> <sup> * </sup>
+                                    <span class="text-muted m-b-30 font-13"> ( <%= LANG.selectaddressmap %>)</span>
+                                </label>
+                                <div class="form-line ">
+                                    <input class="form-control" onkeydown="return false;" placeholder="<%= LANG.Store %> <%= LANG.Location %>"
+                                        id="inputName2" name="store_location" type="text" required  autocomplete="off">
+                                </div>
+                                <!-- <div class="help-block with-errors"></div> -->
+                            </div>
+                            <input id="pac-input" class="controls" type="text" placeholder="<%= LANG.SearchAddress %>">
+                            <input type="hidden" name="store_lat" id="lat" />
+                            <input type="hidden" name="store_long" id="long" />
+                            <div id="map-canvas"></div>
+                            <div class="map-btn"><i class="mdi mdi-map-marker"></i></div>
+                            <br>
+                            <br>
+                            <br>
+                            <h2><%= LANG.Enteryourexactaddress %></h2>
+                            <div class="row">
+								<div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label  "><%= LANG.StreetAddress %></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.StreetAddress %>" id="street_address" name="street_address"
+                                                type="text" maxlength="100" >
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="col-md-6" >
+                                    <div class="form-group form-float">
+                                        <label class="form-label required "><%= LANG.City %></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="<%= LANG.City %>" id="town_city" name="town_city"
+                                                type="text" maxlength="50" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary waves-effect" type="submit"><%= LANG.Submit %></button>
+                                <a href="/stores" class="btn btn-primary waves-effect"><%= LANG.Back %></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #map-canvas {
+        height: 470px;
+        width: 100%;
+        margin: 0px;
+        padding: 0px
+    }
+    #pac-input {
+        font-family: Roboto;
+        font-size: 15px;
+        padding: 10px;
+        text-overflow: ellipsis;
+        width: 50%;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $("#form_validation").validate({
+            rules: {
+                store_name: {
+                    "required":true
+                },
+                store_manager:{
+                    "required":true
+                },
+                store_email:{
+                    "required":true,
+                    "email":true,
+                    "remote": {
+                        url: "/stores/checkemail",
+                        type: "get"
+                    }
+                },
+                store_password:{
+                    "required":true
+                },
+                store_location:{
+                    "required":true
+                }
+            },
+            messages: {
+                store_name:"<%= LANG.StoreName %>",
+                store_manager:"<%= LANG.StoreManagerName %>",
+                store_email:{
+                    "email":"<%= LANG.StoreEmailName %>",
+                    "required":"<%= LANG.StoreEmail %>",
+                    remote:$(".EmailExists").data("msg")
+                },
+                store_password:"<%= LANG.StorePassword%>",
+                store_location:"<%= LANG.StoreLocation%>"
+            }
+        });
+    })
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Gr1MBiQ0hc2152v9NYFaQdraXPwBc1w&libraries=visualization&callback=initMap&libraries=places"></script>
+
+<script>
+    var x = document.getElementById("demo");
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#catImg').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(function(){
+        $(".map-btn").click(function(){
+            var tryAPIGeolocation = function() {
+                jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC6Gr1MBiQ0hc2152v9NYFaQdraXPwBc1w", function(success) {
+                    apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+                }).fail(function(err) {
+                    console.log(err);
+                    alert("API Geolocation error! \n\n"+err);
+                });
+            };
+
+            var browserGeolocationSuccess = function(position) {
+                alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+            };
+
+            var browserGeolocationFail = function(error) {
+                switch (error.code) {
+                    case error.TIMEOUT:
+                        alert("Browser geolocation error !\n\nTimeout.");
+                        break;
+                    case error.PERMISSION_DENIED:
+                    if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                        tryAPIGeolocation();
+                    }
+                    break;
+                    case error.POSITION_UNAVAILABLE:
+                        alert("Browser geolocation error !\n\nPosition unavailable.");
+                        break;
+                }
+            };
+
+            var tryGeolocation = function() {
+                if(navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        browserGeolocationSuccess,
+                    browserGeolocationFail,
+                    {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+                }
+            };
+
+            tryGeolocation();
+
+
+        var apiGeolocationSuccess = function(position) {
+                var myLatlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+                var myOptions = {
+                    zoom: 8,
+                    center: myLatlng
+                }
+                var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+
+                var geocoder = new google.maps.Geocoder();
+
+                var marker;
+                marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            draggable: false
+                        });
+                function placeMarker(location) {
+                    if (marker) {
+                        marker.setPosition(location);
+                    } else {
+                        marker = new google.maps.Marker({
+                            position: location,
+                            map: map,
+                            draggable: false
+                        });
+                    }
+                }
+
+                google.maps.event.addListener(map, 'click', function (event) {
+                    placeMarker(event.latLng);
+                    var lat = parseFloat(event.latLng.lat());
+                    var lng = parseFloat(event.latLng.lng());
+                    document.getElementById("lat").value = lat;
+                    document.getElementById("long").value = lng;
+                    geocoder.geocode({
+                        'latLng': event.latLng
+                    }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                var str = results[0].formatted_address;
+                                res = str.replace("Unnamed Road", "Township");
+                                document.getElementById("inputName2").value = res;
+                            }
+                        }
+                    });
+                });
+
+                var input = (document.getElementById('pac-input'));
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                var searchBox = new google.maps.places.SearchBox((input));
+
+                google.maps.event.addListener(searchBox, 'places_changed', function () {
+                    var places = searchBox.getPlaces();
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    markers = [];
+                    for (var i = 0, marker; marker = markers[i]; i++) {
+                        marker.setMap(null);
+                    }
+                    var bounds = new google.maps.LatLngBounds();
+                    for (var i = 0, place; place = places[i]; i++) {
+                        var image = {
+                            url: '/images/marker.png',
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(50, 50)
+                        };
+                        // Create a marker for each place.
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            icon: image,
+                            title: place.name,
+                            position: place.geometry.location
+                        });
+
+                        markers.push(marker);
+
+                        bounds.extend(place.geometry.location);
+
+                        var latitude = place.geometry.location.lat();
+                        var longitude = place.geometry.location.lng();
+
+                        document.getElementById("lat").value = latitude;
+                        document.getElementById("long").value = longitude;
+                        document.getElementById("inputName2").value = place.formatted_address;
+
+                    }
+                    map.fitBounds(bounds);
+                    map.setZoom(Math.min(map.getZoom(), 15));
+                });
+
+                google.maps.event.addListener(map, 'bounds_changed', function () {
+                    var bounds = map.getBounds();
+                    searchBox.setBounds(bounds);
+                });
+            }
+        });
+    });
+
+    var myLatlng = new google.maps.LatLng(-12.046373, -77.042755);
+    var myOptions = {
+        zoom: 8,
+        center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+    var geocoder = new google.maps.Geocoder();
+
+    var marker;
+    marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable: false
+            });
+    function placeMarker(location) {
+        if (marker) {
+            marker.setPosition(location);
+        } else {
+            marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                draggable: false
+            });
+        }
+    }
+
+    google.maps.event.addListener(map, 'click', function (event) {
+        placeMarker(event.latLng);
+        var lat = parseFloat(event.latLng.lat());
+        var lng = parseFloat(event.latLng.lng());
+        document.getElementById("lat").value = lat;
+        document.getElementById("long").value = lng;
+        geocoder.geocode({
+            'latLng': event.latLng
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var str = results[0].formatted_address;
+                    res = str.replace("Unnamed Road", "Township");
+                    document.getElementById("inputName2").value = res;
+                }
+            }
+        });
+    });
+
+    var input = (document.getElementById('pac-input'));
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var searchBox = new google.maps.places.SearchBox((input));
+
+    google.maps.event.addListener(searchBox, 'places_changed', function () {
+        var places = searchBox.getPlaces();
+        if (places.length == 0) {
+            return;
+        }
+
+        markers = [];
+        for (var i = 0, marker; marker = markers[i]; i++) {
+            marker.setMap(null);
+        }
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0, place; place = places[i]; i++) {
+            var image = {
+                url: '/images/marker.png',
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(50, 50)
+            };
+            // Create a marker for each place.
+            var marker = new google.maps.Marker({
+                map: map,
+                icon: image,
+                title: place.name,
+                position: place.geometry.location
+            });
+
+            markers.push(marker);
+
+            bounds.extend(place.geometry.location);
+
+            var latitude = place.geometry.location.lat();
+            var longitude = place.geometry.location.lng();
+
+            document.getElementById("lat").value = latitude;
+            document.getElementById("long").value = longitude;
+            document.getElementById("inputName2").value = place.formatted_address;
+
+        }
+        map.fitBounds(bounds);
+        map.setZoom(Math.min(map.getZoom(), 15));
+    });
+
+    google.maps.event.addListener(map, 'bounds_changed', function () {
+        var bounds = map.getBounds();
+        searchBox.setBounds(bounds);
+    });
+
+
+</script>

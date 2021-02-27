@@ -1,0 +1,119 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">View User</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">View User</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <!-- .row -->
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <div class="overlay-box">
+                            <div class="user-content">
+                                <a href="javascript:void(0)">
+                                    <% if(userInfo.user_image != ''){ %>
+                                    <img src="/uploads/admin/<%= userInfo.user_image %>" alt="user-img" width="36"
+                                        class="img-circle">
+                                    <% } else{ %>
+                                    <img src="/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle">
+                                    <% } %>
+                                </a>
+                                <h4 class="text-white">
+                                    <%= userInfo.fname %>
+                                    <%= userInfo.lname %>
+                                </h4>
+                                <h5 class="text-white">
+                                    <%= userInfo.email %>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="user-btm-box">
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <p class="text-purple"><i class="ti-facebook"></i></p>
+                            <h1>258</h1>
+                        </div>
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <p class="text-blue"><i class="ti-twitter"></i></p>
+                            <h1>125</h1>
+                        </div>
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <p class="text-danger"><i class="ti-dribbble"></i></p>
+                            <h1>556</h1>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <div class="white-box">
+                    <ul class="nav nav-tabs tabs customtab">
+                        <li class="tab active">
+                            <a href="#home" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span>
+                                <span class="hidden-xs">Other Details</span> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="javascript:void(0)">Mobile Number</a></td>
+                                            <td>
+                                                <% userInfo.forEach(function(value) { %>
+                                                    <%= value.gender %>
+
+                                                <% }); %>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><a href="javascript:void(0)">Date of Birth</a></td>
+                                            <td>
+                                                18-10-1990
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="javascript:void(0)">Gender</a></td>
+                                            <td>
+                                                Male
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="javascript:void(0)">Age</a></td>
+                                            <td>
+                                                28
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="javascript:void(0)">City</a></td>
+                                            <td>
+                                                City 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="javascript:void(0)">State</a></td>
+                                            <td>
+                                                State
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>

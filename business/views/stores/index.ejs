@@ -1,0 +1,219 @@
+<% layout('layouts/admin') %>
+<style>
+    .checked {
+      color: orange;
+    }
+</style>
+<link href="/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.StoresListing %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+                <li><a href="#"><%= LANG.StoresListing %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header row">
+                        <h3 class="box-title col-md-9 col-xs-9"><%= LANG.StoresListing %> </h3>
+                        <div class="col-md-3 col-xs-3">
+                            <a href="/stores/add" class="btn pull-right"><%= LANG.AddStore %></a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="example2" class="table table-bordered table-hover table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th><%= LANG.StoreName %></th>
+                                        <th data-sortable="false"><%= LANG.Location %></th>
+                                        <th><%= LANG.ManagerName %></th>
+                                        <th><%=LANG.Email %></th>
+                                        <th><%=LANG.STORE_RATING %></th>
+                                        <th><%= LANG.IsActive %></th>
+                                        <th><%= LANG.CreatedOn %></th>
+                                        <th data-sortable="false"><%= LANG.Action %></th>
+                                    </tr>
+                                    <tr class="search_bar">
+                                        <td><%= LANG.StoreName %></td>
+                                        <td></td>
+                                        <td><%= LANG.ManagerName %></td>
+                                        <td><%=LANG.Email %></td>
+                                        <td><%=LANG.STORE_RATING; %></td>
+                                        <td></td>
+                                        <td><%= LANG.CreatedOn %></td>
+                                        <td data-sortable="false"></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% storeInfo.forEach(function(value,index) {  %>
+                                    <tr>
+                                        <td>
+                                            <% if(value.store_name.length > 20) {%>
+                                                <%= value.store_name.substring(0, 20) %>...
+                                            <% } else { %>
+                                                <%= value.store_name %>
+                                            <% }  %>
+
+                                        </td>
+                                        <td>
+                                            <% if(value.store_location.length > 50) {%>
+                                            <%= value.store_location.substring(0, 50) %>...
+                                            <% } else { %>
+                                            <%= value.store_location %>
+                                            <% }  %>
+                                        </td>
+                                        <td>
+                                            <%= value.store_manager %>
+                                        </td>
+                                        <td>
+                                            <%= value.store_email %>
+                                        </td>
+                                        <td class="user_rating">
+                                            <spna class="rating_num"><%=(averageRatingArr1[index] !='NaN,N')?averageRatingArr1[index]:"0"; %></spna>
+                                            <div class="user_ratingStar">
+                                                <span class="fa fa-star <%= (averageRatingArr[index] >= 1)?'checked':'' %>"></span>
+                                                <span class="fa fa-star <%= (averageRatingArr[index] >= 2)?'checked':'' %>"></span>
+                                                <span class="fa fa-star <%= (averageRatingArr[index] >= 3)?'checked':'' %>"></span>
+                                                <span class="fa fa-star <%= (averageRatingArr[index] >= 4)?'checked':'' %>"></span>
+                                                <span class="fa fa-star <%= (averageRatingArr[index] >= 5)?'checked':'' %>"></span>
+                                            </div>
+                                            <span class="rating_userTotal"><i class="fa fa-user"></i> <%=(totalUserCountArr[index])?totalUserCountArr[index]:"0"; %> total</span>
+                                        </td>
+                                        <td>
+                                            <div class="switchery-demo m-b-30">
+                                                <input type="checkbox" class="js-switch" data-model_id="stores" data-id="<%= value.id %>"
+                                                    data-color="#13dafe" <%=value.isActive ? "checked" : "" %> />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%= moment(value.createdAt).format('d/MMM/YYYY h:mm a'); %>
+                                        </td>
+                                        <td>
+                                            <a href="/stores/view/<%= value.id %>" title="<%= LANG.EditStore %>" style="margin-right: 10px">
+                                                <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
+                                                        class="ti-pencil-alt"></i></button></a>
+                                            <a href="/stores/delete/<%= value.id %>" onclick="return confirm('<%= LANG.areYouSureDelete %>');"
+                                                title="<%= LANG.DeleteStore %>"> <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
+                                                        class="icon-trash"></i></button></a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                                <!--<tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>icon</th>
+                                        <th>Created On </th>
+                                        <th data-sortable="false">Action</th>
+                                    </tr>
+                                </tfoot>-->
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+
+            <!-- /.panel-body -->
+        </div>
+    </div>
+</div>
+<style>
+    #example2_filter {
+        display: none;
+    }
+</style>
+<style>
+    .user_rating{
+        display: flex;
+        flex-direction: column;
+    }
+    .rating_num{font-size: 30px;}
+    .user_ratingStar{
+        display: flex;
+        align-items: center;
+    }
+    .rating_userTotal{margin-top: 10px;}
+</style>
+<script src="/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+<script src="/plugins/bower_components/datatables/datatables.min.js"></script>
+<script>
+    $(function () {
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function () {
+            //new Switchery($(this)[0], $(this).data());
+            var switchery = new Switchery($(this)[0], { color: '#ddf004', jackColor: '#fff' });
+        });
+        $('.js-switch').change(function () {
+            var id = $(this).data('id');
+            var status = $(this).is(':checked');
+            var obj = { id: id };
+            obj.status = status;
+            var url = "/" + $(this).data('model_id') + '/status';
+            console.log("test=====>>>", status, url);
+
+            $.post(url, obj, function (data) {
+                if (data) console.log(data);
+            });
+        });
+    });
+    $(function () {
+        $(document).ready(function () {
+            var tab = $('#example2').DataTable({
+                "paging": true,
+                "bSortCellsTop": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "order": [[ 5, "desc" ]],
+                "info": true,
+                "language": {
+                    "info": '<%= LANG.Showing %> _START_ <%= LANG.to %> _END_ <%= LANG.of %> _TOTAL_ <%= LANG.entries %>',
+                    "sLengthMenu": '<%= LANG.Showing %> _MENU_ <%= LANG.entries %>',
+                    "zeroRecords": "<%= LANG.zeroRecords %>",
+                    "infoEmpty": "<%= LANG.noRecords %>",
+                    "infoFiltered": "( <%= LANG.infoFiltered %> _MAX_ <%= LANG.infoFiltered2 %>) ",
+                    "paginate": {
+                        "previous": "<%=LANG.Previous; %>",
+                        "next": "<%=LANG.Next; %>"
+                    }
+                },
+                "autoWidth": false,
+                "responsive": true,
+                "columnDefs": [
+                    { "width": "14%", "targets": 0 },
+                    { "width": "14%", "targets": 1 },
+                    { "width": "14%", "targets": 2 },
+                    { "width": "14%", "targets": 3 },
+                    { "width": "15%", "targets": 4 },
+                    { "width": "14%", "targets": 5 },
+                    { "width": "14%", "targets": 6 },
+                    { "width": "15%", "targets": 7 },
+                ]
+            });
+
+            $('#example2 thead tr.search_bar td').each(function (value) {
+                if (value !== 5 && value !== 7) {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="form-control" placeholder="<%=LANG.SearchBy %> ' + title.toLowerCase() + '" data-index="' + value + '" />');
+                }
+            });
+
+            $(tab.table().container()).on('keyup change', '.search_bar input', function () {
+                tab.column($(this).data('index')).search(this.value).draw();
+            });
+        });
+    });
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+</script>

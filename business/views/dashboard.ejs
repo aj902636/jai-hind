@@ -1,0 +1,384 @@
+<% layout('layouts/admin') %>
+<span class="expired-message">
+    <a href="/payment/purchase_subscription" style="color: white !important;">
+    <% if(business_user.user_lang == 'en'){ %>
+       <% if(responses[6] == 0){ %>
+            <span style="color: red !important;font-weight: 900;">Account has expired please renew</span>
+        <% }else{ %>
+            Your subscription will expire in <%=responses[6]; %> days
+        <% } %>
+    <% }else{ %>
+        <% if(responses[6] == 0){ %>
+           <span style="color: red !important;font-weight: 900;"> La cuenta ha caducado, renuévala</span>
+        <% }else{ %>
+            Su suscripción caduca en <%=responses[6]; %> días.
+        <% } %>
+
+    <% } %>
+    </a>
+</span>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.Dashboard %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- Other sales widgets -->
+    <!-- ============================================================== -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12 col-lg-4">
+            <a href="/stores">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[0] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0"><%= LANG.Stores %></h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+                                <i class="mdi mdi-store fz30" data-icon="v"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-12 col-lg-4">
+            <a href="/coupons">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[1] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0"><%= LANG.Coupons %></h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+
+                                <i class="mdi mdi-ticket-percent fz30" data-icon="v"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-12 col-lg-4">
+            <a href="/deals">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[2] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0"><%= LANG.DealsoftheDay %></h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+                                <i class="mdi mdi-tag-faces fz30" data-icon="v"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- Running Coupons table -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading"><%= LANG.RunningCoupons %></div>
+                <div class="table-responsive">
+                    <table id="example2" class="table table-bordered table-hover table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th><%= LANG.Title %></th>
+                                <th><%= LANG.PublishedDate %></th>
+                                <th><%= LANG.ExpirationDate %></th>
+                                <th><%= LANG.Redeemed %> <%= LANG.User %></th>
+                                <th><%= LANG.NotIntrested %></th>
+                                <th data-sortable="false"><%= LANG.Action %></th>
+                            </tr>
+                            <tr class="search_bar">
+                                <td><%= LANG.Title %></td>
+                                <td><%= LANG.PublishedDate %></td>
+                                <td><%= LANG.ExpirationDate %></td>
+                                <td><%= LANG.Redeemed %> <%= LANG.User %></tdth>
+                                <td><%= LANG.NotIntrested %></td>
+                                <td data-sortable="false"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% responses[3].forEach(function(value) {  %>
+                            <tr>
+                                <td>
+                                    <%= value.title %>
+                                </td>
+                                <td>
+                                    <%= moment(value.start_date).format('d/MM/YYYY h:mm a'); %>
+                                </td>
+                                <td>
+                                    <%= moment(value.end_date).format('d/MM/YYYY h:mm a'); %>
+                                </td>
+                                <td>
+                                    <%= value.redeemCount %>
+                                </td>
+                                <td>
+                                    <%= value.unIntrestCount %>
+                                </td>
+                                <td>
+                                    <a href="/coupons/detail/<%= value.id %>" title="View coupon" style="margin-right: 10px">
+                                            <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
+                                                        class="icon-eye"></i></button></a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% if( responses[5][0].y!=0 || responses[5][1].y!=0 ){ %>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+    <!-- Running Deals of the day -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading"> <%= LANG.Running %> <%= LANG.DealsoftheDay %></div>
+                <div class="table-responsive">
+                    <table id="example3" class="table table-bordered table-hover table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th><%= LANG.Title %></th>
+                                <th><%= LANG.PublishedDate %></th>
+                                <th><%= LANG.ExpirationDate %></th>
+                                <th data-sortable="false"><%= LANG.Action %></th>
+                            </tr>
+                            <tr class="search_bar1">
+                                <td><%= LANG.Title %></td>
+                                <td><%= LANG.PublishedDate %></td>
+                                <td><%= LANG.ExpirationDate %></td>
+                                <td data-sortable="false"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% responses[4].forEach(function(dealValue) {  %>
+                            <tr>
+                                <td>
+                                    <%= dealValue.title %>
+                                </td>
+                                <td>
+                                    <%= moment(dealValue.start_date).format('d/MM/YYYY h:mm a'); %>
+                                </td>
+                                <td>
+                                    <%= moment(dealValue.end_date).format('d/MM/YYYY h:mm a'); %>
+                                </td>
+                                <td>
+                                    <a href="/deals/detail/<%= dealValue.id %>" title="View coupon" style="margin-right: 10px">
+                                        <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
+                                                class="ti-pencil-alt"></i></button></a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $('.counter-count').each(function () {
+        $(this).prop('Counter', 0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 5000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+</script>
+
+<style>
+    #example2_filter {
+        display: none;
+    }
+</style>
+<style>
+
+
+</style>
+<script src="/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+<script src="/plugins/bower_components/datatables/datatables.min.js"></script>
+<script>
+    $(function () {
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function () {
+            //new Switchery($(this)[0], $(this).data());
+            var switchery = new Switchery($(this)[0], { color: '#ddf004', jackColor: '#fff' });
+        });
+
+    });
+    $(function () {
+        $(document).ready(function () {
+            var tab = $('#example2').DataTable({
+                "paging": false,
+                "bSortCellsTop": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                //"order": [[ 2, "desc" ]],
+                "language": {
+                    "info": '<%= LANG.Showing %> _START_ <%= LANG.to %> _END_ <%= LANG.of %> _TOTAL_ <%= LANG.entries %>',
+                    "zeroRecords": "<%= LANG.zeroRecords %>",
+                    "infoEmpty": "<%= LANG.noRecords %>",
+                    "infoFiltered": "( <%= LANG.infoFiltered %> _MAX_ <%= LANG.infoFiltered2 %>) "
+                },
+                "autoWidth": false,
+                "responsive": true,
+                "columnDefs": [
+                    { "width": "30%", "targets": 0 },
+                    { "width": "12%", "targets": 1 },
+                    { "width": "12%", "targets": 2 },
+                    { "width": "12%", "targets": 3 },
+                    { "width": "12%", "targets": 4 },
+                    { "width": "12%", "targets": 5 }
+                ]
+            });
+
+            $('#example2 thead tr.search_bar td').each(function (value) {
+                if (value !== 5) {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="form-control" placeholder="<%=LANG.SearchBy %> ' + title.toLowerCase() + '" data-index="' + value + '" />');
+                }
+            });
+
+            $(tab.table().container()).on('keyup change', '.search_bar input', function () {
+                tab.column($(this).data('index')).search(this.value).draw();
+            });
+            // get deals
+            var tab1 = $('#example3').DataTable({
+                "paging": false,
+                "bSortCellsTop": true,
+                "lengthChange": true,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                //"order": [[ 2, "desc" ]],
+                "language": {
+                    "info": '<%= LANG.Showing %> _START_ <%= LANG.to %> _END_ <%= LANG.of %> _TOTAL_ <%= LANG.entries %>',
+                    "zeroRecords": "<%= LANG.zeroRecords %>",
+                    "infoEmpty": "<%= LANG.Showing %> _START_ <%= LANG.to %> _END_ <%= LANG.of %> _TOTAL_ <%= LANG.entries %>",
+                    //"infoFiltered": "( <%= LANG.infoFiltered %> _MAX_ <%= LANG.infoFiltered2 %>) "
+                },
+                "autoWidth": false,
+                "responsive": true,
+                "columnDefs": [
+                    { "width": "18%", "targets": 0 },
+                    { "width": "12%", "targets": 1 },
+                    { "width": "12%", "targets": 2 },
+                    { "width": "12%", "targets": 3 }
+                ]
+            });
+
+            $('#example3 thead tr.search_bar1 td').each(function (value) {
+                if (value !== 3) {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="form-control" placeholder="<%=LANG.SearchBy %> ' + title + '" data-index1="' + value + '" />');
+                }
+            });
+
+            $(tab1.table().container()).on('keyup change', '.search_bar1 input', function () {
+                tab1.column($(this).data('index1')).search(this.value).draw();
+            });
+        });
+    });
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+</script>
+
+<script>
+
+var dataObj = [{
+					name: '<%= LANG.Numberusersinterested %>',
+					y: <%= responses[5][0].y %>,
+					male:<%= responses[5][0].male %>,
+					female:<%= responses[5][0].female %>
+
+				}, {
+					name: '<%= LANG.NumberusersNotinterested %>',
+					y: <%= responses[5][1].y %>,
+					male:<%= responses[5][1].male %>,
+					female:<%= responses[5][1].female %>
+				}];
+
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    credits: false,
+    tooltip: {
+        pointFormat: '<b>{point.percentage:.1f}%</b><br><%= LANG.Male %> :{point.male}<br><%= LANG.Female %> :{point.female}'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            },
+            showInLegend: true
+        }
+    },
+    colors: ['#5B9AD5', '#ED561B'],
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: dataObj
+    }]
+});
+</script>
+
+

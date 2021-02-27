@@ -1,0 +1,379 @@
+<% layout('layouts/admin') %>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Dashboard</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- Other sales widgets -->
+    <!-- ============================================================== -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-md-12 col-lg-3">
+            <a href="/business">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[1] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0">BUSINESS USERS</h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+                                <i class="mdi mdi-store fz30" data-icon="v"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <div class="col-md-12 col-lg-3">
+            <a href="/users">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[0] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0">
+                                Users
+                            </h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+
+                                <i class="mdi mdi-account-multiple fz30" data-icon="v"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-12 col-lg-3">
+            <a href="/coupons">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[3] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0">COUPONS</h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+                                <i class="mdi mdi-ticket-percent fz30" data-icon="v"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-12 col-lg-3">
+            <a href="/categories">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[2] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0">CATEGORIES</h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+
+                                <i class="mdi mdi-format-list-bulleted fz30" data-icon="v"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-12 col-lg-3">
+            <a href="/reports">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[5] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0">Complains</h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+                                <i class="fas fa-comment fz30"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-12 col-lg-3">
+            <a href="JavaScript:void(0)">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[6] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0">Total Store</h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+                                <i class="mdi mdi-city fz30" data-icon="v"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-12 col-lg-3">
+            <a href="/coupon_detail">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="m-b-0 font-medium counter-count">
+                                <%= responses[7] %>
+                            </h2>
+                            <h5 class="text-muted m-t-0">Redeemed Kupons</h5>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="ct-bar-chart" class="pull-right">
+                                <i class="fas fa-tags fz30"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- Demo table -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">REGISTERED Stores</div>
+                <div id="map"></div>
+                <button class="map-btn"><i class="fas fa-map-marker-alt"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<style>
+    #map {
+        height: 550px;
+        width: 100%;
+    }
+</style>
+<script type="text/javascript">
+
+$(function(){
+        $(".map-btn").click(function(){
+            var tryAPIGeolocation = function() {
+                jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC6Gr1MBiQ0hc2152v9NYFaQdraXPwBc1w", function(success) {
+                    apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+                }).fail(function(err) {
+                    console.log(err);
+                    alert("API Geolocation error! \n\n"+err);
+                });
+            };
+
+            var browserGeolocationSuccess = function(position) {
+                alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+            };
+
+            var browserGeolocationFail = function(error) {
+                switch (error.code) {
+                    case error.TIMEOUT:
+                        alert("Browser geolocation error !\n\nTimeout.");
+                        break;
+                    case error.PERMISSION_DENIED:
+                    if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                        tryAPIGeolocation();
+                    }
+                    break;
+                    case error.POSITION_UNAVAILABLE:
+                        alert("Browser geolocation error !\n\nPosition unavailable.");
+                        break;
+                }
+            };
+
+            var tryGeolocation = function() {
+                if(navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        browserGeolocationSuccess,
+                    browserGeolocationFail,
+                    {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+                }
+            };
+
+            tryGeolocation();
+
+
+        var apiGeolocationSuccess = function(position) {
+                var myLatlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+                var myOptions = {
+                    zoom: 8,
+                    center: myLatlng
+                }
+                var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+
+                var geocoder = new google.maps.Geocoder();
+
+                var marker;
+                marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            draggable: false
+                        });
+                function placeMarker(location) {
+                    if (marker) {
+                        marker.setPosition(location);
+                    } else {
+                        marker = new google.maps.Marker({
+                            position: location,
+                            map: map,
+                            draggable: false
+                        });
+                    }
+                }
+
+                google.maps.event.addListener(map, 'click', function (event) {
+                    placeMarker(event.latLng);
+                    var lat = parseFloat(event.latLng.lat());
+                    var lng = parseFloat(event.latLng.lng());
+                    document.getElementById("lat").value = lat;
+                    document.getElementById("long").value = lng;
+                    geocoder.geocode({
+                        'latLng': event.latLng
+                    }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                var str = results[0].formatted_address;
+                                res = str.replace("Unnamed Road", "Township");
+                                document.getElementById("inputName2").value = res;
+                            }
+                        }
+                    });
+                });
+
+                var input = (document.getElementById('pac-input'));
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                var searchBox = new google.maps.places.SearchBox((input));
+
+                google.maps.event.addListener(searchBox, 'places_changed', function () {
+                    var places = searchBox.getPlaces();
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    markers = [];
+                    for (var i = 0, marker; marker = markers[i]; i++) {
+                        marker.setMap(null);
+                    }
+                    var bounds = new google.maps.LatLngBounds();
+                    for (var i = 0, place; place = places[i]; i++) {
+                        var image = {
+                            url: '/images/marker.png',
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(50, 50)
+                        };
+                        // Create a marker for each place.
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            icon: image,
+                            title: place.name,
+                            position: place.geometry.location
+                        });
+
+                        markers.push(marker);
+
+                        bounds.extend(place.geometry.location);
+
+                        var latitude = place.geometry.location.lat();
+                        var longitude = place.geometry.location.lng();
+
+                        document.getElementById("lat").value = latitude;
+                        document.getElementById("long").value = longitude;
+                        document.getElementById("inputName2").value = place.formatted_address;
+
+                    }
+                    map.fitBounds(bounds);
+                    map.setZoom(Math.min(map.getZoom(), 15));
+                });
+
+                google.maps.event.addListener(map, 'bounds_changed', function () {
+                    var bounds = map.getBounds();
+                    searchBox.setBounds(bounds);
+                });
+            }
+        });
+    });
+
+
+    var locations = [
+        <% responses[4].forEach(function (value, i) { %>
+            ["<%= value.store_name %>( <%= value.store_location %> )",<%= value.latitude %>,<%= value.longitude %>, i],
+            <% }) %>
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: new google.maps.LatLng(-12.046373, -77.042755),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
+
+    $('.counter-count').each(function () {
+        $(this).prop('Counter', 0).animate({
+            Counter: $(this).text()
+        }, {
+                duration: 5000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+    });
+</script>

@@ -1,0 +1,88 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav slimscrollsidebar">
+        <div class="sidebar-head">
+            <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
+        </div>
+        <div class="user-profile m-t-15">
+            <div class="dropdown user-pro-body">
+                <% if(business_user.user_image != ''){ %>
+                    <div style="background-image:url('/uploads/business/<%= business_user.user_image %>')" class="logImg"></div>
+                <% } else{ %>
+                    <div style="background-image:url(../plugins/images/users/varun.jpg)" class="logImg"></div>
+                <% } %>
+                <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    <% if( business_user && business_user.business && business_user.business.business_name ){ %>
+                        <%= business_user.business.business_name||"" %>
+                    <% }else{ %>
+                        <%= business_user.fname %>
+                    <% } %>
+
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu animated flipInY">
+                    <li><a href="/updateProfile"><i class="ti-user"></i> <%= LANG.MyProfile %></a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> <%= LANG.Logout %></a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="nav" id="side-menu">
+            <li> <a href="/dashboard" class="waves-effect <% if(title == 'dashboard'){ %> active <% }%>"><i class="mdi mdi-home fas-fw"
+                        data-icon="v"></i>
+                    <span class="hide-menu"> <%= LANG.Dashboard %> <span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/stores" class="waves-effect <% if(title == 'stores'){ %> active <% }%>">
+                    <i class="mdi mdi-store fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> <%= LANG.Stores %> <span class="fa arrow"></span> </span>
+                </a>
+            </li>
+            <li> <a href="/coupons" class="waves-effect <% if(title == 'coupons'){ %> active <% }%>">
+                    <i class="ti-ticket fa-lg fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> <%= LANG.Coupons %> <span class="fa arrow"></span> </span>
+                </a>
+            </li>
+
+            <li> <a href="/deals" class="waves-effect <% if(title == 'deals'){ %> active <% }%>">
+                    <i class="mdi mdi-tag-multiple fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> <%= LANG.DealsoftheDay %> <span class="fa arrow"></span> </span>
+                </a>
+            </li>
+
+            <!--<li> <a href="/ads" class="waves-effect <% if(title == 'ads'){ %> active <% }%>">-->
+                    <!--<i class="mdi mdi-bullhorn fa-fw" data-icon="v"></i>-->
+                    <!--<span class="hide-menu"> Advertisement <span class="fa arrow"></span> </span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <li> <a href="/users" class="waves-effect <% if(title == 'users'){ %> active <% }%> "><i class="mdi mdi-account-multiple fa-fw"
+                        data-icon="v"></i>
+                    <span class="hide-menu"> <%= LANG.UsersDemographics %><span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/reports" class="waves-effect <% if(title == 'reports'){ %> active <% }%> ">
+                    <i class="mdi mdi-alert fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> <%= LANG.Complain %><span class="fa arrow"></span> </span></a>
+            </li>
+            <li> <a href="/payment/membership" class="waves-effect <% if(title == 'membership'){ %> active <% }%> ">
+                <i class=" ti-wallet fa-lg fa-fw" data-icon="v"></i>
+                <span class="hide-menu"> <%= LANG.Membership %> <span class="fa arrow"></span> </span></a>
+              </li>
+            <li> <a href="/finance" class="waves-effect <% if(title == 'finance'){ %> active <% }%> ">
+                    <i class=" ti-wallet fa-lg fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> <%= LANG.Finance %> <span class="fa arrow"></span> </span></a>
+            </li>
+            <!-- <li> <a href="/pages" class="waves-effect <% if(title == 'pages'){ %> active <% }%>"><i class="mdi mdi-settings fa-fw"></i>
+                    <span class="hide-menu"> <%= LANG.Others %> <span class="fa arrow"></span> </span></a>
+            </li> -->
+
+            <li class="devider"></li>
+            <li><a href="/logout" class="waves-effect"><i class="mdi mdi-logout fa-fw"></i>
+                    <span class="hide-menu"><%= LANG.Logout %></span></a></li>
+            <li class="devider"></li>
+        </ul>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Left Sidebar -->
+<!-- ============================================================== -->

@@ -1,0 +1,91 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+	<div class="row bg-title">
+		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+			<h4 class="page-title">Edit City</h4>
+		</div>
+		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+			<ol class="breadcrumb">
+				<li><a href="/dashboard">Dashboard</a></li>
+				<li><a href="#">Edit City</a></li>
+			</ol>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="white-box">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<hr class="">
+					<div class="box-body target ">
+						<form class="form-horizontal form-material" data-toggle="validator" method="POST" action="/city/edit/<%= cityInfo.id %>">
+
+							<div class="form-group">
+								<label class="col-md-12">Select State<sup> * </sup></label>
+								<div class="col-md-12">
+
+									<select class="form-control form-control-line" name="state" id="state" required>
+										<option value="">-- Select State --</option>
+										<% states.forEach(function(value, index) { %>
+										<option value="<%= value.id %>" <%=cityInfo.state_id==value.id ?"selected" : "" %>>
+											<%= value.name %>
+										</option>
+										<% }); %>
+									</select>
+									<div class="help-block with-errors"></div>
+								</div>
+
+							</div>
+							<div class="form-group">
+								<label class="col-md-12">City Name <sup>*</sup></label>
+								<div class="col-md-12">
+									<input type="text" class="form-control" name="city_name" id="city_name" value="<%= cityInfo.name %>">
+								</div>
+
+							</div>
+							<br>
+							<br>
+							<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+							<a href="/city" class="btn btn-primary waves-effect">BACK</a>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		/*$(document).ready(function () {
+
+			var stateId = $('#state_id').val();
+			var cityId = $('#city_id').val();
+			$.post('/users/get_cities', { id: stateId, cityId: cityId }, function (success) {
+				$("#cities").html('');
+				$("#cities").append(success);
+			});
+
+			$("#state").change(function () {
+				var stateId = $(this).val();
+				$.post('/users/get_cities', { id: stateId, cityId: cityId }, function (success) {
+					$("#cities").html('');
+					$("#cities").append(success);
+				});
+			});
+
+		});*/
+
+		// $("form").on("submit", function (event) {
+		// 	var phone = $("#phone");
+		// 	var val = phone.val();
+		// 	alert(val.length);
+		// 	var phoneno = /^\d{10}$/;
+		// 	if (val.match(phoneno)) {
+		// 		return true
+		// 	} else {
+		// 		phone.focus()
+		// 		phone[0].setCustomValidity('Invalid number; must be ten digits.');
+		// 		return false
+		// 	}
+		// });
+
+	</script>

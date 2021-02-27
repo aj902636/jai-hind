@@ -1,0 +1,16 @@
+.navbar-nav .nav-link{
+	font-size: 13px;
+	padding: 0 12px !important;
+
+}
+
+.secondoryBtns li a.getApp{ margin-left: 10px;     padding: 12px 14px; }
+
+@media (max-width: 767px){
+.navbar-nav .nav-link {
+    padding: 15px 15px !important;
+	text-align: center;
+	font-size: 15px;
+}
+
+}

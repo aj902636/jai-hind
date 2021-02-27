@@ -1,0 +1,98 @@
+<% layout('layouts/admin') %>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.Dashboard %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- Other sales widgets -->
+    <!-- ============================================================== -->
+    <!-- .row -->
+
+
+    <% if(remainng > 0) { %>
+
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+
+                        <div class="panel-heading">
+                            <%= LANG.RemainingDays %> <%= remainng %>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+
+                <div class="panel-heading">
+                    <%= LANG.Membership %>
+                </div>
+                <div class="table-responsive">
+                    <table id="example2" class="table table-bordered table-hover table-responsive table-striped">
+                        <thead>
+                            <tr>
+
+                                <th><%= LANG.TotalDays %></th>
+                                <th><%= LANG.SubscriptionDate %></th>
+                                <th><%= LANG.SubscriptionEndDate %></th>
+                                <th><%= LANG.MembershipType %></th>
+
+
+                            </tr>
+                            <tr class="search_bar">
+                                <td><%= LANG.TotalDays %></td>
+                                <td><%=  LANG.SubscriptionDate %></td>
+                                <td><%= LANG.SubscriptionEndDate %></td>
+                                <td><%= LANG.MembershipType %></td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%= remainng %></td>
+                                <td><%= moment(subs.subscription_start_date).format("YYYY-MM-DD") %></td>
+                                <td><%= moment(subs.subscription_expire_date).format("YYYY-MM-DD") %></td>
+                                <td><%= (LANG.LANGSWITCH == 'en')?subs.subscription_type:"Gratuito"; %></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- Running Coupons table -->
+    <!-- ============================================================== -->
+
+
+
+
+    <!-- Running Deals of the day -->
+    <!-- ============================================================== -->
+
+</div>
+</div>
+
+
+
+
+<script>
+
+
+</script>

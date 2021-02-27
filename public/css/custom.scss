@@ -1,0 +1,17 @@
+$black:#000;
+$red:#ff0000;
+$yellow:#ffff00;
+$white:#fff;
+
+.navbar-header{ background: $black; }
+#side-menu > li > a.active{    border-left: 3px solid $red; background-color:$red; color: $white; }
+.notify .point{background-color: #ffff00;}
+.notify .heartbit{ border-color: #ffff00;}
+.btn-info{background:$black; border: 1px solid $black; color:$black;
+	&.btn-outline{color:$black;}
+
+} 
+#side-menu li a{color: #818182;}
+.btn-info.btn-outline:hover, .btn-info.btn-outline:focus{    background: $red;  border-color:$red; } 
+.fz30{    font-size: 60px; color:$red;
+    line-height: normal;}

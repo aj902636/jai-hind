@@ -1,0 +1,214 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"><%= LANG.ViewUser %></h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard"><%= LANG.Dashboard %></a></li>
+                <li><a href="#"><%= LANG.ViewUser %></a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <!-- .row -->
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="table-responsive">
+                    <table border="1" class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td><%= LANG.City %></td><td><%= cityName %></td>
+                            </tr>
+                            <tr>
+                                <td><%= LANG.TotalRegistered %></td>
+                                <td><% if(countMale || countFemale){%>
+                                        <%=countMale + countFemale%>
+                                    <% }else{%>
+                                        0
+                                    <% }%>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-12"></div>
+            <div class="col-md-4 col-xs-12">
+                <form method="get" name="submitCity"  id="submitCity">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-8 text-center">
+                            <%= LANG.FilterbyCity %>
+                        </div>
+                        <div class="col-md-6 col-sm-4 text-center">
+                            <select name="city" class="form-control" onchange="this.form.submit()" >
+                                <option value=""><%= LANG.All %></option>
+                                <% for(cityInd = 0; cityInd < cityList.length ; cityInd++){ %>
+                                    <option value="<%= cityList[cityInd].id %>"  <% if(selectCity==cityList[cityInd].id){ %>selected='selected' <% } %> ><%= cityList[cityInd].name %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <!-- %if(countMale && countFemale){% -->
+            <div class="col-md-5 col-xs-12">
+                <div class="white-box">
+                    <div id="pieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <!--%}%>
+            %if(showGraph){%-->
+            <div class="col-md-7 col-xs-12">
+                <div class="white-box">
+                    <div id="columnChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <!--%}%-->
+        </div>
+        <!-- /.row -->
+    </div>
+    <style>.highcharts-xaxis{display: none !important;}</style>
+<script>
+if(JSON.parse('<%=countMale%>')>0 || JSON.parse('<%=countFemale%>')>0){
+    var dataObj = [{ name: '<%= LANG.Male %>', y: JSON.parse("<%=countMale%>") },{ name: '<%= LANG.Female %>', y: JSON.parse("<%=countFemale%>") }];
+}else{
+    var dataObj = [];
+}
+var xAxiscode = {};
+if('<%=showGraph%>' != ''){
+    xAxiscode = {
+            type: 'category',
+            title: {
+                text: '<%=showGraph%>'
+            }
+        };
+}
+
+$(function(){
+    // Create the chart
+    Highcharts.chart('columnChart', {
+        chart: {
+            type: 'column'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: '<%= LANG.Userratiobyagerange %>'
+        },
+        xAxis: xAxiscode,
+        yAxis: {
+            title: {
+                text: ''
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> <%= LANG.ofTotal %><br/>'
+        },
+
+        series: [
+            {
+                name: '<%= LANG.Users %>',
+                colorByPoint: true,
+                data: <%- JSON.stringify(ageObj) %>
+            }
+        ]
+    }, function(chartcolumn) { // on complete
+        if(chartcolumn.series[0].data.length <= 0){
+            chartcolumn.renderer.text('<%= LANG.Noactiondoneyet %>', 230, 120)
+                .css({
+                    color: '#4572A7',
+                    fontSize: '16px'
+                })
+                .add();
+        }
+    });
+
+// Make monochrome colors
+var pieColors = (function () {
+    var colors = [],
+        base = Highcharts.getOptions().colors[0],
+        i;
+
+    for (i = 0; i < 10; i += 1) {
+        // Start out with a darkened base color (negative brighten), and end
+        // up with a much brighter color
+        colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+    }
+    return colors;
+}());
+
+// Build the chart
+    Highcharts.chart('pieChart', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: '<%= LANG.Userratiobygender %>'
+        },
+        tooltip: {
+            pointFormat: '<b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                //colors: pieColors,
+                colors: ['#5B9AD5', '#ED561B'],
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                    distance: -50,
+                    filter: {
+                        property: 'percentage',
+                        operator: '>',
+                        value: 4
+                    }
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            //name: 'Share',
+            data: dataObj// [{ name: 'Male', y: 4.18 },{ name: 'Female', y: 7.05 }]
+        }]
+    }, function(chart) { // on complete
+        if(chart.series[0].data.length <= 0){
+            chart.renderer.text('<%= LANG.Noactiondoneyet %>', 140, 120)
+                .css({
+                    color: '#4572A7',
+                    fontSize: '16px'
+                })
+                .add();
+        }
+    });
+
+})
+</script>
+
+

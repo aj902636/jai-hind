@@ -1,0 +1,132 @@
+<% layout('layouts/admin') %>
+<link href="/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Coupon Details </h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Coupon Details</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header row">
+                        <h3 class="box-title col-md-9 col-xs-9">Coupon Details</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="example2" class="table table-bordered table-hover table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>BUSINESS NAME</th>
+                                        <th>TOTAL COUPONS GENERATED</th>
+                                        <th>REDEEMED COUPONS</th>
+                                    </tr>
+                                    <tr class="search_bar">
+                                        <td>Business</td>
+                                        <td>Coupons</td>
+                                        <td>Redeemed Coupons</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% userInfo.forEach(function(value) {  %>
+                                    <tr>
+                                        <td>
+                                            <%= value.business_name %>
+                                        </td>
+                                        <td>
+                                            <%= value.coupon_count %>
+                                        </td>
+                                        <td>
+                                            <%= value.redeemCount %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                                <!--<tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>icon</th>
+                                        <th>Created On </th>
+                                        <th data-sortable="false">Action</th>
+                                    </tr>
+                                </tfoot>-->
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+
+            <!-- /.panel-body -->
+        </div>
+    </div>
+</div>
+<style>
+    #example2_filter {
+        display: none;
+    }
+</style>
+<script src="/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+<script src="/plugins/bower_components/datatables/datatables.min.js"></script>
+<script>
+    $(function () {
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function () {
+            new Switchery($(this)[0], $(this).data());
+        });
+        $('.js-switch').change(function () {
+            var id = $(this).data('id');
+            var status = $(this).is(':checked');
+            var obj = { id: id };
+            obj.status = status;
+            var url = "/" + $(this).data('model_id') + '/status';
+            console.log("test=====>>>", status, url);
+
+            $.post(url, obj, function (data) {
+                if (data) console.log(data);
+            });
+        });
+    });
+    $(function () {
+        $(document).ready(function () {
+            var tab = $('#example2').DataTable({
+                "paging": true,
+                "bSortCellsTop": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                "columnDefs": [
+                    { "width": "33%", "targets": 0 },
+                    { "width": "33%", "targets": 1 },
+                    { "width": "34%", "targets": 2 }
+                ]
+            });
+
+            $('#example2 thead tr.search_bar td').each(function (value) {
+                if (value !== 3) {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" class="form-control" placeholder="Search by ' + title + '" data-index="' + value + '" />');
+                }
+            });
+
+            $(tab.table().container()).on('keyup change', '.search_bar input', function () {
+                tab.column($(this).data('index')).search(this.value).draw();
+            });
+        });
+    });
+
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+</script>

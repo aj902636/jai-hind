@@ -1,0 +1,151 @@
+<% layout('layouts/admin') %>
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">View User</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/users">User Listing</a></li>
+                <li><a href="#">View User</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <!-- .row -->
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <div class="overlay-box">
+                            <div class="user-content">
+                                <a href="javascript:void(0)">
+                                    <% if(userInfo.fb_image != ''){ %>
+                                        <img src="<%= userInfo.fb_image %>" alt="user-img" width="36"
+                                             class="img-circle">
+                                    <% } else if(userInfo.user_image != ''){ %>
+                                    <img src="/uploads/admin/<%= userInfo.user_image %>" alt="user-img" width="36"
+                                        class="img-circle">
+                                    <% } else{ %>
+                                    <img src="/img/default_user.png" alt="user-img" width="36" class="img-circle">
+                                    <% } %>
+                                </a>
+                                <h4 class="text-white">
+                                    <%= userInfo.fname %>
+                                    <%= userInfo.lname %>
+                                </h4>
+                                <h5 class="text-white">
+                                    <%= userInfo.email %>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="user-btm-box">
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <p class="text-purple"><i class="ti-facebook"></i></p>
+                            <h1>258</h1>
+                        </div>
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <p class="text-blue"><i class="ti-twitter"></i></p>
+                            <h1>125</h1>
+                        </div>
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <p class="text-danger"><i class="ti-dribbble"></i></p>
+                            <h1>556</h1>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <div class="white-box">
+                    <ul class="nav nav-tabs tabs customtab">
+                        <li class="tab active">
+                            <a href="#home" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span>
+                                <span class="hidden-xs">Other Details</span> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Full Name</td>
+                                            <td>
+                                                <%= userInfo.fname %>
+                                                <%= userInfo.lname %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobile Number</td>
+                                            <td>
+                                                <%= userInfo.phone; %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>
+                                                <%= userInfo.gender; %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of birth</td>
+                                            <td>
+                                                <%=  moment(userInfo.dob).format('DD/MM/YYYY hh:mm A') %>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Province </td>
+                                            <td>
+
+
+                                                <% if((userInfo.state_name)) {%>
+                                                    <%=  userInfo.state_name.name %>...
+                                                    <% } else { %>
+
+                                                    <% }  %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>City</td>
+                                            <td>
+                                                                                               <% if((userInfo.city_name)) {%>
+                                                    <%= userInfo.city_name.name %>...
+                                                    <% } else { %>
+
+                                                    <% }  %>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>
+                                                <%= userInfo.isActive ? "Active" : "Inactive"  %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Created At </td>
+                                            <td>
+                                                <%= moment(userInfo.createdAt).format('DD/MM/YYYY hh:mm A'); %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Categories</td>
+                                            <td>
+                                                <%= userInfo.subcategory %>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>

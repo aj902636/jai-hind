@@ -1,0 +1,521 @@
+<% layout('layouts/admin') %>
+
+
+<!-- Optional theme -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Dashboard</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/admin_coupons">Admin Coupon List</a></li>
+                <li><a href="#">Add Coupon</a></li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="white-box">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body target signupFourm">
+                        <form data-toggle="validator" id="form_validation" action="/admin_coupons/addCoupon2" method="POST"
+                              class="col-xs-10">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required ">Business <sup> * </sup></label>
+                                        <div class="form-line store_nameerr">
+                                            <select name="business" id="business" class="form-control "  required>
+                                                <option value="">Select Business Name </option>
+                                                <% business.forEach(function(row) { %>
+                                                <option value=<%=row.userId %>>
+                                                    <%= row.business_name %> -:  <%= row.email %>
+                                                </option>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required ">Store name <sup> * </sup></label>
+                                        <div class="form-line store_nameerr">
+                                            <select name="store_name[]" id="store_name" multiple required class="form-control" >
+
+                                            </select>
+                                        </div>
+                                        <!-- <div class="help-block with-errors storeerror"></div>  -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required ">Title <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="title" id="inputName1" name="title"
+                                                type="text" maxlength="50" required>
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-float">
+                                        <label class="form-label required ">Description <sup> * </sup></label>
+                                        <div class="form-line ">
+                                            <input class="form-control" placeholder="Description" id="inputName12"
+                                                name="description"
+                                                type="text" maxlength="100" required>
+                                        </div>
+                                        <!-- <div class="help-block with-errors"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-float">
+                                <label for="imageupload"class="form-label required">Select Image </label><br>
+                                <span class="text-muted">(Image 4 MB) </span>
+                                <div class="form-line" style="text-align: center">
+                                    <div class="imageUpload"  title="select image ">
+                                        <input name="foo" id="image" type="file" class="waves-effect" value="test" accept="image/png,image/gif,image/jpeg,image/jpg"/>
+                                    select image </div>
+                                    <!-- <img id="catImg" src="" width="150"> -->
+                                </div>
+                                <div class="help-block with-errors"></div>
+                                <div class="row" id="imgblock" style="display:none;">
+                                    <div class="form-group col-md-7 form-float">
+                                        <img id="catImg" src="" width="500">
+                                        <p><br>
+                                            <button type="button" id="button">Crop</button>
+                                        </p>
+                                    </div>
+                                    <input type="hidden" name="newImage" id="newImage" value="" />
+                                    <div class="form-group col-md-3" id="resultImage" style="width: 300px;height: 200px;float: right;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Max user defult 0 for infinite -->
+                            <input class="form-control"  id="inputName" name="max_users"
+                                         required type="hidden" value="0"  >
+
+                            <div class="row">
+                                <div class="form-group col-md-6 form-float">
+                                    <label class="form-label required ">Datetime <sup> * </sup></label>
+                                    <div class="input-group"><span class="input-group-addon"><i class="fas fa-calendar"></i></span>
+                                        <input class="form-control" id='datetimepicker4' placeholder="yyyy-mm-dd" name="date"
+                                            type="text" required onkeydown="return false;">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group col-md-6 form-float">
+                                    <label class="form-label required ">Coupon Duration <sup> * </sup></label>
+                                    <div class="form-line ">
+                                        <select name="coupon_duration" class="form-control" id="coupon_duration"
+                                            required>
+
+                                            <option selected value="24">24 Hrs</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Item coutn defult 0 for infinite -->
+                            <input class="form-control" id="Items" name="items"
+                            required type="hidden" value="0"  >
+
+
+                            <!--div class="row">
+                                <div class="form-group col-md-12 form-float">
+                                    <input class="form-line offer" value="1"  name="automated"
+                                           type="radio"> Automated
+                                    <input class="form-line offer" value="0" checked="checked" name="automated" type="radio"> Manual
+                                </div>
+                            </div-->
+                            <div class="row">
+                                <div class="form-group col-md-12 form-float">
+                                    <input class="form-line offer" value="1" checked="checked" name="offerType"
+                                           type="radio"> Offer
+                                    <input class="form-line offer" value="2" name="offerType" type="radio"> special offer
+                                </div>
+
+                                <div class="form-group col-md-4 form-float">
+                                    <label class="form-label required ">Offer discount <sup> * </sup></label>
+                                    <div id="discount" class="input-group m-t-10"><span class="input-group-addon"><i
+                                                    class="fas fa-percent"></i></span>
+                                        <input class="form-control allownumericwithdecimal" placeholder="Discount offered"
+                                            id="inputName2" name="discount" type="number" maxlength="3" max="100" min="0"
+                                            required>
+                                    </div>
+                                    <h4 id='secial'> Special offer </h4>
+                                    <!-- <div class="help-block with-errors inputName2Error"></div> -->
+                                </div>
+                                <div class="form-group col-md-4 form-float">
+                                    <label class="form-label required ">Original Price <sup> * </sup></label>
+                                    <div class="input-group m-t-10"><span class="input-group-addon">S/</span>
+                                        <input class="form-control allownumericwithdecimal" placeholder="Original price"
+                                            id="inputName3" name="original_price" maxlength="8" type="text" required>
+                                    </div>
+                                    <!-- <div class="help-block with-errors"></div> -->
+                                </div>
+                                <div class="form-group col-md-4 form-float">
+                                    <label class="form-label required ">Price after discount <sup> * </sup></label>
+                                    <div class="input-group m-t-10"><span class="input-group-addon">S/</span>
+                                        <input class="form-control allownumericwithdecimal"
+                                               placeholder="Price after discount" id="inputName4"
+                                               name="final_price" type="text" required readonly>
+                                    </div>
+                                    <!-- <div class="help-block with-errors"></div> -->
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="form-group col-md-6 form-float">
+                                    <label class="form label">Coupon Temolate Priview
+                                        <sup> * </sup></label>
+                                    <div class="form-line ">
+                                        <button class=" btn btn-primary waves-effect" data-toggle="modal" data-target="#verticalcenter"
+                                            id="priview" type="button">Coupon privew</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- sample modal content -->
+                            <div id="verticalcenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vcenter"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered ">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title col-md-11" id="vcenter">Koupon Privew</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body" id="couponTemp">
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn waves-effect" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary waves-effect submitBtn" type="submit">Submit</button>
+                                <a href="/admin_coupons" class="btn btn-primary waves-effect">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <script src="/js/bootstrap-multiselect.js"></script>
+ <link href="/css/bootstrap-multiselect.css" rel="stylesheet">
+
+<script>
+
+    function readURL(input) {
+            $('#catImg').attr('src', "" );
+            $("#newImage").val( "" )
+            try{
+                cropper.destroy();
+                cropper = null;
+                result.innerHTML = '';
+            }catch(e){
+                //do nothing
+            }
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#catImg').attr('src', e.target.result);
+                    $("#newImage").val( e.target.result )
+                    $("#imgblock").show()
+
+                    var image = document.getElementById('catImg');
+                    var button = document.getElementById('button');
+                    var result = document.getElementById('resultImage');
+
+                    var croppable = false;
+                    cropper = new Cropper(image, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                        minCropBoxWidth: 300,
+                        minCropBoxHeight: 300,
+                        ready: function () {
+                            croppable = true;
+                        }
+                    });
+
+                    button.onclick = function () {
+                        var croppedCanvas;
+                        var roundedCanvas;
+                        var roundedImage;
+
+                        if (!croppable) {
+                            return;
+                        }
+                        croppedCanvas = cropper.getCroppedCanvas();
+                        roundedImage = document.createElement('img');
+                        roundedImage.src = croppedCanvas.toDataURL()
+                        $("#newImage").val( croppedCanvas.toDataURL() )
+
+                        result.innerHTML = '';
+                        result.appendChild(roundedImage);
+                    };
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    $(document).ready(function () {
+
+        /*$('#store_name').multiselect({
+            nonSelectedText: 'Select Store',
+            enableFiltering: true,
+            filterPlaceholder: 'Search',
+            enableCaseInsensitiveFiltering: true,
+            buttonWidth:'400px'
+        });*/
+
+       /* $('#business').multiselect({
+            nonSelectedText: 'Select Business',
+            enableFiltering: true,
+            filterPlaceholder: 'Search',
+            enableCaseInsensitiveFiltering: true,
+            buttonWidth:'400px'
+        });*/
+
+        if($('#store_name option').length == 1){
+            $("#store_name").val($('#store_name option:first').val());
+            $('#store_name').multiselect("refresh");
+        }
+        $('input[type="file"]').change(function(e){
+            const validImageTypes = ['image/gif', 'image/jpeg', 'image/png','image/JPEG', 'image/PNG','image/GIF', 'image/png'];
+
+            if (!validImageTypes.includes(this.files[0]['type'])) {
+                $(this).val('');
+                alert("Allow files type are : gif,png,jpeg");
+                return;
+            }
+            if(this.files[0].size > 4194304){
+                $(this).val('');
+                alert("Maxfile size 4MB.");
+                return;
+            }else{
+                readURL(this);
+            }
+        });
+
+   /*      var parent_cat = $("input[name='parent_cat']:checked").val();
+                $.post('/coupons/get_subcat', { id: parent_cat, cityId: false }, function (success) {
+                    $("#sub_cat").html('');
+                    $("#sub_cat").append(success);
+                });
+
+         */
+         $("#business").change(function () {
+            var business = $("#business").val();
+            //alert(business)
+            $.post('/admin_coupons/get_stores', { id: business, cityId: false }, function (success) {
+                $("#store_name").html('');
+                $("#store_name").append(success);
+            });
+        });
+
+        $("#store_name").on("change",function () {
+            if(!$(this).val()){
+                $(".store_nameerr").addClass("error");
+            }else{
+                $(".store_nameerr").removeClass("error");
+            }
+        });
+        $("#form_validation").validate({
+            errorPlacement: function (error, element) {
+                var name = $(element).attr("name");
+                if(name=="store_name[]"){
+                    $(".store_nameerr").addClass("error");
+                }
+                console.log("---name",name)
+            },
+
+            messages: {
+                "store_name[]": "message"
+            },
+            ignore: ':hidden:not("#store_name")',
+        });
+
+        function convert(str) {
+            var date = new Date(str),
+            mnth = ("0" + (date.getMonth()+1)).slice(-2),
+            day  = ("0" + date.getDate()).slice(-2);
+            hours  = ("0" + date.getHours()).slice(-2);
+            minutes = ("0" + date.getMinutes()).slice(-2);
+            return [ date.getFullYear(), mnth, day, hours, minutes ].join("-");
+        }
+
+
+        var server_cureent_date_time= <%- JSON.stringify(cureent_date_time) %>;
+       console.log("currnt server datae",server_cureent_date_time);
+        var currentDate = new Date(server_cureent_date_time);
+        //console.log("function convert "+convert(currentDate));
+        var newDateResult = new Date();
+        //console.log('Current Date '+ currentDate);
+        //newDateResult.setTime(currentDate.getTime() + (2 * 60 * 1000));
+        //console.log('updateed Date '+ newDateResult);
+
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm',
+                defaultDate: server_cureent_date_time,
+                minDate: server_cureent_date_time,
+            });
+        });
+
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        //$('#datetimepicker4').datetimepicker('setDate', today);
+
+        $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 8) && (event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
+        $("#inputName2").on("keypress keyup blur", function () {
+            var price = $("#inputName3").val();
+            var discount = $(this).val();
+            if (price != '') {
+                if(discount>100){
+                    $(this).val(100);
+                    discount = 100;
+                }
+                var final = price - (price * discount) / 100;
+                $('#inputName4').val(parseFloat(final).toFixed(2));
+            }else{
+                if(discount>100){
+                    $(this).val(100);
+                }
+            }
+        });
+        $("#inputName3").on("keypress keyup blur", function () {
+            var discount = $("#inputName2").val();
+            var price = $(this).val();
+            if (discount != '') {
+                if(discount>100){
+                    discount = 100;
+                }
+                var final = price - (price * discount) / 100;
+                $('#inputName4').val(parseFloat(final).toFixed(2));
+            }
+        });
+        $("#inputName4").on("keypress keyup blur", function () {
+            var original = parseInt($("#inputName3").val());
+            var discountPrice = parseInt($(this).val());
+            if (original != '') {
+                if (original > discountPrice) {
+                    const amount = original - discountPrice;
+                    var per = (amount * 100) / original;
+                    $('#inputName2').val(per.toFixed());
+                    console.log('=====per>', per);
+                    var element = $("#inputName4")[0];
+                    element.setCustomValidity('');
+                } else {
+                    var element = $("#inputName4")[0];
+                    element.setCustomValidity('Please enter value less then Original');
+                }
+            }
+        });
+        $("#priview").on("click", function () {
+            $("#couponTemp").html("<p>Loading... </p>");
+            storeId = $("#store_name option:selected").val();
+            //sub_cat = $("#sub_cat option:selected").val();
+            //sub_cat_name = $("#sub_cat option:selected").text();
+            title = $("#inputName1").val();
+            discount = $("#inputName2").val();
+            desc = $("#inputName12").val();
+            img = $('#catImg').attr('src');
+            date = $("#datetimepicker4").val();
+            coupon_duration = $("#coupon_duration").val();
+            const offer = $('input[type=radio][name=offerType]:checked').val();
+            $.post('/admin_coupons/get_coupon_priview', {
+                storeId : storeId,
+                //sub_cat : sub_cat,
+                //sub_cat_name : sub_cat_name,
+                title :title,
+                discount : discount,
+                desc : desc,
+                img : img,
+                date : date,
+                coupon_duration : coupon_duration,
+                offer : offer
+            }, function (success) {
+                $("#couponTemp").html(success);
+            });
+        });
+    });
+
+    $('input[type=radio][name=offerType]').change(function () {
+        $("#inputName4 ,#inputName2 ").val('');
+        if (this.value == '1') {
+            $('#inputName2').prop('required',true);
+            $('#discount').css('display', 'table');
+            $('#secial').css('display', 'none');
+            $('#inputName4').attr('readonly', 'readonly');
+        } else if (this.value == '2') {
+            $(".inputName2Error").parent("div").removeClass('has-error');
+            $(".inputName2Error").find("ul").remove();
+            $('#inputName2').prop('required',false);
+            $('#discount').css('display', 'none');
+            $('#secial').css('display', 'block');
+            $('#inputName4').removeAttr('readonly');
+        }
+    });
+    $(document).ready(function () {
+        const offer = $('input[type=radio][name=offerType]:checked').val();
+        if (offer == 1) {
+            $('#discount').css('display', 'table');
+            $('#secial').css('display', 'none');
+            $('#inputName4').attr('readonly', 'readonly');
+        } else if (offer == 2) {
+            $('#discount').css('display', 'none');
+            $('#secial').css('display', 'block');
+            $('#inputName4').removeAttr('readonly');
+        }
+    });
+    // After submit form submit button get disabled
+    $(function () {
+       // alert('sdf')
+        var spinner = $('#loader');
+      //  spinner.show();
+        $("#form_validation").submit(function () {
+
+            if($(this).valid()) {
+               // alert('sdf');
+               spinner.show();
+                $('.submitBtn').attr('disabled', true);
+            }
+            return true;
+        });
+    });
+
+
+
+
+</script>

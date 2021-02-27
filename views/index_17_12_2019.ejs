@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+
+    <title>Kupon | Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/new_template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/new_template/css/scrolling-nav.css" rel="stylesheet">
+    <link href="/new_template/css/animate.css" rel="stylesheet">
+    <link href="/new_template/css/material-design-iconic-font.min.css" rel="stylesheet">
+	<link href="/new_template/css/style.css" rel="stylesheet">
+    <% if(lang == 'es') { %>
+    <link href="/new_template/css/portuguese.css" rel="stylesheet">
+    <% } %>
+	<style>
+		.phoneBlock a{ color: #000;
+		 }
+		 .phoneBlock a:hover{ text-decoration: none; }
+		 .socailIcons a{ color: #fff; }
+
+	</style>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger logo" href="#page-top"><img src="/new_template/img/logo.png" alt="" class="d-block w-100">  </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <ul class="secondoryBtns visibleXs">
+          		<li>
+          		<a href="" class="languageDrop" data-toggle="dropdown"><%=lang%> <i class="zmdi zmdi-caret-down"></i></a>
+          		<div class="dropdown-menu">
+					<a class="dropdown-item" href="#" data-value="en">English</a>
+                    <a class="dropdown-item" href="#" data-value="es">Español</a>
+				</div>
+
+          		</li>
+          		<li><a href="<%= business_url+'login' %>" target="_blank" class="nav-link  js-scroll-trigger" > <%= LANG.newLogin%>  </a></li>
+			<li><a href="<%= business_url %>" target="_blank" class="nav-link  js-scroll-trigger" > <%= LANG.newRegister%>  </a></li>
+          </ul>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about"><%= LANG.newHome%></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#ourFeat"><%= LANG.newFeature%></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link js-scroll-trigger" href="#success"><%= LANG.newSuccessStories%></a>
+			  </li>
+
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact"><%= LANG.newDealsOfTheDay%></a>
+            </li>
+
+             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact"><%= LANG.newContactUsMenu%></a>
+			</li>
+
+
+
+
+          </ul>
+
+
+        </div>
+
+		<ul class="secondoryBtns hidden-xs">
+			<li>
+			<a href="" class="languageDrop" data-toggle="dropdown"><%=lang%> <i class="zmdi zmdi-caret-down"></i></a>
+			<div class="dropdown-menu">
+			  <!--<a class="dropdown-item" href="index-en.html">English</a>-->
+			  <!--<a class="dropdown-item" href="index.html">Español</a>-->
+              <a class="dropdown-item" href="#" data-value="en">English</a>
+              <a class="dropdown-item" href="#" data-value="es">Español</a>
+
+			</div>
+
+			</li>
+			<li><a href="<%= business_url+'login' %>" target="_blank" class="nav-link getApp js-scroll-trigger" > <%= LANG.newLogin%>  </a></li>
+			<li><a href="<%= business_url %>" target="_blank" class="nav-link getApp js-scroll-trigger" > <%= LANG.newRegister%>  </a></li>
+	</ul>
+      </div>
+    </nav>
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade mT100" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <% if (lang == 'es') { %>
+      <img class="d-block w-100" src="/new_template/img/banner-1.jpg" alt="First slide">
+      <% } else { %>
+      <img class="d-block w-100" src="/new_template/img/english-banner.jpg" alt="First slide">
+      <% } %>
+
+    </div>
+
+  </div>
+  <div class="bannerDescp">
+		<div class="container">
+				<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							<p><%= LANG.newBannerDescription%></p>
+
+						</div>
+						<div class="col-md-1"></div>
+
+				</div>
+
+
+		</div>
+
+
+  </div>
+
+ <!-- <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>-->
+</div>
+
+    <section class="ourFeature defultPadding " id="ourFeat">
+    		<div class="container">
+    				<div class="row">
+    					<div class="col-lg-6">
+    						<figure class="fadeInLeft animated3 delay2">
+
+    						</figure>
+
+    					</div>
+    					<div class="col-lg-6">
+    						<div class="featureDesc">
+    							<h2><%= LANG.OurFeatures%></h2>
+
+    							<ul>
+    								<li>
+    									<span class="">
+    										<i class="featureIcons coupons "></i>
+    									</span>
+    									<h4><%= LANG.OurFeature1%></h4>
+    									<p><%= LANG.OurFeatureCotent1%></p>
+    								</li>
+
+    								<li>
+    									<span>
+    										<i class="featureIcons share"></i>
+    									</span>
+    									<h4><%= LANG.OurFeature2%></h4>
+    									<p><%= LANG.OurFeatureCotent2%></p>
+    								</li>
+
+    								<li>
+    									<span>
+    										<i class="featureIcons category"></i>
+    									</span>
+    									<h4><%= LANG.OurFeature3%></h4>
+    									<p><%= LANG.OurFeatureCotent3%></p>
+    								</li>
+
+    								<li>
+    									<span>
+    										<i class="featureIcons business"></i>
+    									</span>
+    									<h4><%= LANG.OurFeature4%></h4>
+    									<p><%= LANG.OurFeatureCotent4%></p>
+    								</li>
+
+
+    							</ul>
+
+
+
+    						</div>
+
+
+    					</div>
+
+    				</div>
+
+
+    		</div>
+
+
+	</section>
+
+	<section class="mapBlock">
+			<div class="container">
+					<div class="row">
+							<div class="col-md-6"></div>
+							<div class="col-md-6">
+
+											<img src="/new_template/img/coupon-details-banner.png" alt="" class="img-fluid">
+
+
+
+
+							</div>
+
+
+					</div>
+
+
+			</div>
+
+
+
+	</section>
+
+
+	<section class="suceesStories" id="success">
+		<h2 class="text-center"><%= LANG.newSuccessStories%></h2>
+
+		<div class="container">
+
+
+				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+						<div class="carousel-inner">
+						  <div class="carousel-item active">
+								<img class="img-fluid rounded-circle" src="/new_template/img/joao.png" alt="First slide">
+								<p><%= LANG.newSuccessStoryContent1 %></p>
+                <h6><%= LANG.newSuccessStoryWriter1 %></h6>
+						  </div>
+						  <div class="carousel-item">
+								<img class="img-fluid rounded-circle" src="/new_template/img/kristina.png" alt="Second slide">
+								<p><%= LANG.newSuccessStoryContent2 %></p>
+                <h6><%= LANG.newSuccessStoryWriter2 %></h6>
+						  </div>
+						  <div class="carousel-item">
+								<img class="img-fluid rounded-circle" src="/new_template/img/telma.png" alt="three slide">
+                  <p><%= LANG.newSuccessStoryContent3 %></p>
+                  <h6><%= LANG.newSuccessStoryWriter3 %></h6>
+
+						  </div>
+						  <div class="carousel-item">
+							<img class="img-fluid rounded-circle" src="/new_template/img/diogo.png" alt="Four slide">
+              <p><%= LANG.newSuccessStoryContent4 %> </p>
+              <h6><%= LANG.newSuccessStoryWriter4 %></h6>
+					  </div>
+
+
+						</div>
+
+						<ol class="carousel-indicators">
+								<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+								<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+								<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+							  </ol>
+
+					  </div>
+
+
+		</div>
+
+	</section>
+
+    <!-- <section class="listBusniess" id="listbusness">
+    		<div class="container">
+    				<div class="text-center delay1 animated1 fadeInDown"> <img src="/new_template/img/business-icon.png" alt=""> </div>
+    				<h3>Are you a retailer, store owner or pharma store owner?</h3>
+    				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</p>
+    				<div class="clearfix mT40">
+    					<a href="" class="defultBtn">List Your Business</a>
+    				</div>
+
+
+    		</div>
+
+
+	</section> -->
+
+
+ <div class="storeOwners">
+
+		<h2 class="text-center"><%= LANG.newForBusinessUsersAndStoreOwners%></h2>
+
+		<div class="container-fluid">
+				<div class="row">
+						<div class="col-lg-6 mb-5">
+								<div class="row">
+										<div class="col-md-6 col-xl-5">
+												<img class="img-fluid" src="/new_template/img/register-business.png" alt="">
+
+
+										</div>
+										<div class="col-md-6 col-xl-7">
+												<h4><%= LANG.newForBusinessUsersAndStoreOwners1%></h4>
+												<p><%= LANG.newForBusinessUsersAndStoreOwnersContent1%></p>
+
+										</div>
+
+								</div>
+
+
+						</div>
+
+
+					<div class="col-lg-6 mb-5">
+							<div class="row">
+									<div class="col-md-6 col-xl-5">
+											<img class="img-fluid" src="/new_template/img/register-store.png" alt="">
+
+
+									</div>
+									<div class="col-md-6 col-xl-7">
+											<h4><%= LANG.newForBusinessUsersAndStoreOwners2%></h4>
+											<p><%= LANG.newForBusinessUsersAndStoreOwnersContent2%></p>
+
+									</div>
+
+							</div>
+
+
+					</div>
+
+					<div class="col-lg-6 mb-5">
+							<div class="row">
+									<div class="col-md-6 col-xl-5">
+											<img class="img-fluid" src="/new_template/img/generate-kupons.png" alt="">
+
+
+									</div>
+									<div class="col-md-6 col-xl-7">
+											<h4><%= LANG.newForBusinessUsersAndStoreOwners3%></h4>
+											<p><%= LANG.newForBusinessUsersAndStoreOwnersContent3%></p>
+
+									</div>
+
+							</div>
+
+
+					</div>
+
+					<div class="col-lg-6 mb-5">
+							<div class="row">
+									<div class="col-md-6 col-xl-5">
+											<img class="img-fluid" src="/new_template/img/user-reaction.png" alt="">
+
+
+									</div>
+									<div class="col-md-6 col-xl-7">
+											<h4><%= LANG.newForBusinessUsersAndStoreOwners4%></h4>
+											<p><%= LANG.newForBusinessUsersAndStoreOwnersContent4%></p>
+
+									</div>
+
+							</div>
+
+
+					</div>
+
+					<div class="col-lg-6 mb-5">
+							<div class="row">
+									<div class="col-md-6 col-xl-5">
+											<img class="img-fluid" src="/new_template/img/statistics-business.png" alt="">
+
+
+									</div>
+									<div class="col-md-6 col-xl-7">
+											<h4><%= LANG.newForBusinessUsersAndStoreOwners5%></h4>
+											<p><%= LANG.newForBusinessUsersAndStoreOwnersContent5%></p>
+
+									</div>
+
+							</div>
+
+
+					</div>
+
+				</div>
+
+
+		</div>
+
+
+
+ </div>
+
+
+    <section class="downloadApp" id="downloadapp">
+    		<div class="container">
+    				<h2><%= LANG.DownloadApp%></h2>
+    				<h5><%= LANG.DownloadAppText%></h5>
+
+    				<div class="clearfix">
+    					<a href="" class="downloadBtns"> <img src="/new_template/img/google-download-app.png" alt=""> </a>
+    					<a href="" class="downloadBtns"> <img src="/new_template/img/app-store-download.png" alt=""> </a>
+
+    				</div>
+    				<div class="clearfix downloadScreen fadeInUp delay2 animated3">
+    						<img src="/new_template/img/download-screen.png" alt="" class="d-block w-100">
+
+    				</div>
+
+    		</div>
+
+
+    </section>
+
+
+    <section id="contact" class="contactUs">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2><%= LANG.newContactUs%></h2>
+
+          </div>
+        </div>
+
+        <div class="row">
+        	<div class="col-md-5">
+        		<div class="phoneBlock">
+        				<h4><%= LANG.Phone%> </h4>
+        				<p><a href="callto:+244 90000001" style="cursor: text">+244 90000001</a></p>
+
+        		</div>
+
+        	</div>
+        	<div class="col-md-4">
+        			<div class="phoneBlock">
+        				<h4><%= LANG.EmailUs%></h4>
+        				<p><a href="">Contacto@kupon.co.ao</a></p>
+
+        			</div>
+
+        	</div>
+        	<div class="col-md-3">
+        			<div class="phoneBlock">
+        				<h4><%= LANG.FollowUs%> </h4>
+        				<div class="socailIcons">
+        					<a href="" class="fb"><i class="zmdi zmdi-facebook"></i></a>
+        					<a href="" class="linkedin"><i class="zmdi zmdi-instagram"></i></a>
+        					<a href="" class="twitter"><i class="zmdi zmdi-twitter"></i></a>
+        				</div>
+
+        			</div>
+
+
+
+        	</div>
+
+        </div>
+
+        <form name="inquiryForm" id="inquiryForm" method="post">
+        <div class="row">
+        		<div class="col-md-6">
+        				<div class="form-group">
+        					<!--<input type="text" class="form-control" placeholder="Full Name">-->
+                            <input type="text" name="fullname" id="fullname" class="form-control required" placeholder="<%=LANG.FullName %>">
+                            <input type="hidden" value="<%=lang%>" name="lang">
+
+        				</div>
+
+        		</div>
+
+        		<div class="col-md-6">
+        				<div class="form-group">
+        					<!--<input type="text" class="form-control" placeholder="Your Email">-->
+        					<input type="email" name="email" id="email"  class="form-control required " placeholder="<%=LANG.Email %> ">
+        				</div>
+
+        		</div>
+
+
+        		<div class="col-sm-12">
+        				<div class="form-group">
+        					<!--<textarea class="form-control" placeholder="Your Message"></textarea>-->
+                            <textarea name="message" id="fullname"  class="form-control required" placeholder="<%=LANG.Message %> "></textarea>
+        				</div>
+
+        		</div>
+                <div class="col-sm-12">
+                    <div class="alert"  id="showMsg">
+                        <div></div>
+                    </div>
+                </div>
+			<div class="col-sm-12 mT10">
+					<div class="text-center">
+						<!--<button class="defultBtn">Submit</button>-->
+						<button class="defultBtn"><%=LANG.Submit %></button>
+					</div>
+
+
+			</div>
+        </div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class=" bg-dark">
+      <div class="container">
+
+       <div class="row">
+       		<div class="col-md-6">
+       				<ul class="footerMenu">
+       					<!--<li><a href="">About Us</a> </li>-->
+                        <li><a href="<%= home_url+'about_us/'+lang%>"><%= LANG.AboutUs%></a> </li>
+       					<!--<li><a href="">Terms & Conditions</a></li>-->
+                        <li><a href="<%= home_url+'terms/'+lang%>"><%= LANG.Terms%></a></li>
+       					<!--<li><a href="">FAQ</a></li>-->
+                        <li><a href="<%= home_url+'faq/'+lang%>"><%= LANG.FAQ%></a></li>
+       				</ul>
+
+
+       		</div>
+       		<div class="col-md-6 ">
+       			<p class="m-0 text-right text-white"><%= LANG.Copyright%> &copy; Kupon</p>
+       		</div>
+
+       </div>
+
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/new_template/vendor/jquery/jquery.min.js"></script>
+    <script src="/new_template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/new_template/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/jqueryvalidation/jquery.validate.js"></script>
+    <script src="/js/jqueryvalidation/additional-methods.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="/new_template/js/scrolling-nav.js"></script>
+    <script src="/new_template/js/animation.js"></script>
+<script>
+  $(function () {
+    $("#inquiryForm").validate({
+      errorPlacement: function (error, element) {
+      },
+      submitHandler: function(form) {
+        $("#showMsg").removeClass("alert-success, alert-danger");
+        $.ajax({
+            url: "/send_inquiry",
+            type: "POST",
+            data: $(form).serialize(),
+            dataType: 'json',
+            cache: false,
+            processData: false,
+            beforeSend: function(){
+              $(".defultBtn").attr("disabled",true);
+            },
+            success: function (result) {
+              if(result.status){
+                $("#showMsg").show().addClass("alert-success");
+                $("#showMsg div").text(result.message);
+                setTimeout(function(){ $("#showMsg").hide(); }, 3000);
+                $("#inquiryForm")[0].reset();
+              }else{
+                $("#showMsg").show().addClass("alert-danger");
+                $("#showMsg div").text(result.message);
+                setTimeout(function(){ $("#showMsg").hide(); }, 3000);
+              }
+              $(".defultBtn").attr("disabled",false);
+            },
+            error: function (e) {
+              $("#showMsg").show().addClass("alert-danger");
+              $("#showMsg div").text('Something went wrong. please page refresh and try again.');
+              setTimeout(function(){ $("#showMsg").hide(); }, 3000);
+            }
+        });
+        return false;
+    },
+
+    });
+        $('.dropdown-item').on('click', function () {
+            var url = $(this).data('value'); // get selected value
+            if (url) { // require a URL
+                window.location = '/'+url; // redirect
+            }
+            return false;
+        });
+        $('.carousel').carousel({
+          interval: 2000
+        })
+
+  });
+</script>
+
+
+
+  </body>
+
+</html>

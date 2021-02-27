@@ -1,0 +1,66 @@
+<% layout('layouts/admin') %>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Price Manager</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Price Manager</a></li>
+
+
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Price Manager</h3>
+                <p class="text-muted m-b-30"> Edit price here</p>
+                <form data-toggle="validator" action="/prices/updatePrice" method="POST">
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">Price per Stores (&#83;&#47;&#46;) <sup> * </sup></label>
+                        <div class="input-group m-t-10"><span class="input-group-addon">&#83;&#47;&#46;</i></span>
+                            <input type="text" class="form-control allownumericwithdecimal" name="price_per_store" id="inputName1"
+                                placeholder="" value="<%= data.price_per_store %>" required>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">Price per Category (&#83;&#47;&#46;) <sup> * </sup></label>
+                        <div class="input-group m-t-10"><span class="input-group-addon">&#83;&#47;&#46;</i></span>
+                            <input type="text" class="form-control allownumericwithdecimal" name="price_per_cat" id="inputName2"
+                                placeholder="" value="<%= data.price_per_cat %>" required>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">Tax/Vat(%) <sup> * </sup></label>
+                        <div class="input-group m-t-10"><span class="input-group-addon">%</i></span>
+                            <input type="text" class="form-control allownumericwithdecimal" name="vat_price" id="vat_price"
+                                placeholder="" value="<%= data.vat_price; %>" required>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                        <a href="/dashboard" class="btn btn-danger waves-effect">BACK</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 8) && (event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+</script>

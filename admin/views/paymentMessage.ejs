@@ -1,0 +1,65 @@
+<% layout('layouts/admin') %>
+
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Payment Message</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#">Payment Message</a></li>
+
+
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Payment Message</h3>
+                <p class="text-muted m-b-30">Edit payment massege here</p>
+                <form data-toggle="validator" action="/paymentMessage/updatePaymentMessage" method="POST">
+
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="<%=data[0].id; %>" />
+                        <label for="inputName1" class="control-label">Payment Email<sup>*</sup></label>
+                        <input type="text" class="form-control" name="email" id="inputName1"
+                                placeholder="" value="<%= data[0].email %>" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">English Message<sup>*</sup></label>
+                        <textarea type="text" class="form-control" name="english_message" id="inputName2"
+                                placeholder="" required><%= data[0].english_message %></textarea>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputName1" class="control-label">Spanish Message<sup>*</sup></label>
+                        <textarea type="text" class="form-control" name="spanish_message" id="inputName2"
+                                placeholder="" required><%= data[0].spanish_message %></textarea>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                        <a href="/dashboard" class="btn btn-danger waves-effect">BACK</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".allownumericwithdecimal").on("keypress keyup blur", function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 8) && (event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+</script>
